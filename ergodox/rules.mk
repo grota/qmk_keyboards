@@ -5,3 +5,7 @@ RGBLIGHT_ENABLE = no
 RGB_MATRIX_ENABLE = yes
 COMMAND_ENABLE   = no
 #CONSOLE_ENABLE   = yes
+
+ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
+  SRC += rgb_stuff.c
+endif

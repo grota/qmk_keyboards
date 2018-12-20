@@ -1,14 +1,11 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "grota.h"
+#if defined(RGB_MATRIX_ENABLE)
+  #include "rgb_stuff.h"
+#endif
 
-enum custom_keycodes {
-  RGB_SLD = SAFE_RANGE, // can always be here
-};
-
-enum userspace_layers {
-  _BASE = 0,
-  _FN_AND_MOUSE,
-};
+userspace_config_t userspace_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Layer 0: Base
@@ -74,32 +71,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                               RGB_MOD,   RESET,   RGB_TOG, RGB_SLD,
                                                        _______,   RGB_HUI,
-                                     _______, _______, _______,   RGB_HUD, TO(_BASE), _______
+                              KC_RGB_LYR_IND, _______, _______,   RGB_HUD, TO(_BASE), _______
 ),
 };
 
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-      break;
-  }
+#if defined(RGB_MATRIX_ENABLE)
+    process_record_user_rgb(keycode, record);
+#endif
   return true;
 }
 
-// Runs just one time when the keyboard initializes.
-//void matrix_init_user(void) {
-//#ifdef RGBLIGHT_COLOR_LAYER_0
-//  rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
-//#endif
-//};
 
-// Runs constantly in the background, in a loop.
-#define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-#define MODS_CTRL_MASK  (MOD_BIT(KC_LCTRL)|MOD_BIT(KC_RCTRL))
+// Runs just one time when the keyboard initializes.
+void matrix_init_user(void) {
+  userspace_config.raw = eeconfig_read_user();
+};
+
+void eeconfig_init_user(void) {
+  userspace_config.raw = 0;
+  userspace_config.rgb_layer_change = true;
+  eeconfig_update_user(userspace_config.raw);
+}
+
 void matrix_scan_user(void) {
   static bool has_ran_yet;
   if (!has_ran_yet) {
@@ -132,15 +127,6 @@ uint32_t layer_state_set_user(uint32_t state) {
   ergodox_right_led_1_off();
   uint8_t layer = biton32(state);
   switch (layer) {
-      //case 0:
-      //  #ifdef RGBLIGHT_COLOR_LAYER_0
-      //    rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
-      //  #else
-      //  #ifdef RGBLIGHT_ENABLE
-      //    rgblight_init();
-      //  #endif
-      //  #endif
-      //  break;
       case _FN_AND_MOUSE:
         ergodox_right_led_1_on();
         break;
