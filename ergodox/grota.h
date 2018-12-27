@@ -13,14 +13,12 @@ enum userspace_layers {
 };
 
 enum custom_keycodes {
-  RGB_SLD = SAFE_RANGE, // can always be here
-  KC_RGB_LYR_IND,
+  CUSTOM_RGB_CYCLE = SAFE_RANGE, // can always be here
 };
 
 typedef union {
   uint32_t raw;
   struct {
-    bool rgb_layer_change :1;
   };
 } userspace_config_t;
 extern userspace_config_t userspace_config;

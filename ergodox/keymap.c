@@ -69,9 +69,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                    _______, _______, _______, _______, _______,   KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, KC_F10, KC_F9,
 
-                                              RGB_MOD,   RESET,   RGB_TOG, RGB_SLD,
+                                       CUSTOM_RGB_CYCLE,   RESET,   RGB_TOG, _______,
                                                        _______,   RGB_HUI,
-                              KC_RGB_LYR_IND, _______, _______,   RGB_HUD, TO(_BASE), _______
+                                     _______, _______, _______,   RGB_HUD, TO(_BASE), _______
 ),
 };
 
@@ -91,7 +91,6 @@ void matrix_init_user(void) {
 
 void eeconfig_init_user(void) {
   userspace_config.raw = 0;
-  userspace_config.rgb_layer_change = true;
   eeconfig_update_user(userspace_config.raw);
 }
 
