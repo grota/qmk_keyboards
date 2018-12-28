@@ -10,6 +10,12 @@
 //https://www.reddit.com/r/ergodox/comments/9yt81q/oneshot_shift_key_releases_too_late_ergodoxez_glow/ea5dizg/
 #define FORCE_NKRO
 
+//how long before a tap becomes a hold
+#define TAPPING_TERM 200
+
+#define LEADER_TIMEOUT 200
+#define LEADER_PER_KEY_TIMING
+
 #undef DEBOUNCE
 #define DEBOUNCE 5
 

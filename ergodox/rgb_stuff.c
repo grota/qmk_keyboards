@@ -63,22 +63,18 @@ void rgb_matrix_layer_indicator_custom(void) {
   uint8_t modifiers = get_mods();
   uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
-  HSV hsv_background = { .h = rgb_matrix_config.hue, .s = rgb_matrix_config.sat, .v = (rgb_matrix_config.val >> 2)};
-  if (modifiers & MOD_BIT(KC_RALT) || one_shot & MOD_BIT(KC_RALT) || weak_mods & MOD_BIT(KC_RALT)) {
-    hsv_background.h = (hsv_background.h + 40) % 0xFF;
-  }
-  RGB background = hsv_to_rgb(hsv_background);
+  RGB background1 = hsv_to_rgb( (HSV) { .h = rgb_matrix_config.hue, .s = rgb_matrix_config.sat, .v = (rgb_matrix_config.val >> 2)});
+  RGB background2 = hsv_to_rgb( (HSV) { .h = ((rgb_matrix_config.hue + 40) % 0xFF ), .s = rgb_matrix_config.sat, .v = (rgb_matrix_config.val >> 2)});
 
-  HSV prof1 = { .h = (rgb_matrix_config.hue + 80) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val};
-  HSV prof2 = { .h = (rgb_matrix_config.hue + 120) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val};
-  HSV prof3 = { .h = (rgb_matrix_config.hue + 160) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val};
-  RGB rgb1 = hsv_to_rgb(prof1);
-  RGB rgb2 = hsv_to_rgb(prof2);
-  RGB rgb3 = hsv_to_rgb(prof3);
+  RGB rgb1 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hue +  80) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val} );
+  RGB rgb2 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hue + 120) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val} );
+  RGB rgb3 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hue + 160) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val} );
 
   switch (biton32(layer_state)) {
     case _BASE:
-      rgb_matrix_set_color_all(background.r, background.g, background.b);
+      (RALT_IS_PRESSED) ?
+        rgb_matrix_set_color_all(background2.r, background2.g, background2.b) :
+        rgb_matrix_set_color_all(background1.r, background1.g, background1.b);
       rgb_matrix_set_color(18, rgb1.r, rgb1.g, rgb1.b); // .
       rgb_matrix_set_color(10, rgb1.r, rgb1.g, rgb1.b); // ,
       rgb_matrix_set_color(41, rgb1.r, rgb1.g, rgb1.b); // M
@@ -89,55 +85,17 @@ void rgb_matrix_layer_indicator_custom(void) {
       break;
 
     case _FN_AND_MOUSE:
-      rgb_matrix_set_color_all(0x44, 0x33, 0x22);
-      rgb_matrix_set_color( 7, 0xAF, 0xFF, 0x00); // M_UP
-      rgb_matrix_set_color(11, 0xAF, 0xFF, 0x00); // M_RIGHT
-      rgb_matrix_set_color(12, 0xAF, 0xFF, 0x00); // M_DOWN
-      rgb_matrix_set_color(13, 0xAF, 0xFF, 0x00); // M_LEFT
-      rgb_matrix_set_color(9,  0x00, 0x10, 0xFF); // M_WHLUP
-      rgb_matrix_set_color(14, 0x00, 0x10, 0xFF); // M_WHLDN
-      rgb_matrix_set_color(21, 0xAA, 0x99, 0x88); // Mouse middle click
-      rgb_matrix_set_color(22, 0xAA, 0x99, 0x88); // Mouse right click
-      rgb_matrix_set_color(23, 0xAA, 0x99, 0x88); // Mouse left click
+      rgb_matrix_set_color_all(background2.r, background2.g, background2.b);
+      rgb_matrix_set_color( 7, rgb1.r, rgb1.g, rgb1.b); // M_UP
+      rgb_matrix_set_color(11, rgb1.r, rgb1.g, rgb1.b); // M_RIGHT
+      rgb_matrix_set_color(12, rgb1.r, rgb1.g, rgb1.b); // M_DOWN
+      rgb_matrix_set_color(13, rgb1.r, rgb1.g, rgb1.b); // M_LEFT
+      rgb_matrix_set_color(9,  rgb2.r, rgb2.g, rgb2.b); // M_WHLUP
+      rgb_matrix_set_color(14, rgb2.r, rgb2.g, rgb2.b); // M_WHLDN
+      rgb_matrix_set_color(20, rgb3.r, rgb3.g, rgb3.b); // Mouse middle click
+      rgb_matrix_set_color(21, rgb3.r, rgb3.g, rgb3.b); // Mouse right click
+      rgb_matrix_set_color(22, rgb3.r, rgb3.g, rgb3.b); // Mouse left click
       break;
   }
 }
-
-#if 0
-void rgb_matrix_layer_indicator_custom_old(void) {
-  uint8_t modifiers = get_mods();
-  uint8_t one_shot = get_oneshot_mods();
-  uint8_t weak_mods = get_weak_mods();
-  switch (biton32(layer_state)) {
-    case _BASE:
-      if (modifiers & MOD_BIT(KC_RALT) || one_shot & MOD_BIT(KC_RALT) || weak_mods & MOD_BIT(KC_RALT)) {
-        rgb_matrix_set_color_all(0x11, 0x22, 0xFF);
-      }
-      else {
-        rgb_matrix_set_color_all(0x11, 0x22, 0x33);
-      }
-      rgb_matrix_set_color(18, 0xFF, 0x00, 0x00); // .
-      rgb_matrix_set_color(10, 0xAA, 0xEE, 0xCC); // ,
-      rgb_matrix_set_color(41, 0x80, 0x80, 0x00); // M
-      rgb_matrix_set_color(40, 0x00, 0x80, 0xFF); // B
-      rgb_matrix_set_color(35, 0x44, 0xAA, 0xBB); // G
-      rgb_matrix_set_color(14, 0xAA, 0xEE, 0xCC); // O
-      rgb_matrix_set_color(17, 0x00, 0xFF, 0xFF); // P
-      break;
-
-    case _FN_AND_MOUSE:
-      rgb_matrix_set_color_all(0x44, 0x33, 0x22);
-      rgb_matrix_set_color( 7, 0xAF, 0xFF, 0x00); // M_UP
-      rgb_matrix_set_color(11, 0xAF, 0xFF, 0x00); // M_RIGHT
-      rgb_matrix_set_color(12, 0xAF, 0xFF, 0x00); // M_DOWN
-      rgb_matrix_set_color(13, 0xAF, 0xFF, 0x00); // M_LEFT
-      rgb_matrix_set_color(9,  0x00, 0x10, 0xFF); // M_WHLUP
-      rgb_matrix_set_color(14, 0x00, 0x10, 0xFF); // M_WHLDN
-      rgb_matrix_set_color(21, 0xAA, 0x99, 0x88); // Mouse middle click
-      rgb_matrix_set_color(22, 0xAA, 0x99, 0x88); // Mouse right click
-      rgb_matrix_set_color(23, 0xAA, 0x99, 0x88); // Mouse left click
-      break;
-  }
-}
-#endif //#if 0
 #endif //RGB_MATRIX_ENABLE
