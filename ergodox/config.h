@@ -13,8 +13,11 @@
 //how long before a tap becomes a hold
 #define TAPPING_TERM 200
 
-#define LEADER_TIMEOUT 200
+#define LEADER_TIMEOUT 300
 #define LEADER_PER_KEY_TIMING
+
+#define DANCING_TERM_SPECIAL_LEAD 250
+#define DANCING_TERM_COLON_CONTROL 180
 
 #undef DEBOUNCE
 #define DEBOUNCE 5
