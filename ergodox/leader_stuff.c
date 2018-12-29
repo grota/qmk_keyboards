@@ -49,11 +49,5 @@ void matrix_scan_user_leader(void) {
     SEQ_ONE_KEY(KC_0) {
       SEND_STRING(")");
     }
-    SEQ_ONE_KEY(KC_TAB) {
-      SEND_STRING(SS_LALT(SS_TAP(X_TAB)));
-    }
-    SEQ_ONE_KEY(KC_ESCAPE) {
-      SEND_STRING(SS_LALT(SS_TAP(X_ESCAPE)));
-    }
   }
 }

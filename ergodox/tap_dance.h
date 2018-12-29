@@ -21,7 +21,7 @@ enum {
     TRIPLE_HOLD       = 7,
 };
 
-uint8_t current_dance_status (qk_tap_dance_state_t *state);
+uint8_t current_dance_status (qk_tap_dance_state_t *state, bool prefer_hold);
 void special_lead_finished (qk_tap_dance_state_t *state, void *user_data);
 void special_lead_reset (qk_tap_dance_state_t *state, void *user_data);
 void dance_shifted_version_finish (qk_tap_dance_state_t *state, void *user_data);

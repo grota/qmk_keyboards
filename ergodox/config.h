@@ -1,9 +1,6 @@
-/*
-  Set any config.h overrides for your specific keymap here.
-  See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
-*/
 #define DISABLE_RGB_MATRIX_DIGITAL_RAIN
 #define DISABLE_RGB_MATRIX_ALPHAS_MODS
+#define DISABLE_RGB_MATRIX_CYCLE_ALL
 
 #define RGBLIGHT_SLEEP
 
@@ -13,10 +10,13 @@
 //how long before a tap becomes a hold
 #define TAPPING_TERM 200
 
-#define LEADER_TIMEOUT 300
-#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 250
+// So far not needed, my leader mappings have one key only.
+//#define LEADER_PER_KEY_TIMING
 
-#define DANCING_TERM_SPECIAL_LEAD 250
+// Taps must happen in this interval to get recognized (and trigger move to layer 2 with 2 taps).
+#define DANCING_TERM_SPECIAL_LEAD 200
+// Taps must happen in this interval to get recognized (and trigger : with 2 taps).
 #define DANCING_TERM_COLON_CONTROL 180
 
 #undef DEBOUNCE
@@ -33,3 +33,8 @@
 
 #undef RGBLIGHT_VAL_STEP
 #define RGBLIGHT_VAL_STEP 128
+
+#ifdef CONSOLE_ENABLE
+#define NO_DEBUG
+#define USER_PRINT
+#endif

@@ -25,7 +25,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 void td_colon_ctrl_finished(qk_tap_dance_state_t *state, void *user_data) {
   qk_tap_dance_pair_t *pair = (qk_tap_dance_pair_t *)user_data;
-  colon_control_state = current_dance_status(state);
+  colon_control_state = current_dance_status(state, true);
   switch (colon_control_state) {
     case SINGLE_TAP:
       register_code(pair->kc1);
@@ -65,7 +65,12 @@ void td_colon_ctrl_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 void special_lead_finished(qk_tap_dance_state_t *state, void *user_data) {
   qk_tap_dance_dual_role_t *pair = (qk_tap_dance_dual_role_t *)user_data;
-  special_lead_state = current_dance_status(state);
+  special_lead_state = current_dance_status(state, false);
+  if (special_lead_state == SINGLE_TAP && (
+       state->interrupting_keycode == KC_TAB ||
+       state->interrupting_keycode == KC_ESCAPE)) {
+    special_lead_state = SINGLE_HOLD;
+  }
   switch (special_lead_state) {
     case SINGLE_TAP:
       qk_leader_start();
@@ -100,10 +105,18 @@ void special_lead_reset(qk_tap_dance_state_t *state, void *user_data) {
   special_lead_state = 0;
 }
 
-uint8_t current_dance_status(qk_tap_dance_state_t *state) {
+/**
+ * Slightly different to the others for the count=1 case for which the
+ * condition has been changed in order to prefer holding state.
+ */
+uint8_t current_dance_status(qk_tap_dance_state_t *state, bool prefer_hold) {
   uint8_t current_state = 0;
   if (state->count == 1) {
-    if (state->interrupted || !state->pressed) {
+    bool when_to_return_a_singletap = state->interrupted || !state->pressed;
+    if (prefer_hold) {
+      when_to_return_a_singletap = !state->interrupted && !state->pressed;
+    }
+    if (when_to_return_a_singletap) {
       current_state = SINGLE_TAP;
     } else {
       current_state = SINGLE_HOLD;
