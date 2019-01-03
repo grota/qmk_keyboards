@@ -7,6 +7,22 @@
 
 #define RGBLIGHT_SLEEP
 
-#undef RGBLIGHT_BRI_STEP
-#define RGBLIGHT_BRI_STEP 4
+//https://www.reddit.com/r/ergodox/comments/9yt81q/oneshot_shift_key_releases_too_late_ergodoxez_glow/ea5dizg/
+#define FORCE_NKRO
 
+#undef DEBOUNCE
+#define DEBOUNCE 5
+
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL 15
+
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED 14
+
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX 60
+
+#undef RGBLIGHT_VAL_STEP
+#define RGBLIGHT_VAL_STEP 128
+
+//#define ONESHOT_TIMEOUT 400
