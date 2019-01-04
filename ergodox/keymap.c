@@ -23,33 +23,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.     ,--------------------------------------------------.
  * |  ESC   |   1  |   2  |   3  |   4  |   5  |   6  |     |   7  |   8  | Left | Down |  Up  | Right|   \|   |
  * |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   F  |   W  |   R  |   Y  | Home |     | End  |  `~  |  H   |  J   |  K   |  L   | PgUp   |
+ * |  Tab   |   Q  |   F  |   W  |   R  |  =+  | Home |     | End  |  '"  |  H   |  J   |  K   |  L   | PgUp   |
  * |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
- * |   -_   |   A  |   S  |   D  |   G  |   X  |------|     |------|  ,<  |  C   |  E   |  I   |  O   | PgDown |
- * |--------+------+------+------+------+------|TD [{ |     |TD ]} |------+------+------+------+------+--------|
- * | *LShft |   Z  |   T  |   M  |   B  |   V  |      |     |      |  /?  |  N   |  P   |  .>  |  U   |=+/RShft|
+ * |   -_   |   A  |   S  |   D  |   G  |  X   |------|     |------|   Y  |  C   |  E   |  I   |  O   | PgDown |
+ * |--------+------+------+------+------+------|TD [{ |     | ]} TD|------+------+------+------+------+--------|
+ * | (LShft |   Z  |   T  |   M  |   V  |,</Rlt|      |     |      |  /?  |  N   |  P   |  B   |  U   | RShft) |
  * `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
- *   | Ctrl | Win  |      | Spcl | Bksp |                               |Spc/LAlt|;:Ctrl|  '"  |  0)  |  9(  |
+ *   | Ctrl |      |  `~  | Spcl | Bksp |                               |Spc/LAlt|;:Ctrl|  .>  |  0   |  9   |
  *   `----------------------------------'                               `------------------------------------'
  *                                       ,-------------.   ,-------------.
  *                                       | BRI- | BRI+ |   | Vol- | Vol+ |
  *                                ,------|------|------|   |------+------+------.
- *                                |      |      |      |   |*RAlt |      |      |
- *                                | C-c  | RAlt |------|   |------| TT1  |Enter |
+ *                                |      |      |      |   |      |      |      |
+ *                                | C-c  | LGui |------|   |------| TT1  |Enter |
  *                                |      |      | C-v  |   |  Del |      |      |
  *                                `--------------------'   `--------------------'
  */
 [_BASE] = LAYOUT_ergodox_pretty(
-  KC_ESCAPE,     KC_1,  KC_2,  KC_3,  KC_4,  KC_5,       KC_6,   KC_7,       KC_8,     KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, KC_BSLASH,
-  KC_TAB,        KC_Q,  KC_F,  KC_W,  KC_R,  KC_Y,    KC_HOME,   KC_END,     KC_GRAVE, KC_H,    KC_J,    KC_K,   KC_L,     KC_PGUP,
-  KC_MINUS,      KC_A,  KC_S,  KC_D,  KC_G,  KC_X,                           KC_COMMA, KC_C,    KC_E,    KC_I,   KC_O,     KC_PGDOWN,
-  OSM(MOD_LSFT), KC_Z,  KC_T,  KC_M,  KC_B,  KC_V, TD_SQBRKTL,   TD_SQBRKTR, KC_SLASH, KC_N,    KC_P,    KC_DOT, KC_U,     RSFT_T(KC_EQUAL),
+  KC_ESCAPE,  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                   KC_6,   KC_7,       KC_8,     KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_BSLASH,
+  KC_TAB,     KC_Q,  KC_F,  KC_W,  KC_R,  KC_EQUAL,            KC_HOME,   KC_END,     KC_QUOTE, KC_H,    KC_J,    KC_K,  KC_L,     KC_PGUP,
+  KC_MINUS,   KC_A,  KC_S,  KC_D,  KC_G,  KC_X,                                       KC_Y,     KC_C,    KC_E,    KC_I,  KC_O,     KC_PGDOWN,
+  KC_LSPO,    KC_Z,  KC_T,  KC_M,  KC_V,  RALT_T(KC_COMMA), TD_SQBRKTL,   TD_SQBRKTR, KC_SLASH, KC_N,    KC_P,    KC_B,  KC_U,     KC_RSPC,
 
-       KC_LCTRL, KC_LGUI, _______, TD_SPECIAL_LEAD, KC_BSPACE,   LALT_T(KC_SPACE), TD_COLON_CTRL, KC_QUOTE, KC_0, KC_9,
+               KC_LCTRL, _______, KC_GRAVE, TD_SPECIAL_LEAD, KC_BSPACE,   LALT_T(KC_SPACE), TD_COLON_CTRL, KC_DOT, KC_0, KC_9,
 
-                                             KC_BRID, KC_BRIU,   KC_VOLD, KC_VOLU,
-                                                      _______,   OSM(MOD_RALT),
-                              LCTL(KC_C), KC_RALT, LCTL(KC_V),   KC_DELETE, TT(_FN_AND_MOUSE), KC_ENTER
+                                                      KC_BRID, KC_BRIU,   KC_VOLD, KC_VOLU,
+                                                               _______,   _______,
+                                       LCTL(KC_C), KC_LGUI, LCTL(KC_V),   KC_DELETE, TT(_FN_AND_MOUSE), KC_ENTER
 ),
 
 /* Layer 1: FN and Mouse

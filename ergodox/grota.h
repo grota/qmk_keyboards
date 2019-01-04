@@ -9,10 +9,17 @@
 #define SHIFT_IS_PRESSED modifiers & MODS_SHIFT_MASK || one_shot & MODS_SHIFT_MASK
 #define RALT_IS_PRESSED modifiers & MOD_BIT(KC_RALT) || one_shot & MOD_BIT(KC_RALT) || weak_mods & MOD_BIT(KC_RALT)
 #define CTRL_IS_PRESSED modifiers & MODS_CTRL_MASK || weak_mods & MODS_CTRL_MASK || one_shot & MODS_CTRL_MASK
+
+#ifdef TAP_DANCE_ENABLE
 #define TD_SQBRKTL TD(TD_SQUARE_BRACKET_L)
 #define TD_SQBRKTR TD(TD_SQUARE_BRACKET_R)
-#define TD_SPECIAL_LEAD TD(TD_SPECIAL_LEAD_MOVE_TO_LAYER)
+#define TD_SPECIAL_LEAD TD(TD_LEAD_MOVE_TO_LAYER_LALT)
 #define TD_COLON_CTRL TD(TD_COLON_SEMI_CTRL)
+#else
+#define TD_SQBRKTL KC_LBRACKET
+#define TD_SQBRKTR KC_RBRACKET
+#define TD_SPECIAL_LEAD _______
+#endif
 
 enum userspace_layers {
   _BASE = 0,

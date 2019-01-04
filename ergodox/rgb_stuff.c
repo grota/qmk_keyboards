@@ -75,13 +75,13 @@ void rgb_matrix_layer_indicator_custom(void) {
       (RALT_IS_PRESSED) ?
         rgb_matrix_set_color_all(background2.r, background2.g, background2.b) :
         rgb_matrix_set_color_all(background1.r, background1.g, background1.b);
-      rgb_matrix_set_color(18, rgb1.r, rgb1.g, rgb1.b); // .
-      rgb_matrix_set_color(10, rgb1.r, rgb1.g, rgb1.b); // ,
-      rgb_matrix_set_color(41, rgb1.r, rgb1.g, rgb1.b); // M
-      rgb_matrix_set_color(40, rgb2.r, rgb2.g, rgb2.b); // B
-      rgb_matrix_set_color(35, rgb3.r, rgb3.g, rgb3.b); // G
-      rgb_matrix_set_color(14, rgb2.r, rgb2.g, rgb2.b); // O
-      rgb_matrix_set_color(17, rgb3.r, rgb3.g, rgb3.b); // P
+      rgb_matrix_set_color(46, rgb1.r, rgb1.g, rgb1.b); // '
+      rgb_matrix_set_color(40, rgb2.r, rgb2.g, rgb2.b); // v
+      rgb_matrix_set_color(10, rgb2.r, rgb2.g, rgb2.b); // y
+      rgb_matrix_set_color(18, rgb2.r, rgb2.g, rgb2.b); // b
+      rgb_matrix_set_color(22, rgb3.r, rgb3.g, rgb3.b); // .
+      rgb_matrix_set_color(39, rgb3.r, rgb3.g, rgb3.b); // ,
+      rgb_matrix_set_color(29, rgb3.r, rgb3.g, rgb3.b); // =
       break;
 
     case _FN_AND_MOUSE:
