@@ -30,7 +30,7 @@ These are the indices used in the various `rgb_matrix_*` functions for the ergod
 
 1. `TD_LEAD_MOVE_TO_LAYER_LALT` is `KC_LEAD` on single tap, moves to second layer on double tap, and `KC_LALT` when held.
 
-2. `TD_COLON_SEMI_CTRL` is `KC_SCOLON` on single tap, `shift+KC_SCOLON` on double tap, and `KC_RCTL` when held. (See `TAP_DANCE_KC1_ON_TAP_SHIFT_KC1_ON_DOUBLETAP_MOD_ON_HOLD(kc1, kc_mod, tap_specific_tapping_term)`).
+2. `TD_COLON_SEMI_CTRL` is `KC_SCOLON` on single tap, `Shift+KC_SCOLON` on double tap, and `KC_RCTL` when held. (See `TAP_DANCE_KC1_ON_TAP_SHIFT_KC1_ON_DOUBLETAP_MOD_ON_HOLD(kc1, kc_mod, tap_specific_tapping_term)`).
 
 3. `[` and `]` double tapped will get you `{` and `}`.
 

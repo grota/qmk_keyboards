@@ -72,16 +72,23 @@ void rgb_matrix_layer_indicator_custom(void) {
 
   switch (biton32(layer_state)) {
     case _BASE:
-      (RALT_IS_PRESSED) ?
-        rgb_matrix_set_color_all(background2.r, background2.g, background2.b) :
-        rgb_matrix_set_color_all(background1.r, background1.g, background1.b);
-      rgb_matrix_set_color(46, rgb1.r, rgb1.g, rgb1.b); // '
-      rgb_matrix_set_color(40, rgb2.r, rgb2.g, rgb2.b); // v
-      rgb_matrix_set_color(10, rgb2.r, rgb2.g, rgb2.b); // y
-      rgb_matrix_set_color(18, rgb2.r, rgb2.g, rgb2.b); // b
-      rgb_matrix_set_color(22, rgb3.r, rgb3.g, rgb3.b); // .
-      rgb_matrix_set_color(39, rgb3.r, rgb3.g, rgb3.b); // ,
-      rgb_matrix_set_color(29, rgb3.r, rgb3.g, rgb3.b); // =
+      if (RALT_IS_PRESSED) {
+        rgb_matrix_set_color_all(background2.r, background2.g, background2.b);
+        rgb_matrix_set_color(38, rgb3.r, rgb3.g, rgb3.b); // a
+        rgb_matrix_set_color(12, rgb3.r, rgb3.g, rgb3.b); // e
+        rgb_matrix_set_color(13, rgb3.r, rgb3.g, rgb3.b); // i
+        rgb_matrix_set_color(14, rgb3.r, rgb3.g, rgb3.b); // o
+        rgb_matrix_set_color(19, rgb3.r, rgb3.g, rgb3.b); // u
+        rgb_matrix_set_color(16, rgb3.r, rgb3.g, rgb3.b); // n
+        break;
+      }
+      rgb_matrix_set_color_all(background1.r, background1.g, background1.b);
+      rgb_matrix_set_color(5,  rgb2.r, rgb2.g, rgb2.b); // (tap dance quotes)
+      rgb_matrix_set_color(10, rgb3.r, rgb3.g, rgb3.b); // y
+      rgb_matrix_set_color(15, rgb2.r, rgb2.g, rgb2.b); // (comma)
+      rgb_matrix_set_color(18, rgb3.r, rgb3.g, rgb3.b); // b
+      rgb_matrix_set_color(39, rgb2.r, rgb2.g, rgb2.b); // ,<
+      rgb_matrix_set_color(29, rgb1.r, rgb1.g, rgb1.b); // =+
       break;
 
     case _FN_AND_MOUSE:
