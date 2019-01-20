@@ -28,6 +28,17 @@ enum userspace_layers {
 
 enum custom_keycodes {
   CUSTOM_RGB_CYCLE = SAFE_RANGE, // can always be here
+  KC_ESC_GRAVE,
+  KC_C_1,
+  KC_C_2,
+  KC_C_3,
+  KC_C_4,
+  KC_C_5,
+  KC_C_6,
+  KC_C_7,
+  KC_C_8,
+  KC_C_9,
+  KC_C_0,
 };
 
 typedef union {

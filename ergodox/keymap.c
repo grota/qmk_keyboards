@@ -21,15 +21,15 @@ userspace_config_t userspace_config;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Layer 0: Base
  * ,--------------------------------------------------------.     ,-------------------------------------------------------.
- * |   ESC   |   1   |   2   |   3   |   4   |   5   |   6  |     |   7  |   8   |  Left |  Down |  Up  | Right |   \|    |
+ * | ESC ~ ` |  1 F1 | 2 F2  | 3 F3  | 4 F4  | 5 F5  | 6 F6 |     | 7 F7 | 8 F8  |  Left |  Down |  Up  | Right |   \|    |
  * |---------+-------+-------+-------+-------+--------------|     |------+-------+-------+-------+------+-------+---------|
- * |   Tab   |   Q   |   F   |   W   |   R   |   =+  | Home |     | End  | '" `~ |   H   |   J   |  K   |   L   |   PgUp  |
+ * |   Tab   |   Q   |   F   |   W   |   R   |   =+  | Home |     | End  |   '"  |   H   |   J   |  K   |   L   |   PgUp  |
  * |---------+-------+-------+-------+-------+-------|      |     |      |-------+-------+-------+------+-------+---------|
  * |    -_   |   A   |   S   |   D   |   G   |   X   |------|     |------|   Y   |   C   |   E   |  I   |   O   |  PgDown |
  * |---------+-------+-------+-------+-------+-------|TD [{ |     | ]} TD|-------+-------+-------+------+-------+---------|
  * |  (LShft |   Z   |   T   |   M   |   V   |/? Ralt|      |     |      |,< Ralt|   N   |   P   |  B   |   U   |  RShft) |
  * `---------+-------+-------+-------+-------+--------------'     `--------------+-------+-------+------+-------+---------'
- *    | Ctrl |  F1   |  F2   | Spcl  |  Bksp |                                  |Spc/LAlt|;: Ctrl|  .>  |   0   |   9  |
+ *    | Ctrl |       |       | Spcl  |  Bksp |                                  |Spc/LAlt|;: Ctrl|  .>  | 0 F10 | 9 F9 |
  *    `--------------------------------------'                                  `--------------------------------------'
  *                                       ,-------------.   ,-------------.
  *                                       | BRI- | BRI+ |   | Vol- | Vol+ |
@@ -40,12 +40,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'   `--------------------'
  */
 [_BASE] = LAYOUT_ergodox_pretty(
-  KC_ESCAPE,  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                   KC_6,   KC_7,       KC_8,               KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_BSLASH,
-  KC_TAB,     KC_Q,  KC_F,  KC_W,  KC_R,  KC_EQUAL,            KC_HOME,   KC_END,     TD(TD_QUOTE_GRAVE), KC_H,    KC_J,    KC_K,  KC_L,     KC_PGUP,
+  KC_ESC_GRAVE,  KC_C_1,  KC_C_2,  KC_C_3,  KC_C_4,  KC_C_5,                   KC_C_6,   KC_C_7,       KC_C_8,               KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_BSLASH,
+  KC_TAB,     KC_Q,  KC_F,  KC_W,  KC_R,  KC_EQUAL,            KC_HOME,   KC_END,     KC_QUOTE, KC_H,    KC_J,    KC_K,  KC_L,     KC_PGUP,
   KC_MINUS,   KC_A,  KC_S,  KC_D,  KC_G,  KC_X,                                       KC_Y,               KC_C,    KC_E,    KC_I,  KC_O,     KC_PGDOWN,
   KC_LSPO,    KC_Z,  KC_T,  KC_M,  KC_V,  RALT_T(KC_SLASH), TD_SQBRKTL,   TD_SQBRKTR, RALT_T(KC_COMMA),   KC_N,    KC_P,    KC_B,  KC_U,     KC_RSPC,
 
-                    KC_LCTRL, KC_F1, KC_F2, TD_SPECIAL_LEAD, KC_BSPACE,   LALT_T(KC_SPACE), TD_COLON_CTRL, KC_DOT, KC_0, KC_9,
+                KC_LCTRL, _______, _______, TD_SPECIAL_LEAD, KC_BSPACE,   LALT_T(KC_SPACE), TD_COLON_CTRL, KC_DOT, KC_C_0, KC_C_9,
 
                                                       KC_BRID, KC_BRIU,   KC_VOLD, KC_VOLU,
                                                             KC_MS_BTN3,   KC_F3,
@@ -89,8 +89,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(RGB_MATRIX_ENABLE)
-    process_record_user_rgb(keycode, record);
+    if (!process_record_user_rgb(keycode, record)) {
+      return false;
+    }
 #endif
+  uint8_t modifiers = get_mods();
+  uint8_t one_shot = get_oneshot_mods();
+  uint8_t weak_mods = get_weak_mods();
+  switch (keycode) {
+    // ESC normally, ~ if SHIFT_IS_PRESSED, ` when RALT_IS_PRESSED.
+    case KC_ESC_GRAVE: {
+      if (RALT_IS_PRESSED) {
+        SEND_STRING("`");
+        return false;
+      }
+      uint8_t key = SHIFT_IS_PRESSED ? KC_GRAVE : KC_ESCAPE;
+      (record->event.pressed) ? register_code(key) : unregister_code(key);
+      return false;
+    }
+    // 1,2,3...9,0 normally and F1,F2,F3...F9,F10 when RALT_IS_PRESSED.
+    case KC_C_1 ... KC_C_0: {
+      uint8_t key = (RALT_IS_PRESSED) ? keycode - (KC_C_1 - KC_F1) : keycode - (KC_C_1 - KC_1);
+      if (record->event.pressed) {
+        register_code(key);
+      } else {
+        unregister_code(key);
+      }
+    }
+
+    default:
+      return true;
+  }
   return true;
 }
 

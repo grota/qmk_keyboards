@@ -28,7 +28,6 @@ enum tap_dances {
   TD_SQUARE_BRACKET_R,
   TD_LEAD_MOVE_TO_LAYER_LALT,
   TD_COLON_SEMI_CTRL,
-  TD_QUOTE_GRAVE,
 };
 
 enum {

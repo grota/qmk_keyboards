@@ -15,9 +15,10 @@
 //#define LEADER_PER_KEY_TIMING
 
 // Taps must happen in this interval to get recognized (and trigger move to layer 2 with 2 taps).
-#define DANCING_TERM_SPECIAL_LEAD 200
+// This can be huge due to the implementation.
+#define DANCING_TERM_SPECIAL_LEAD 500
 // Taps must happen in this interval to get recognized (and trigger : with 2 taps).
-#define DANCING_TERM_COLON_CONTROL 180
+#define DANCING_TERM_COLON_CONTROL 380
 
 #undef DEBOUNCE
 #define DEBOUNCE 5

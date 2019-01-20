@@ -10,8 +10,9 @@ bool process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
       case CUSTOM_RGB_CYCLE:
         if (record->event.pressed) {
-          uint8_t shifted = get_mods() & (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT));
-          if(shifted) {
+          uint8_t modifiers = get_mods();
+          uint8_t one_shot = get_oneshot_mods();
+          if (SHIFT_IS_PRESSED) {
             rgb_matrix_config.mode--;
             if (rgb_matrix_config.mode < 1)
               rgb_matrix_config.mode = RGB_MATRIX_EFFECT_MAX_NEW - 1;
@@ -84,7 +85,7 @@ void rgb_matrix_layer_indicator_custom(void) {
       }
       rgb_matrix_set_color_all(background1.r, background1.g, background1.b);
       rgb_matrix_set_color(5,  rgb2.r, rgb2.g, rgb2.b); // (tap dance quotes)
-      rgb_matrix_set_color(10, rgb3.r, rgb3.g, rgb3.b); // y
+      /*rgb_matrix_set_color(10, rgb3.r, rgb3.g, rgb3.b); // y*/
       rgb_matrix_set_color(15, rgb2.r, rgb2.g, rgb2.b); // (comma)
       rgb_matrix_set_color(18, rgb3.r, rgb3.g, rgb3.b); // b
       rgb_matrix_set_color(39, rgb2.r, rgb2.g, rgb2.b); // ,<
