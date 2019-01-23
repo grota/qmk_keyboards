@@ -4,21 +4,16 @@
   #include "rgb_matrix.h"
 #endif
 
-#define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-#define MODS_CTRL_MASK  (MOD_BIT(KC_LCTRL)|MOD_BIT(KC_RCTRL))
-#define SHIFT_IS_PRESSED modifiers & MODS_SHIFT_MASK || one_shot & MODS_SHIFT_MASK
+#define SHIFT_IS_PRESSED modifiers & MOD_MASK_SHIFT || one_shot & MOD_MASK_SHIFT || weak_mods & MOD_MASK_SHIFT
 #define RALT_IS_PRESSED modifiers & MOD_BIT(KC_RALT) || one_shot & MOD_BIT(KC_RALT) || weak_mods & MOD_BIT(KC_RALT)
-#define CTRL_IS_PRESSED modifiers & MODS_CTRL_MASK || weak_mods & MODS_CTRL_MASK || one_shot & MODS_CTRL_MASK
+#define CTRL_IS_PRESSED modifiers & MOD_MASK_CTRL || weak_mods & MOD_MASK_CTRL || one_shot & MOD_MASK_CTRL
 
 #ifdef TAP_DANCE_ENABLE
 #define TD_SQBRKTL TD(TD_SQUARE_BRACKET_L)
 #define TD_SQBRKTR TD(TD_SQUARE_BRACKET_R)
-#define TD_SPECIAL_LEAD TD(TD_LEAD_MOVE_TO_LAYER_LALT)
-#define TD_COLON_CTRL TD(TD_COLON_SEMI_CTRL)
-#else
-#define TD_SQBRKTL KC_LBRACKET
-#define TD_SQBRKTR KC_RBRACKET
-#define TD_SPECIAL_LEAD _______
+//#define TD_SPECIAL_LEAD TD(TD_LEAD_MOVE_TO_LAYER_LALT)
+//#define TD_COLON TD(TD_COLON_SEMI)
+//#define TD_SLASH_RALT TD(TD_SLASH_QUESTION_MARK_RALT)
 #endif
 
 enum userspace_layers {

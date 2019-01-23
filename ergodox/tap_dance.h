@@ -5,7 +5,7 @@
 #include "grota.h"
 
 #define TAP_DANCE_KC1_ON_TAP_SHIFT_KC1_ON_DOUBLETAP_MOD_ON_HOLD(kc1, kc_mod, tap_specific_tapping_term) { \
-  .fn = { NULL, td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_finished, td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_reset }, \
+  .fn = { td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_each_tap, td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_finished, td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_reset }, \
   .user_data = (void *)&((qk_tap_dance_pair_t) { kc1, kc_mod }), \
   .custom_tapping_term = tap_specific_tapping_term, \
 }
@@ -26,10 +26,12 @@ typedef struct
 enum tap_dances {
   TD_SQUARE_BRACKET_L,
   TD_SQUARE_BRACKET_R,
-  TD_LEAD_MOVE_TO_LAYER_LALT,
-  TD_COLON_SEMI_CTRL,
+  //TD_LEAD_MOVE_TO_LAYER_LALT,
+  //TD_COLON_SEMI,
+  //TD_SLASH_QUESTION_MARK_RALT,
 };
 
+#if 0
 enum {
     SINGLE_TAP        = 1,
     SINGLE_HOLD       = 2,
@@ -45,7 +47,9 @@ void special_lead_finished (qk_tap_dance_state_t *state, void *user_data);
 void special_lead_reset (qk_tap_dance_state_t *state, void *user_data);
 void special_lead_finished(qk_tap_dance_state_t *state, void *user_data);
 void special_lead_reset(qk_tap_dance_state_t *state, void *user_data);
+void td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_each_tap (qk_tap_dance_state_t *state, void *user_data);
 void td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_reset(qk_tap_dance_state_t *state, void *user_data);
 void td_kc1_on_tap_kc2_on_doubletap_mod_on_hold_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_kc1_on_tap_kc2_on_doubletap_mod_on_hold_reset(qk_tap_dance_state_t *state, void *user_data);
+#endif

@@ -1,29 +1,37 @@
 #include "tap_dance.h"
-static uint8_t special_lead_state = 0;
-static uint8_t td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold = 0;
-static uint8_t td_kc1_on_tap_kc2_on_doubletap_mod_on_hold = 0;
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_SQUARE_BRACKET_L] = ACTION_TAP_DANCE_DOUBLE(KC_LBRACKET, KC_LEFT_CURLY_BRACE),
+  [TD_SQUARE_BRACKET_R] = ACTION_TAP_DANCE_DOUBLE(KC_RBRACKET, KC_RIGHT_CURLY_BRACE),
+#if 0
   [TD_LEAD_MOVE_TO_LAYER_LALT] = {
     .fn = { NULL, special_lead_finished, special_lead_reset },
     .user_data = (void *)&((qk_tap_dance_dual_role_t) { KC_LALT, _FN_AND_MOUSE }),
     .custom_tapping_term = DANCING_TERM_SPECIAL_LEAD,
   },
-  [TD_SQUARE_BRACKET_L] = ACTION_TAP_DANCE_DOUBLE(KC_LBRACKET, KC_LEFT_CURLY_BRACE),
-  [TD_SQUARE_BRACKET_R] = ACTION_TAP_DANCE_DOUBLE(KC_RBRACKET, KC_RIGHT_CURLY_BRACE),
-  [TD_COLON_SEMI_CTRL]  = TAP_DANCE_KC1_ON_TAP_SHIFT_KC1_ON_DOUBLETAP_MOD_ON_HOLD(KC_SCOLON, KC_RCTRL, DANCING_TERM_COLON_CONTROL),
+  [TD_COLON_SEMI]       = {
+    .fn = { qk_tap_dance_pair_on_each_tap, qk_tap_dance_pair_finished, qk_tap_dance_pair_reset },
+    .user_data = (void *)&((qk_tap_dance_pair_t) {KC_SCOLON, KC_COLON}),
+    .custom_tapping_term = DANCING_TERM_COLON_SEMI,
+  },
+  [TD_SLASH_QUESTION_MARK_RALT] = TAP_DANCE_KC1_ON_TAP_SHIFT_KC1_ON_DOUBLETAP_MOD_ON_HOLD(KC_SLASH, KC_RALT, DANCING_TERM_SLASH_QUESTION_MARK_RALT),
+#endif
 };
 
+#if 0
+static uint8_t special_lead_state = 0;
+static uint8_t td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold = 0;
+static uint8_t td_kc1_on_tap_kc2_on_doubletap_mod_on_hold = 0;
 /**
  * Slightly different to the others for the count=1 case for which the
- * condition has been changed in order to prefer holding state.
+ * logic has been changed in order to work to prefer a holding state mode or not.
  */
 uint8_t current_dance_status(qk_tap_dance_state_t *state, bool prefer_hold) {
   uint8_t current_state = 0;
   if (state->count == 1) {
     bool when_to_return_a_singletap = state->interrupted || !state->pressed;
     if (prefer_hold) {
-      when_to_return_a_singletap = !state->interrupted && !state->pressed;
+      when_to_return_a_singletap = /*!state->interrupted && */!state->pressed;
     }
     if (when_to_return_a_singletap) {
       current_state = SINGLE_TAP;
@@ -87,6 +95,16 @@ void td_kc1_on_tap_kc2_on_doubletap_mod_on_hold_reset(qk_tap_dance_state_t *stat
   td_kc1_on_tap_kc2_on_doubletap_mod_on_hold = 0;
 }
 
+void td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_each_tap (qk_tap_dance_state_t *state, void *user_data) {
+  qk_tap_dance_pair_t *pair = (qk_tap_dance_pair_t *)user_data;
+  if (state->count == 2) {
+    state->finished = true;
+    td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold = DOUBLE_TAP;
+    register_code(KC_RSFT);
+    register_code(pair->kc1);
+  }
+}
+
 void td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_finished(qk_tap_dance_state_t *state, void *user_data) {
   qk_tap_dance_pair_t *pair = (qk_tap_dance_pair_t *)user_data;
   td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold = current_dance_status(state, true);
@@ -120,7 +138,7 @@ void td_kc1_on_tap_shift_kc1_on_doubletap_mod_on_hold_reset(qk_tap_dance_state_t
 
     case DOUBLE_TAP:
     case DOUBLE_SINGLE_TAP:
-      unregister_code (KC_RSFT);
+      unregister_code(KC_RSFT);
       unregister_code(pair->kc1);
       break;
   }
@@ -132,7 +150,8 @@ void special_lead_finished(qk_tap_dance_state_t *state, void *user_data) {
   special_lead_state = current_dance_status(state, false);
   if (special_lead_state == SINGLE_TAP && (
        state->interrupting_keycode == KC_TAB ||
-       state->interrupting_keycode == KC_ESCAPE)) {
+       state->interrupting_keycode == KC_ESCAPE ||
+       state->interrupting_keycode == KC_ESC_GRAVE)) {
     special_lead_state = SINGLE_HOLD;
   }
   switch (special_lead_state) {
@@ -168,3 +187,4 @@ void special_lead_reset(qk_tap_dance_state_t *state, void *user_data) {
   }
   special_lead_state = 0;
 }
+#endif

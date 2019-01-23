@@ -12,6 +12,7 @@ bool process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
           uint8_t modifiers = get_mods();
           uint8_t one_shot = get_oneshot_mods();
+          uint8_t weak_mods = get_weak_mods();
           if (SHIFT_IS_PRESSED) {
             rgb_matrix_config.mode--;
             if (rgb_matrix_config.mode < 1)
@@ -103,6 +104,7 @@ void rgb_matrix_layer_indicator_custom(void) {
       rgb_matrix_set_color(20, rgb3.r, rgb3.g, rgb3.b); // Mouse middle click
       rgb_matrix_set_color(21, rgb3.r, rgb3.g, rgb3.b); // Mouse right click
       rgb_matrix_set_color(22, rgb3.r, rgb3.g, rgb3.b); // Mouse left click
+      rgb_matrix_set_color(46, rgb1.r, rgb1.g, rgb1.b); // TO(_BASE)
       break;
   }
 }
