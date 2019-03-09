@@ -1,10 +1,11 @@
 #pragma once
 
 //how long before a tap becomes a hold
-#define TAPPING_TERM 200
+#undef TAPPING_TERM
+#define TAPPING_TERM 150
 
 #undef DEBOUNCE
-#define DEBOUNCE 5
+#define DEBOUNCE 4
 
 #undef MOUSEKEY_INTERVAL
 #define MOUSEKEY_INTERVAL 15
@@ -19,9 +20,6 @@
 #define NO_DEBUG
 #define USER_PRINT
 #endif
-
-//https://www.reddit.com/r/ergodox/comments/9yt81q/oneshot_shift_key_releases_too_late_ergodoxez_glow/ea5dizg/
-#define FORCE_NKRO
 
 #ifdef RGB_MATRIX_ENABLE
 #define DISABLE_RGB_MATRIX_DIGITAL_RAIN
