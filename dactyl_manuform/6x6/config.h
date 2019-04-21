@@ -26,10 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL
 
 #undef MASTER_RIGHT
-#define MASTER_LEFT
+//#define MASTER_LEFT
 //#define MASTER_RIGHT
-//#undef MASTER_LEFT
-//#define EE_HANDS
+#undef MASTER_LEFT
+#define EE_HANDS
 
 #define LAYOUT_6x6_sym(\
   L05, L04, L03, L02, L01, L00,                    R00, R01, R02, R03, R04, R05, \
