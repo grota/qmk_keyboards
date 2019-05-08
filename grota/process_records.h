@@ -37,4 +37,6 @@ enum userspace_custom_keycodes {
   KC_C_8,
   KC_C_9,
   KC_C_0,
+  KC_MEDIA_UP,
+  KC_MEDIA_DOWN,
 };

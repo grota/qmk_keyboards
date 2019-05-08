@@ -1,4 +1,5 @@
 #include "grota.h"
+
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
@@ -24,6 +25,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       (record->event.pressed) ? register_code(key) : unregister_code(key);
       return false;
     }
+
     // 1,2,3...9,0 normally and F1,F2,F3...F9,F10 when RALT_IS_PRESSED && !SHIFT_IS_PRESSED.
     case KC_C_1 ... KC_C_0: {
       uint8_t key = ((RALT_IS_PRESSED) && (!(SHIFT_IS_PRESSED))) ? keycode - (KC_C_1 - KC_F1) : keycode - (KC_C_1 - KC_1);
@@ -34,6 +36,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
     }
+
+    case KC_MEDIA_DOWN: {
+      uint8_t key = SHIFT_IS_PRESSED ? KC_VOLD : KC_BRID;
+      (record->event.pressed) ? register_code(key) : unregister_code(key);
+      return false;
+    }
+
+    case KC_MEDIA_UP: {
+      uint8_t key = SHIFT_IS_PRESSED ? KC_VOLU : KC_BRIU;
+      (record->event.pressed) ? register_code(key) : unregister_code(key);
+      return false;
+    }
+
 
     default:
       return true;
