@@ -1,5 +1,8 @@
 #pragma once
 
+#define LCPO_KEYS KC_LCTL, KC_LCTL, KC_C
+#define CTRL_C_c KC_LCPO
+
 #define MATRIX_ROWS 12
 #define MATRIX_COLS 7
 #undef MATRIX_ROW_PINS

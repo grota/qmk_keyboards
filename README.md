@@ -2,13 +2,17 @@
 
 This repo contains the firmware for my [qmk](https://qmk.fm) enabled keyboards (an [ErgoDox-ez](https://ergodox-ez.com) and a dactyl-manuform).
 
-Clone and launch [install.sh](install.sh) to symlink the layout where qmk expects it to be, then launch `make ergodox_ez:grota:teensy` or `handwired/dactyl_manuform/6x6:grota:avrdudehandwired/dactyl_manuform/6x6:grota:avrdude`.
+Clone and launch [install.sh](install.sh) to symlink the layout where qmk expects it to be, then launch one of:
 
-## ErgoDox-ez
+- `make ergodox_ez:grota:teensy`
+- `handwired/dactyl_manuform/5x7:grota:avrdude`.
+- `handwired/dactyl_manuform/6x6:grota:avrdude`
 
-The [keymap.c](ergodox/keymap.c) will always will be a work in progress (most of the keys are quite stable though).
+This will always will be a work in progress (most of the keys are quite stable though).
 
 Most of the things have been copied from `drashna` and `hacker_dvorak` in qmk.
+
+## ErgoDox-ez
 
 ### RGB matrix layers
 

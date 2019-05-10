@@ -5,29 +5,30 @@
 #define SHIFT_IS_PRESSED modifiers & MOD_MASK_SHIFT || one_shot & MOD_MASK_SHIFT || weak_mods & MOD_MASK_SHIFT
 #define RALT_IS_PRESSED modifiers & MOD_BIT(KC_RALT) || one_shot & MOD_BIT(KC_RALT) || weak_mods & MOD_BIT(KC_RALT)
 #define CTRL_IS_PRESSED modifiers & MOD_MASK_CTRL || weak_mods & MOD_MASK_CTRL || one_shot & MOD_MASK_CTRL
-
-#define LCPO_KEYS KC_LCTL, KC_LCTL, KC_C
+#define LALT_IS_PRESSED modifiers & MOD_BIT(KC_LALT) || one_shot & MOD_BIT(KC_LALT) || weak_mods & MOD_BIT(KC_LALT)
 
 #define TAPPING_TOGGLE 1
 
 //how long before a tap becomes a hold
 #undef TAPPING_TERM
-#define TAPPING_TERM 120
+#define TAPPING_TERM 140
 
 #undef DEBOUNCE
 #define DEBOUNCE 4
 
-#define MOUSEKEY_DELAY       0
-#define MOUSEKEY_WHEEL_DELAY 0
+#ifdef MOUSEKEY_ENABLE
+  #define MOUSEKEY_DELAY       0
+  #define MOUSEKEY_WHEEL_DELAY 0
 
-#undef MOUSEKEY_INTERVAL
-#define MOUSEKEY_INTERVAL 13
+  #undef MOUSEKEY_INTERVAL
+  #define MOUSEKEY_INTERVAL 13
 
-#undef MOUSEKEY_MAX_SPEED
-#define MOUSEKEY_MAX_SPEED 10
+  #undef MOUSEKEY_MAX_SPEED
+  #define MOUSEKEY_MAX_SPEED 10
 
-#undef MOUSEKEY_TIME_TO_MAX
-#define MOUSEKEY_TIME_TO_MAX 40
+  #undef MOUSEKEY_TIME_TO_MAX
+  #define MOUSEKEY_TIME_TO_MAX 40
+#endif // MOUSEKEY_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
   // Instead of:
@@ -46,7 +47,7 @@
 #endif // RGBLIGHT_ENABLE
 
 #ifdef AUDIO_ENABLE
-  #define STARTUP_SONG SONG(VICTORY_FANFARE_SHORT)
+  #define STARTUP_SONG SONG(MARIO_THEME)
 #endif
 
 #ifdef CONSOLE_ENABLE
