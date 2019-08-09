@@ -3,8 +3,8 @@ DEBUG = no
 DEBOUNCE_TYPE = eager_pk
 LINK_TIME_OPTIMIZATION_ENABLE = yes
 AUDIO_ENABLE = yes           # Audio output on port C6
+NO_USB_STARTUP_CHECK = yes
 
-#TAP_DANCE_ENABLE = yes
 TAP_DANCE_ENABLE = no
 LEADER_ENABLE = no
 COMMAND_ENABLE   = no

@@ -1,5 +1,11 @@
 #include "grota.h"
 
+uint16_t tab_ctrlc_timer;
+
+#ifdef AUDIO_ENABLE
+float tab_ctrlc_timer_song[][2] = SONG(UNICODE_WINDOWS);
+#endif
+
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
@@ -49,6 +55,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
 
+    case KC_TAB_CTRLC:
+      if(record->event.pressed){
+        tab_ctrlc_timer = timer_read();
+      } else {
+        if (timer_elapsed(tab_ctrlc_timer) > TAPPING_TERM) {
+          register_code(KC_LCTL);
+          tap_code(KC_C);
+          unregister_code(KC_LCTL);
+#ifdef AUDIO_ENABLE
+        PLAY_SONG(tab_ctrlc_timer_song);
+#endif
+        } else {
+          tap_code(KC_TAB);
+        }
+      }
+      return false;
 
     default:
       return true;

@@ -32,7 +32,9 @@
 #define EE_HANDS
 
 #undef PRODUCT
-#define PRODUCT Dactyl-Manuform 5x7 Hotswappable with RGBLight by grota
+#define PRODUCT Dactyl-Manuform 5x7 Hotswappable with RGBLight
+#undef MANUFACTURER
+#define MANUFACTURER grota
 
 #define NO_MUSIC_MODE
 #undef C6_AUDIO
