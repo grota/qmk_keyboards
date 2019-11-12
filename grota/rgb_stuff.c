@@ -65,12 +65,12 @@ void rgb_matrix_layer_indicator_custom(void) {
   uint8_t modifiers = get_mods();
   uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
-  RGB background1 = hsv_to_rgb( (HSV) { .h = rgb_matrix_config.hue, .s = rgb_matrix_config.sat, .v = (rgb_matrix_config.val >> 2)});
-  RGB background2 = hsv_to_rgb( (HSV) { .h = ((rgb_matrix_config.hue + 40) % 0xFF ), .s = rgb_matrix_config.sat, .v = (rgb_matrix_config.val >> 2)});
+  RGB background1 = hsv_to_rgb( (HSV) { .h = rgb_matrix_config.hsv.h, .s = rgb_matrix_config.hsv.s, .v = (rgb_matrix_config.hsv.v >> 2)});
+  RGB background2 = hsv_to_rgb( (HSV) { .h = ((rgb_matrix_config.hsv.h + 40) % 0xFF ), .s = rgb_matrix_config.hsv.s, .v = (rgb_matrix_config.hsv.v >> 2)});
 
-  RGB rgb1 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hue +  80) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val} );
-  RGB rgb2 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hue + 120) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val} );
-  RGB rgb3 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hue + 160) % 0xFF, .s = rgb_matrix_config.sat, .v = rgb_matrix_config.val} );
+  RGB rgb1 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hsv.h +  80) % 0xFF, .s = rgb_matrix_config.hsv.s, .v = rgb_matrix_config.hsv.v} );
+  RGB rgb2 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hsv.h + 120) % 0xFF, .s = rgb_matrix_config.hsv.s, .v = rgb_matrix_config.hsv.v} );
+  RGB rgb3 = hsv_to_rgb( (HSV) { .h = (rgb_matrix_config.hsv.h + 160) % 0xFF, .s = rgb_matrix_config.hsv.s, .v = rgb_matrix_config.hsv.v} );
 
   switch (biton32(layer_state)) {
     case _BASE:
