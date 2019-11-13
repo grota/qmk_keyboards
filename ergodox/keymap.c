@@ -92,7 +92,7 @@ void matrix_scan_keymap(void) {
 }
 
 // Runs whenever there is a layer state change.
-uint32_t layer_state_set_keymap(uint32_t state) {
+layer_state_t layer_state_set_keymap(layer_state_t state) {
   ergodox_right_led_1_off();
   uint8_t layer = biton32(state);
   switch (layer) {

@@ -10,15 +10,15 @@ float layer1_song[][2]        = SONG(STARTUP_SOUND);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_5x7_sym(
-     KC_ESC,           KC_C_1,   KC_C_2,  KC_C_3,            KC_C_4, KC_C_5,            KC_C_6,                    KC_C_7,            KC_C_8, KC_LEFT,   KC_DOWN,      KC_UP, KC_RIGHT,       KC_BSLASH,
-     KC_GRAVE,         KC_Q,     KC_F,    KC_W,              KC_R,   KC_EQUAL,          KC_MEDIA_DOWN,        KC_MEDIA_UP,          KC_QUOTE,    KC_H,      KC_J,       KC_K,     KC_L,           KC_NO,
-     KC_MS_BTN3,       KC_A,     KC_S,    KC_D,              KC_G,   KC_X,              KC_HOME,                   KC_END,              KC_Y,    KC_C,      KC_E,       KC_I,     KC_O,         KC_PGUP,
-     KC_LGUI,          KC_Z,     KC_T,    KC_M,              KC_V,   RALT_T(KC_SCOLON), TD_SQBRKTL,            TD_SQBRKTR,  RALT_T(KC_COMMA),    KC_N,      KC_P,       KC_B,     KC_U,       KC_PGDOWN,
-     KC_LCTRL,         KC_LALT,  LCTL(KC_V), TT(_FN_AND_MOUSE),                                                                                         KC_SLASH,     KC_DOT,   KC_C_0,          KC_C_9,
+     KC_ESC,     KC_C_1,  KC_C_2,     KC_C_3,    KC_C_4, KC_C_5,            KC_C_6,                    KC_C_7,            KC_C_8, KC_LEFT,   KC_DOWN,      KC_UP, KC_RIGHT,       KC_BSLASH,
+     KC_GRAVE,   KC_Q,    KC_F,       KC_W,      KC_R,   KC_EQUAL,          KC_MEDIA_DOWN,        KC_MEDIA_UP,          KC_QUOTE,    KC_H,      KC_J,       KC_K,     KC_L,           KC_NO,
+     KC_MS_BTN3, KC_A,    KC_S,       KC_D,      KC_G,   KC_X,              KC_HOME,                   KC_END,              KC_Y,    KC_C,      KC_E,       KC_I,     KC_O,         KC_PGUP,
+     KC_LGUI,    KC_Z,    KC_T,       KC_M,      KC_V,   RALT_T(KC_SCOLON), TD_SQBRKTL,            TD_SQBRKTR,  RALT_T(KC_COMMA),    KC_N,      KC_P,       KC_B,     KC_U,       KC_PGDOWN,
+     KC_LCTRL,   KC_LALT, LCTL(KC_V), TT(_FN_AND_MOUSE),                                                                                    KC_SLASH,     KC_DOT,   KC_C_0,          KC_C_9,
 
-                                                                    KC_BSPACE, LCTL_T(KC_TAB),                         RCTL_T(KC_ENTER), LALT_T(KC_SPACE),
-                                                                                  KC_LSPO, LCTL(KC_C),         KC_MINUS, KC_RSPC,
-                                                                                  KC_PGDOWN,  KC_PGUP,         TT(_FN_AND_MOUSE), KC_DELETE
+                                                       KC_BSPACE, LCTL_T(KC_TAB),                       RCTL_T(KC_ENTER), LALT_T(KC_SPACE),
+                                                                     KC_LSPO, LCTL(KC_C),         KC_MINUS,          KC_RSPC,
+                                                                     KC_PGDOWN,  KC_PGUP,         TT(_FN_AND_MOUSE), KC_DELETE
   ),
 
   [_FN_AND_MOUSE] = LAYOUT_5x7_sym(
@@ -60,7 +60,7 @@ void matrix_scan_keymap(void) {
 #endif
 }
 
-uint32_t layer_state_set_keymap(uint32_t state) {
+layer_state_t layer_state_set_keymap(layer_state_t state) {
 #ifdef AUDIO_ENABLE
   uint8_t layer = biton32(state);
   switch (layer) {
