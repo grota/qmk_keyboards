@@ -40,4 +40,5 @@ enum userspace_custom_keycodes {
   KC_MEDIA_UP,
   KC_MEDIA_DOWN,
   KC_TAB_CTRLC,
+  KC_ARROW,
 };

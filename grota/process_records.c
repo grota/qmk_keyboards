@@ -55,6 +55,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
 
+    case KC_ARROW: {
+      if (record->event.pressed) {
+        SEND_STRING("->");
+      }
+      return false;
+    }
+
     case KC_TAB_CTRLC:
       if(record->event.pressed){
         tab_ctrlc_timer = timer_read();
