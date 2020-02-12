@@ -1,9 +1,10 @@
-TAP_DANCE_ENABLE = yes
+TAP_DANCE_ENABLE = no
+DEBUG = no
+DEBOUNCE_TYPE = eager_pk
 LEADER_ENABLE = no
 COMMAND_ENABLE   = no
 CONSOLE_ENABLE   = no
 RGBLIGHT_ENABLE = no
-DEBOUNCE_TYPE = eager_pk
 
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration(+1000)
 BACKLIGHT_ENABLE = no      # Enable keyboard backlight functionality

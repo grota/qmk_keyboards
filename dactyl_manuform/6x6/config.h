@@ -16,7 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#define TAPPING_TOGGLE  1
+//#define TAPPING_TOGGLE  1
+#undef TAPPING_TERM
+#define TAPPING_TERM 180
 
 #undef MATRIX_ROW_PINS
 #define MATRIX_ROW_PINS { F5, F6, F7, B1, B3, B2, B6 }
@@ -24,6 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_COL_PINS { F4, B5, B4, E6, D7, C6 }
 
 #define USE_SERIAL
+
+#undef PRODUCT
+#define PRODUCT Dactyl-Manuform 6x6 Hotswappable
+#undef MANUFACTURER
+#define MANUFACTURER grota
 
 #undef MASTER_RIGHT
 //#define MASTER_LEFT
