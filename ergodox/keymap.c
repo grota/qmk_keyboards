@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                  _______, _______, TO(_BASE), _______, _______,   KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, _______, _______,
 
-                                       CUSTOM_RGB_CYCLE, RESET,   RGB_TOG, _______,
+                                       CUSTOM_RGB_CYCLE, RESET,   RGB_TOG, RESET  ,
                                                        _______,   RGB_HUI,
                                      _______, _______, _______,   RGB_HUD, _______, _______
 ),
