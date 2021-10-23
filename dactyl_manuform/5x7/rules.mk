@@ -1,3 +1,8 @@
+.PHONY: asciiart
+
+asciiart:
+	keymapviz -k dactyl_manuform5x7 -t fancy -r dactyl_manuform/5x7/keymap.c -c dactyl_manuform/5x7/keymapviz.labels
+
 RGBLIGHT_ENABLE = yes
 DEBUG = no
 DEBOUNCE_TYPE = eager_pk

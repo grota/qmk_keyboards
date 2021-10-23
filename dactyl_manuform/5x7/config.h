@@ -16,7 +16,7 @@
   #define RGBLED_NUM 60
   #define RGBLED_SPLIT { 30, 30 }
   #define RGBLIGHT_SPLIT
-  #define RGBLIGHT_LIMIT_VAL 130
+  #define RGBLIGHT_LIMIT_VAL 80
 
   #define RGBLIGHT_SLEEP
   #undef RGBLIGHT_ANIMATIONS

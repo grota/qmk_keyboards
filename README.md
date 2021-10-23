@@ -4,13 +4,15 @@ This repo contains the firmware for my [qmk](https://qmk.fm) enabled keyboards (
 
 Clone and launch [install.sh](install.sh) to symlink the layout where qmk expects it to be, then launch one of:
 
-- `make handwired/dactyl_manuform/5x7:grota:flash`
+- `make handwired/dactyl_manuform/5x7:grota:flash` + `make handwired/dactyl_manuform/5x7:grota:asciiart`
 - `make handwired/dactyl_manuform/6x6:grota:flash`
 - `make ergodox_ez:grota:flash`
 
 This will always will be a work in progress (most of the keys are quite stable though).
 
-Most of the things have been copied from `drashna` and `hacker_dvorak` in qmk.
+Most of the things have been copied from `drashna` and `precondition` in qmk.
+
+See [here](https://github.com/grota/keymapviz/pull/1) for my keymapviz customization.
 
 ## ErgoDox-ez
 
