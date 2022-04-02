@@ -1,6 +1,6 @@
 TAP_DANCE_ENABLE = no
 DEBUG = no
-DEBOUNCE_TYPE = eager_pk
+DEBOUNCE_TYPE = sym_eager_pk
 LEADER_ENABLE = no
 COMMAND_ENABLE   = no
 CONSOLE_ENABLE   = no

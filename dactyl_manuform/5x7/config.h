@@ -37,11 +37,8 @@
 #define MANUFACTURER grota
 
 #define NO_MUSIC_MODE
-#undef C6_AUDIO
-#define C6_AUDIO
-#undef B5_AUDIO
-#undef B7_AUDIO
-#define B6_AUDIO
+#define AUDIO_PIN C6
+#define AUDIO_PIN_ALT B6
 
 #define LAYOUT_5x7_sym(\
   L06, L05, L04, L03, L02, L01, L00,                    R00, R01, R02, R03, R04, R05, R06, \
