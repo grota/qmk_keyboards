@@ -6,35 +6,6 @@
 extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
 
-bool process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-      case CUSTOM_RGB_CYCLE:
-        if (record->event.pressed) {
-          uint8_t modifiers = get_mods();
-          uint8_t one_shot = get_oneshot_mods();
-          uint8_t weak_mods = get_weak_mods();
-          if (SHIFT_IS_PRESSED) {
-            rgb_matrix_config.mode--;
-            if (rgb_matrix_config.mode < 1)
-              rgb_matrix_config.mode = RGB_MATRIX_EFFECT_MAX_NEW - 1;
-            eeconfig_update_rgb_matrix(rgb_matrix_config.raw);
-          }
-          else {
-            rgb_matrix_config.mode++;
-            if (rgb_matrix_config.mode >= RGB_MATRIX_EFFECT_MAX_NEW)
-              rgb_matrix_config.mode = 1;
-            eeconfig_update_rgb_matrix(rgb_matrix_config.raw);
-          }
-#ifdef SPLIT_KEYBOARD
-          RGB_DIRTY = true;
-#endif
-        }
-        return false;
-
-    }
-    return true;
-}
-
 void shutdown_user (void) {
     uint16_t timer_start = timer_read();
     rgb_matrix_set_color_all( 0xFF, 0x00, 0x00 );

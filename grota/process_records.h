@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 enum userspace_custom_keycodes {
-  CUSTOM_RGB_CYCLE = SAFE_RANGE, // can always be here
-  KC_ESC_GRAVE,
+  KC_ESC_GRAVE = SAFE_RANGE, // can always be here
   KC_C_1,
   KC_C_2,
   KC_C_3,
@@ -39,6 +38,8 @@ enum userspace_custom_keycodes {
   KC_C_0,
   KC_MEDIA_UP,
   KC_MEDIA_DOWN,
+#if 0
   KC_TAB_CTRLC,
+#endif
   KC_ARROW,
 };

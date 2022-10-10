@@ -1,44 +1,6 @@
 #pragma once
 
-#define LCPO_KEYS KC_LCTL, KC_LCTL, KC_C
-#define CTRL_C_c KC_LCPO
-
-#define MATRIX_ROWS 12
-#define MATRIX_COLS 7
-#undef MATRIX_ROW_PINS
-#define MATRIX_ROW_PINS { F5, F6, F7, B1, B3, B2 }
-#undef MATRIX_COL_PINS
-#define MATRIX_COL_PINS { D1, D0, D4, D7, E6, B4, B5 }
-
-#ifdef RGBLIGHT_ENABLE
-  #define RGB_DI_PIN D3 // TX0
-  #undef RGBLED_NUM
-  #define RGBLED_NUM 60
-  #define RGBLED_SPLIT { 30, 30 }
-  #define RGBLIGHT_SPLIT
-  #define RGBLIGHT_LIMIT_VAL 80
-
-  #define RGBLIGHT_SLEEP
-  #undef RGBLIGHT_ANIMATIONS
-#endif // RGBLIGHT_ENABLE
-
-#define USE_SERIAL
-#undef SOFT_SERIAL_PIN
-#define SOFT_SERIAL_PIN D2 // RX1
-
-#undef MASTER_RIGHT
-#undef MASTER_LEFT
-#undef EE_HANDS
-#define EE_HANDS
-
-#undef PRODUCT
-#define PRODUCT Dactyl-Manuform 5x7 Hotswappable with RGBLight
-#undef MANUFACTURER
-#define MANUFACTURER grota
-
-#define NO_MUSIC_MODE
-#define AUDIO_PIN C6
-#define AUDIO_PIN_ALT B6
+#include "grota.h"
 
 #define LAYOUT_5x7_sym(\
   L06, L05, L04, L03, L02, L01, L00,                    R00, R01, R02, R03, R04, R05, R06, \

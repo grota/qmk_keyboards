@@ -6,8 +6,7 @@ uint16_t tab_ctrlc_timer;
 float tab_ctrlc_timer_song[][2] = SONG(UNICODE_WINDOWS);
 #endif
 
-__attribute__ ((weak))
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+__attribute__ ((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
@@ -44,15 +43,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     case KC_MEDIA_DOWN: {
-      uint8_t key = SHIFT_IS_PRESSED ? KC_VOLD : KC_BRID;
+      uint8_t key = SHIFT_IS_PRESSED ? KC_AUDIO_VOL_DOWN : KC_BRIGHTNESS_DOWN;
       (record->event.pressed) ? register_code(key) : unregister_code(key);
-      return false;
+      return true;
     }
 
     case KC_MEDIA_UP: {
-      uint8_t key = SHIFT_IS_PRESSED ? KC_VOLU : KC_BRIU;
+      uint8_t key = SHIFT_IS_PRESSED ? KC_AUDIO_VOL_UP : KC_BRIGHTNESS_UP;
       (record->event.pressed) ? register_code(key) : unregister_code(key);
-      return false;
+      return true;
     }
 
     case KC_ARROW: {
@@ -62,6 +61,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
 
+#if 0
     case KC_TAB_CTRLC:
       if(record->event.pressed){
         tab_ctrlc_timer = timer_read();
@@ -78,9 +78,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       return false;
-
-    default:
-      return true;
+#endif
   }
   return process_record_keymap(keycode, record);
 }

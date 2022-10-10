@@ -1,18 +1,29 @@
 # Overview
 
-This repo contains the firmware for my [qmk](https://qmk.fm) enabled keyboards (an [ErgoDox-ez](https://ergodox-ez.com) and a couple of dactyl-manuforms).
+This repo contains the firmware for my [qmk](https://qmk.fm) enabled keyboards: a 5x7 and a 6x6 dactyl-manuforms and an [ErgoDox-ez](https://ergodox-ez.com).
 
 Clone and launch [install.sh](install.sh) to symlink the layout where qmk expects it to be, then launch one of:
 
-- `make handwired/dactyl_manuform/5x7:grota:flash` + `make handwired/dactyl_manuform/5x7:grota:asciiart`
-- `make handwired/dactyl_manuform/6x6:grota:flash`
+- `make grota_dactyl_manuform/5x7:grota:flash` + `make grota_dactyl_manuform/5x7:grota:asciiart`
+- `make grota_dactyl_manuform/6x6:grota:flash`
 - `make ergodox_ez:grota:flash`
 
 This will always will be a work in progress (most of the keys are quite stable though).
 
-Most of the things have been copied from `drashna` and `precondition` in qmk.
-
 See [here](https://github.com/grota/keymapviz/pull/1) for my keymapviz customization.
+
+## Other useful commands
+
+```
+make grota_dactyl_manuform/5x7:grota:avrdude-split-right
+make grota_dactyl_manuform/5x7:grota:avrdude-split-left
+
+
+g diff sha1 sha2 -- ':!keyboards*' ':!users*' ':!docs/*' ':!layouts/*' ':!drivers/*' ':!lib/*' ':!platforms/*' ':!tests/*'
+
+qmk generate-compilation-database -kb grota_dactyl_manuform/5x7 -km grota
+qmk console
+```
 
 ## ErgoDox-ez
 

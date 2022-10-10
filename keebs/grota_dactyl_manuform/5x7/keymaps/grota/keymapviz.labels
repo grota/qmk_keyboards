@@ -19,8 +19,8 @@ TD_SQBRKTR = TD_]
 KC_MEDIA_DOWN = ﱜ/
 KC_MEDIA_UP = ﱛ/
 
-KC_LSPO = ( וּ
-KC_RSPC = ) וּ
+KC_LSPO = ( ↑
+KC_RSPC = ) ↑
 KC_BSLASH = \ |
 KC_GRAVE = ` ~
 KC_BSPACE = 
