@@ -45,5 +45,3 @@ typedef union {
   };
 } userspace_config_t;
 extern userspace_config_t userspace_config;
-
-bool row_belongs_to_current_keyboard_hand(uint8_t row);

@@ -2,10 +2,10 @@
 
 #define SFT_CTL(kc)  (QK_LCTL | QK_LSFT | (kc))
 
-#define SHIFT_IS_PRESSED modifiers & MOD_MASK_SHIFT || one_shot & MOD_MASK_SHIFT || weak_mods & MOD_MASK_SHIFT
-#define RALT_IS_PRESSED modifiers & MOD_BIT(KC_RALT) || one_shot & MOD_BIT(KC_RALT) || weak_mods & MOD_BIT(KC_RALT)
-#define CTRL_IS_PRESSED modifiers & MOD_MASK_CTRL || weak_mods & MOD_MASK_CTRL || one_shot & MOD_MASK_CTRL
-#define LALT_IS_PRESSED modifiers & MOD_BIT(KC_LALT) || one_shot & MOD_BIT(KC_LALT) || weak_mods & MOD_BIT(KC_LALT)
+#define SHIFT_IS_PRESSED modifiers & MOD_MASK_SHIFT | one_shot & MOD_MASK_SHIFT | weak_mods & MOD_MASK_SHIFT
+#define RALT_IS_PRESSED modifiers & MOD_BIT(KC_RALT) | one_shot & MOD_BIT(KC_RALT) | weak_mods & MOD_BIT(KC_RALT)
+#define CTRL_IS_PRESSED modifiers & MOD_MASK_CTRL | weak_mods & MOD_MASK_CTRL | one_shot & MOD_MASK_CTRL
+#define LALT_IS_PRESSED modifiers & MOD_BIT(KC_LALT) | one_shot & MOD_BIT(KC_LALT) | weak_mods & MOD_BIT(KC_LALT)
 
 #define TAPPING_TOGGLE 1
 
@@ -61,16 +61,17 @@
   // Instead of: #define RGBLIGHT_ANIMATIONS
   //let's define only the ones I like individually to save space.
   #undef RGBLIGHT_ANIMATIONS
-  #define RGBLIGHT_EFFECT_BREATHING
-  #define RGBLIGHT_EFFECT_RAINBOW_MOOD
-  #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-  #define RGBLIGHT_EFFECT_SNAKE
-  #define RGBLIGHT_EFFECT_KNIGHT
-  #undef RGBLIGHT_EFFECT_CHRISTMAS
-  #define RGBLIGHT_EFFECT_STATIC_GRADIENT
   #undef RGBLIGHT_EFFECT_RGB_TEST
   #undef RGBLIGHT_EFFECT_ALTERNATING
-  #define RGBLIGHT_EFFECT_TWINKLE
+  #undef RGBLIGHT_EFFECT_SNAKE
+  #undef RGBLIGHT_EFFECT_CHRISTMAS
+  #undef RGBLIGHT_EFFECT_BREATHING
+
+  #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+  #undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+  #undef RGBLIGHT_EFFECT_KNIGHT
+  #undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+  #undef RGBLIGHT_EFFECT_TWINKLE
 
   #define RGBLIGHT_EFFECT_BREATHE_MAX RGBLIGHT_LIMIT_VAL
 #endif // RGBLIGHT_ENABLE

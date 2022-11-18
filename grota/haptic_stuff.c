@@ -1,15 +1,19 @@
 #include "haptic_stuff.h"
 
-#ifdef GROTA_CUSTOM_DATA_SYNC2
+#ifdef GROTA_CUSTOM_DATA_SYNC
+#include <stdio.h>
 extern char str2[32];
 #endif
+
 __attribute__ ((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
+  if (row > MATRIX_ROWS)
+    return false;
   bool is_left = is_keyboard_left();
   #ifdef CONSOLE_ENABLE
   bool is_master = is_keyboard_master();
   if (is_master) {
     uprintf("row_belongs_to_current_keyboard_hand, Master row: %2u isleft: %1d\n", row, is_left);
-  #ifdef GROTA_CUSTOM_DATA_SYNC2
+  #ifdef GROTA_CUSTOM_DATA_SYNC
   } else {
     sprintf(str2, "belongstckh,SL: row: %2u left:%1d", row, is_left);
   #endif
@@ -57,6 +61,7 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
     case KC_MEDIA_DOWN:
     case KC_MEDIA_UP:
     case KC_ARROW:
+    case LCTL(KC_C):
     case KC_LSPO ... KC_SFTENT:
     case KC_LCPO ... KC_RAPC:
       uprintf("break\n");
@@ -76,4 +81,3 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   uprintf("row_belongs_to_current_keyboard_hand gives %1d\n", a);
   return a;
 }
-

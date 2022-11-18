@@ -56,6 +56,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define SOLENOID_DWELL_STEP_SIZE 1
 #endif // HAPTIC_ENABLE
 
+#ifdef GROTA_CUSTOM_DATA_SYNC
+#define SPLIT_TRANSACTION_IDS_KB SYNC_SLAVE_MSG
+#define RPC_S2M_BUFFER_SIZE 96
+#endif
+
 #ifdef RGBLIGHT_ENABLE
   #define RGB_DI_PIN D3 // TX0
   #undef RGBLED_NUM

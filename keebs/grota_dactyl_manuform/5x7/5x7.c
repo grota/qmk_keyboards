@@ -6,7 +6,7 @@
 #include "audio_stuff.h"
 #endif
 
-#if defined(GROTA_CUSTOM_DATA_SYNC) && defined(HAPTIC_ENABLE)
+#if defined(GROTA_CUSTOM_DATA_SYNC)
 #include "data_sync_3str.h"
 #endif
 
@@ -36,7 +36,7 @@ bool should_process_keypress(void) {
 }
 
 void keyboard_post_init_kb(void) {
-  #if defined(GROTA_CUSTOM_DATA_SYNC) && defined(HAPTIC_ENABLE)
+  #if defined(GROTA_CUSTOM_DATA_SYNC)
   transaction_register_rpc(SYNC_SLAVE_MSG, receive_msg_from_slave_cb);
   #endif
   keyboard_post_init_user();
@@ -44,9 +44,7 @@ void keyboard_post_init_kb(void) {
 
 uint8_t process_record_detected_row;
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    process_record_detected_row = record->event.key.row;
-  }
+  process_record_detected_row = (record->event.pressed) ? record->event.key.row : 100;
   uprintf("process_record_kb: kc: 0x%04X, col: %2u, row: %2u, current: %1d, pressed: %1d, count: %u\n", keycode, record->event.key.col, record->event.key.row, row_belongs_to_current_keyboard_hand(record->event.key.row), record->event.pressed, record->tap.count);
   return
     #ifdef AUDIO_ENABLE

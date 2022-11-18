@@ -10,12 +10,12 @@ AUDIO_ENABLE               = yes
 NO_USB_STARTUP_CHECK       = yes
 HAPTIC_ENABLE              = yes
 EXTRAKEY_ENABLE            = yes
-PROGRAMMABLE_BUTTON_ENABLE = yes
-KEY_OVERRIDE_ENABLE        = yes
+PROGRAMMABLE_BUTTON_ENABLE = no
+KEY_OVERRIDE_ENABLE        = no
 HAPTIC_DRIVER              = SOLENOID
 #DEBOUNCE_TYPE        = sym_eager_pk
 
-CONSOLE_ENABLE    = no
+CONSOLE_ENABLE    = yes
 TAP_DANCE_ENABLE  = no
 LEADER_ENABLE     = no
 COMMAND_ENABLE    = no
@@ -30,10 +30,10 @@ SLEEP_LED_ENABLE  = no
 GRAVE_ESC_ENABLE  = no
 
 # https://docs.qmk.fm/#/feature_split_keyboard?id=custom-data-sync
-GROTA_CUSTOM_DATA_SYNC = no
+GROTA_CUSTOM_DATA_SYNC = yes
 ifeq ($(strip $(GROTA_CUSTOM_DATA_SYNC)), yes)
   OPT_DEFS += -DGROTA_CUSTOM_DATA_SYNC
-	SRC += data_sync_3str.c
+  SRC += data_sync_3str.c
 endif
 
 GROTA_DISABLE_MUSIC_MODE = yes
@@ -44,7 +44,7 @@ ifeq ($(strip $(GROTA_DISABLE_MUSIC_MODE)), yes)
   MUSIC_ENABLE = no
 endif
 
-GROTA_PRINT_MESSAGES = DISABLE_ALL
+GROTA_PRINT_MESSAGES = LEAVE_ONLY_USER_MESSAGES
 ifeq ($(strip $(GROTA_PRINT_MESSAGES)), DISABLE_ALL)
   OPT_DEFS += -DNO_DEBUG
   OPT_DEFS += -DNO_PRINT

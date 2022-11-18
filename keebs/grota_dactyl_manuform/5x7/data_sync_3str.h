@@ -6,9 +6,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define SPLIT_TRANSACTION_IDS_KB SYNC_SLAVE_MSG
-#define RPC_S2M_BUFFER_SIZE 96
-
 typedef struct _slave_to_master_t {
     char str1[32];
     char str2[32];

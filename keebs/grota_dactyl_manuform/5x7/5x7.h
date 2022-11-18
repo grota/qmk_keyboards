@@ -2,6 +2,8 @@
 
 #include "grota.h"
 
+bool row_belongs_to_current_keyboard_hand(uint8_t row);
+
 #define LAYOUT_5x7_sym(\
   L06, L05, L04, L03, L02, L01, L00,                    R00, R01, R02, R03, R04, R05, R06, \
   L16, L15, L14, L13, L12, L11, L10,                    R10, R11, R12, R13, R14, R15, R16, \
