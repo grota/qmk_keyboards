@@ -1,3 +1,4 @@
 [submodule "qmk_firmware"]
 	path = qmk_firmware
-	url = https://github.com/qmk/qmk_firmware.git
+	url = git@github.com:grota/qmk_firmware.git
+	branch = grota/rebased_squashed_bilateral_combinations_17715

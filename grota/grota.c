@@ -44,3 +44,23 @@ __attribute__((weak)) void keyboard_post_init_keymap(void) {}
 void keyboard_post_init_user(void) {
     keyboard_post_init_keymap();
 }
+
+__attribute__ ((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
+  bool is_left = is_keyboard_left();
+  #ifdef CONSOLE_ENABLE
+  bool is_master = is_keyboard_master();
+  static uint8_t printed_row = INITIAL_DEFAULT_ROW;
+  if (is_master) {
+    if (row != printed_row) {
+      uprintf("row_belongs_to_current_keyboard_hand, Master row: %2u isleft: %1d\n", row, is_left);
+      printed_row = row;
+    }
+  } else {
+  #ifdef GROTA_CUSTOM_DATA_SYNC
+    sprintf(str2, "belongstckh,SL: row: %2u left:%1d", row, is_left);
+  #endif
+  }
+  #endif // CONSOLE_ENABLE
+  return (is_left && row < (MATRIX_ROWS / 2) && row >= 0)
+    || (!is_left && row >= (MATRIX_ROWS / 2) && row < MATRIX_ROWS);
+}

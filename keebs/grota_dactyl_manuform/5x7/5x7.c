@@ -42,10 +42,19 @@ void keyboard_post_init_kb(void) {
   keyboard_post_init_user();
 }
 
-uint8_t process_record_detected_row;
+static uint8_t process_record_detected_row = INITIAL_DEFAULT_ROW;
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-  process_record_detected_row = (record->event.pressed) ? record->event.key.row : 100;
-  uprintf("process_record_kb: kc: 0x%04X, col: %2u, row: %2u, current: %1d, pressed: %1d, count: %u\n", keycode, record->event.key.col, record->event.key.row, row_belongs_to_current_keyboard_hand(record->event.key.row), record->event.pressed, record->tap.count);
+  if (record->event.pressed) {
+    process_record_detected_row = record->event.key.row;
+  }
+  uprintf("process_record_kb: kc: 0x%04X, col: %2u, row: %2u, current: %1d, pressed: %1d, count: %u\n",
+      keycode,
+      record->event.key.col,
+      record->event.key.row,
+      row_belongs_to_current_keyboard_hand(process_record_detected_row),
+      record->event.pressed,
+      record->tap.count
+  );
   return
     #ifdef AUDIO_ENABLE
     process_record_prepare_space_cadet_var(keycode, record) &&
@@ -92,9 +101,20 @@ void matrix_slave_scan_kb(void) {
 /* This is called also on the slave right now since should_process_keypress=true */
 layer_state_t layer_state_set_kb(layer_state_t state) {
   #ifdef AUDIO_ENABLE
+  uprintf("layer_state_set_kb \n");
   if (row_belongs_to_current_keyboard_hand(process_record_detected_row)) {
     layer_state_set_play_audio_based_on_layer(state);
   }
   #endif
   return layer_state_set_user(state);
 }
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case RCTL_T(KC_E):
+      return false;
+    default:
+      return true;
+  }
+}
+

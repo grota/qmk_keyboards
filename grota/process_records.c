@@ -1,14 +1,12 @@
 #include "grota.h"
 
-uint16_t tab_ctrlc_timer;
-
-#ifdef AUDIO_ENABLE
-float tab_ctrlc_timer_song[][2] = SONG(UNICODE_WINDOWS);
-#endif
-
 __attribute__ ((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
+
+#ifdef GROTA_DEFINE_PRINT_HAPTIC
+uint8_t haptic_get_dwell(void);
+#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(RGB_MATRIX_ENABLE)
@@ -54,31 +52,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
     }
 
+#ifdef GROTA_DEFINE_ARROW
     case KC_ARROW: {
       if (record->event.pressed) {
         SEND_STRING("->");
       }
       return false;
     }
+#endif // #ifdef GROTA_DEFINE_ARROW
 
-#if 0
-    case KC_TAB_CTRLC:
-      if(record->event.pressed){
-        tab_ctrlc_timer = timer_read();
-      } else {
-        if (timer_elapsed(tab_ctrlc_timer) > TAPPING_TERM) {
-          register_code(KC_LCTL);
-          tap_code(KC_C);
-          unregister_code(KC_LCTL);
-#ifdef AUDIO_ENABLE
-        PLAY_SONG(tab_ctrlc_timer_song);
-#endif
-        } else {
-          tap_code(KC_TAB);
+#ifdef GROTA_DEFINE_PRINT_HAPTIC
+    // Prints haptic dwell time, similar to QK_DYNAMIC_TAPPING_TERM_PRINT
+    case KC_PRNT_HPT: {
+      if (record->event.pressed) {
+        const char *dwell_time_str = get_u16_str(haptic_get_dwell(), ' ');
+        // Skip padding spaces.
+        while (*dwell_time_str == ' ') {
+          dwell_time_str++;
         }
+        send_string(dwell_time_str);
+        return false;
       }
-      return false;
-#endif
+    }
+#endif // #ifdef GROTA_DEFINE_PRINT_HAPTIC
   }
   return process_record_keymap(keycode, record);
 }

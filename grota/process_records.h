@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define PLACEHOLDER_SAFE_RANGE SAFE_RANGE
 #endif
 
+#define ALL_SPACE_CADET_KEYS QK_SPACE_CADET_LEFT_CTRL_PARENTHESIS_OPEN ... QK_SPACE_CADET_RIGHT_SHIFT_ENTER
+
 enum userspace_custom_keycodes {
   KC_ESC_GRAVE = SAFE_RANGE, // can always be here
   KC_C_1,
@@ -38,8 +40,10 @@ enum userspace_custom_keycodes {
   KC_C_0,
   KC_MEDIA_UP,
   KC_MEDIA_DOWN,
-#if 0
-  KC_TAB_CTRLC,
-#endif
+#ifdef GROTA_DEFINE_ARROW
   KC_ARROW,
+#endif
+#ifdef GROTA_DEFINE_PRINT_HAPTIC
+  KC_PRNT_HPT,
+#endif
 };

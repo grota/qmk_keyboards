@@ -2,16 +2,12 @@
 
 #define SFT_CTL(kc)  (QK_LCTL | QK_LSFT | (kc))
 
-#define SHIFT_IS_PRESSED modifiers & MOD_MASK_SHIFT | one_shot & MOD_MASK_SHIFT | weak_mods & MOD_MASK_SHIFT
-#define RALT_IS_PRESSED modifiers & MOD_BIT(KC_RALT) | one_shot & MOD_BIT(KC_RALT) | weak_mods & MOD_BIT(KC_RALT)
-#define CTRL_IS_PRESSED modifiers & MOD_MASK_CTRL | weak_mods & MOD_MASK_CTRL | one_shot & MOD_MASK_CTRL
-#define LALT_IS_PRESSED modifiers & MOD_BIT(KC_LALT) | one_shot & MOD_BIT(KC_LALT) | weak_mods & MOD_BIT(KC_LALT)
+#define SHIFT_IS_PRESSED (modifiers & MOD_MASK_SHIFT) | (one_shot & MOD_MASK_SHIFT) | (weak_mods & MOD_MASK_SHIFT)
+#define RALT_IS_PRESSED (modifiers & MOD_BIT(KC_RALT)) | (one_shot & MOD_BIT(KC_RALT)) | (weak_mods & MOD_BIT(KC_RALT))
+#define CTRL_IS_PRESSED (modifiers & MOD_MASK_CTRL) | (weak_mods & MOD_MASK_CTRL) | (one_shot & MOD_MASK_CTRL)
+#define LALT_IS_PRESSED (modifiers & MOD_BIT(KC_LALT)) | (one_shot & MOD_BIT(KC_LALT)) | (weak_mods & MOD_BIT(KC_LALT))
 
 #define TAPPING_TOGGLE 1
-
-//how long before a tap becomes a hold
-#undef TAPPING_TERM
-#define TAPPING_TERM 140
 
 //#undef DEBOUNCE
 //#define DEBOUNCE 4
@@ -58,21 +54,22 @@
 #endif // MOUSEKEY_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
+  #undef RGBLIGHT_EFFECT_BREATHING
+  #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+  #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+  #undef RGBLIGHT_EFFECT_SNAKE
+  #define RGBLIGHT_EFFECT_KNIGHT
+  #define RGBLIGHT_EFFECT_CHRISTMAS
+  #undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+  #undef RGBLIGHT_EFFECT_RGB_TEST
+  #undef RGBLIGHT_EFFECT_ALTERNATING
+  #define RGBLIGHT_EFFECT_TWINKLE
   // Instead of: #define RGBLIGHT_ANIMATIONS
   //let's define only the ones I like individually to save space.
   #undef RGBLIGHT_ANIMATIONS
-  #undef RGBLIGHT_EFFECT_RGB_TEST
-  #undef RGBLIGHT_EFFECT_ALTERNATING
-  #undef RGBLIGHT_EFFECT_SNAKE
-  #undef RGBLIGHT_EFFECT_CHRISTMAS
-  #undef RGBLIGHT_EFFECT_BREATHING
 
-  #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
-  #undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
-  #undef RGBLIGHT_EFFECT_KNIGHT
-  #undef RGBLIGHT_EFFECT_STATIC_GRADIENT
-  #undef RGBLIGHT_EFFECT_TWINKLE
-
+  // To see the order of modes: quantum/rgblight/rgblight.h
+  #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_TWINKLE + 5
   #define RGBLIGHT_EFFECT_BREATHE_MAX RGBLIGHT_LIMIT_VAL
 #endif // RGBLIGHT_ENABLE
 
@@ -114,6 +111,6 @@
   //#define TD_COLON TD(TD_COLON_SEMI)
   //#define TD_SLASH_RALT TD(TD_SLASH_QUESTION_MARK_RALT)
 #else
-  #define TD_SQBRKTL KC_LBRACKET
-  #define TD_SQBRKTR KC_RBRACKET
+  #define TD_SQBRKTL KC_LEFT_BRACKET
+  #define TD_SQBRKTR KC_RIGHT_BRACKET
 #endif

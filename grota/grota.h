@@ -33,6 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "tap_dance.h"
 #endif
 
+#define INITIAL_DEFAULT_ROW 100
+
 /* Define layer names */
 enum userspace_layers {
   _BASE = 0,
@@ -45,3 +47,5 @@ typedef union {
   };
 } userspace_config_t;
 extern userspace_config_t userspace_config;
+
+bool row_belongs_to_current_keyboard_hand(uint8_t row);

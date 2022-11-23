@@ -18,6 +18,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 12
 #define MATRIX_COLS 7
 
+// How long before a tap becomes a hold.
+// Too many mods => increase tapping term.
+// Too many taps => lower tapping term.
+#define TAPPING_TERM 250
+
+// Treat mod-tap keys the same as layer-tap keys.
+#define IGNORE_MOD_TAP_INTERRUPT
+
+// If you press a dual-role key, tap another key (press and release) and then
+// release the dual-role key, all within the tapping term then perform the hold action.
+#define PERMISSIVE_HOLD
+
+// When the user holds a key after tapping it, activate the hold function.
+// This removes the ability to auto-repeat of dual role keys.
+#define TAPPING_FORCE_HOLD
+// Only KC_E really needs to have TAPPING_FORCE_HOLD disabled.
+#define TAPPING_FORCE_HOLD_PER_KEY
+
+// Holding and releasing a dual-function key without pressing another key will
+// send the original keycode even if it is outside the tapping term.
+//#define RETRO_TAPPING
+
+#define BILATERAL_COMBINATIONS
+
+#define DYNAMIC_TAPPING_TERM_INCREMENT 10
+
 #undef USE_I2C
 #define USE_SERIAL
 #undef SOFT_SERIAL_PIN

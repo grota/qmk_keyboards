@@ -5,24 +5,6 @@
 extern char str2[32];
 #endif
 
-__attribute__ ((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
-  if (row > MATRIX_ROWS)
-    return false;
-  bool is_left = is_keyboard_left();
-  #ifdef CONSOLE_ENABLE
-  bool is_master = is_keyboard_master();
-  if (is_master) {
-    uprintf("row_belongs_to_current_keyboard_hand, Master row: %2u isleft: %1d\n", row, is_left);
-  #ifdef GROTA_CUSTOM_DATA_SYNC
-  } else {
-    sprintf(str2, "belongstckh,SL: row: %2u left:%1d", row, is_left);
-  #endif
-  }
-  #endif // CONSOLE_ENABLE
-  return (is_left && row < (MATRIX_ROWS / 2))
-    || (!is_left && row >= (MATRIX_ROWS / 2));
-}
-
 bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   #ifdef CONSOLE_ENABLE
   bool is_master = is_keyboard_master();
@@ -60,12 +42,15 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
     case KC_HOME:
     case KC_MEDIA_DOWN:
     case KC_MEDIA_UP:
+    case KC_TAB:
+#ifdef GROTA_DEFINE_ARROW
     case KC_ARROW:
+#endif
     case LCTL(KC_C):
-    case KC_LSPO ... KC_SFTENT:
-    case KC_LCPO ... KC_RAPC:
+    case ALL_SPACE_CADET_KEYS:
       uprintf("break\n");
       break;
+
     case QK_MOD_TAP ... QK_MOD_TAP_MAX:
       if (record->tap.count == 0) {
         uprintf("mod tap false\n");

@@ -9,8 +9,7 @@ static uint16_t timer_sc = 0;
 static uint16_t tapping_term_for_space_cadet_key = 0;
 bool process_record_prepare_space_cadet_var(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case KC_LSPO ... KC_SFTENT:
-    case KC_LCPO ... KC_RAPC:
+    case ALL_SPACE_CADET_KEYS:
       if (record->event.pressed) {
         timer_sc = timer_read();
         tapping_term_for_space_cadet_key = GET_TAPPING_TERM(keycode, record);
@@ -52,6 +51,7 @@ void matrix_scan_play_audio_when_mods_are_hold(void) {
 
 void layer_state_set_play_audio_based_on_layer(layer_state_t state) {
   uint8_t layer = biton32(state);
+  uprintf("layer_state_set_play_audio_based_on_layer %d\n", layer);
   switch (layer) {
       case _BASE:
         PLAY_SONG(layer0_song);
