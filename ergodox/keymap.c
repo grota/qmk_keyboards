@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_ergodox_pretty(
   KC_ESC_GRAVE, KC_C_1, KC_C_2, KC_C_3, KC_C_4, KC_C_5,                KC_C_6,   KC_C_7,     KC_C_8,           KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_BSLS,
   KC_TAB,       KC_Q,   KC_F,   KC_W,   KC_R,   KC_EQUAL,             KC_HOME,   KC_END,     KC_QUOTE,         KC_H,    KC_J,    KC_K,  KC_L,     KC_PGUP,
-  KC_SLASH,     KC_A,   KC_S,   KC_D,   KC_G,   KC_X,                                        KC_Y,             KC_C,    KC_E,    KC_I,  KC_O,     KC_PGDOWN,
+  KC_SLASH,     KC_A,   KC_S,   KC_D,   KC_G,   KC_X,                                        KC_Y,             KC_C,    KC_E,    KC_I,  KC_O,     KC_PGDN,
   KC_LSPO,      KC_Z,   KC_T,   KC_M,   KC_V,   RALT_T(KC_SCLN), TD_SQBRKTL,   TD_SQBRKTR, RALT_T(KC_COMMA), KC_N,    KC_P,    KC_B,  KC_U,     KC_RSPC,
 
                    KC_LCTL, KC_LALT, TT(_FN_AND_MOUSE), KC_MINUS,   KC_BSPC,   LALT_T(KC_SPACE), KC_RCTL, KC_DOT, KC_C_0, KC_C_9,
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'   `--------------------'
  */
 [_FN_AND_MOUSE] = LAYOUT_ergodox_pretty(
- _______, EEPROM_RESET, _______, _______, _______, _______, _______,   _______, _______,    _______,     _______,     _______,  KC_F11,  KC_F12,
+ QK_BOOT, QK_CLEAR_EEPROM, _______, _______, _______, _______, _______,   _______, _______,    _______,     _______,     _______,  KC_F11,  KC_F12,
  _______, _______,      _______, _______, _______, _______, RGB_VAI,   RGB_SAI, _______,    _______,    KC_MS_UP,     _______, KC_WH_U, _______,
  _______, _______,      _______, _______, _______, _______,                     _______, KC_MS_LEFT,  KC_MS_DOWN, KC_MS_RIGHT, KC_WH_D, _______,
  _______, _______,      _______, _______, _______, _______, RGB_VAD,   RGB_SAD, _______,    _______,     _______,     _______, _______, _______,
