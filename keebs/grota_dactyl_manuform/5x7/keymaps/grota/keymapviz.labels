@@ -5,7 +5,7 @@ KC_UP = ↑
 KC_RIGHT = →
 
 TO(_BASE) = TO_BASE
-TT(_FN_AND_MOUSE) = TO_
+TT(_LAYER_MOUSE) = TO_
 
 LCTL_T(KC_TAB) = Ctrl 
 RCTL_T(KC_ENTER) = Ctrl ⏎
@@ -31,8 +31,8 @@ TD_SQBRKTR = TD_]
 KC_MEDIA_DOWN = ﱜ/
 KC_MEDIA_UP = ﱛ/
 
-KC_LSPO = ( ↑
-KC_RSPC = ) ↑
+SC_LSPO = ( ↑
+SC_RSPC = ) ↑
 KC_BSLS = \ |
 KC_GRAVE = ` ~
 KC_BACKSPACE = 
@@ -74,7 +74,7 @@ RGB_MOD =  
 RGB_HUD =  ←/→
 RGB_VAD =  /
 RGB_TOG =  
-AU_TOG =  
+AU_TOGG =  
 
 QK_BOOT = 
 EEP_RST = 

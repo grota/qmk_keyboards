@@ -23,19 +23,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Too many taps => lower tapping term.
 #define TAPPING_TERM 250
 
-// Treat mod-tap keys the same as layer-tap keys.
-#define IGNORE_MOD_TAP_INTERRUPT
-
 // If you press a dual-role key, tap another key (press and release) and then
-// release the dual-role key, all within the tapping term then perform the hold
+// release the dual-role key, even if within the tapping term, then perform the hold
 // action.
 #define PERMISSIVE_HOLD
 
-// When the user holds a key after tapping it, activate the hold function.
-// This removes the ability to auto-repeat of dual role keys.
-#define TAPPING_FORCE_HOLD
-// Only KC_E really needs to have TAPPING_FORCE_HOLD disabled.
-#define TAPPING_FORCE_HOLD_PER_KEY
+//Miryoku defines QUICK_TAP_TERM 0, we are using the default which is TAPPING_TERM
+//but really with get_quick_tap_term() it's 0 for every key except RCTL_T(KC_E).
+
+// Make it possible to define a get_quick_tap_term() func to specify, per key,
+// what is the interval of time within which the user must tap then hold the key
+// to trigger auto repeat.
+#define QUICK_TAP_TERM_PER_KEY
 
 // Holding and releasing a dual-function key without pressing another key will
 // send the original keycode even if it is outside the tapping term.
@@ -81,7 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-#define RGB_DI_PIN D3 // TX0
 #undef RGBLED_NUM
 #define RGBLED_NUM 60
 // clang-format off

@@ -17,13 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "grota.h"
 
-__attribute__ ((weak)) void matrix_init_keymap(void) {}
+// START: *_user functions call *_keymap functions.
+// qmk core calls *_user functions, we call weak *_keymap functions to provide
+// an extra layer of overrideability.
+__attribute__((weak)) void matrix_init_keymap(void) {}
 
-void matrix_init_user(void) {
-  matrix_init_keymap();
-};
+void matrix_init_user(void) { matrix_init_keymap(); };
 
-__attribute__ ((weak)) void matrix_scan_keymap(void) {}
+__attribute__((weak)) void matrix_scan_keymap(void) {}
 
 void matrix_scan_user(void) {
 #ifdef LEADER_ENABLE
@@ -32,35 +33,37 @@ void matrix_scan_user(void) {
   matrix_scan_keymap();
 };
 
-__attribute__ ((weak)) layer_state_t layer_state_set_keymap (layer_state_t state) {
+__attribute__((weak)) layer_state_t
+layer_state_set_keymap(layer_state_t state) {
   return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return layer_state_set_keymap (state);
+  return layer_state_set_keymap(state);
 }
 
 __attribute__((weak)) void keyboard_post_init_keymap(void) {}
-void keyboard_post_init_user(void) {
-    keyboard_post_init_keymap();
-}
+void keyboard_post_init_user(void) { keyboard_post_init_keymap(); }
+// END: *_user functions call *_keymap functions.
 
-__attribute__ ((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
+__attribute__((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
   bool is_left = is_keyboard_left();
-  #ifdef CONSOLE_ENABLE
+#ifdef CONSOLE_ENABLE
   bool is_master = is_keyboard_master();
   static uint8_t printed_row = INITIAL_DEFAULT_ROW;
   if (is_master) {
     if (row != printed_row) {
-      uprintf("row_belongs_to_current_keyboard_hand, Master row: %2u isleft: %1d\n", row, is_left);
+      uprintf(
+          "row_belongs_to_current_keyboard_hand, Master row: %2u isleft: %1d\n",
+          row, is_left);
       printed_row = row;
     }
   } else {
-  #ifdef GROTA_CUSTOM_DATA_SYNC
+#ifdef GROTA_CUSTOM_DATA_SYNC
     sprintf(str2, "belongstckh,SL: row: %2u left:%1d", row, is_left);
-  #endif
+#endif
   }
-  #endif // CONSOLE_ENABLE
-  return (is_left && row < (MATRIX_ROWS / 2) && row >= 0)
-    || (!is_left && row >= (MATRIX_ROWS / 2) && row < MATRIX_ROWS);
+#endif // CONSOLE_ENABLE
+  return (is_left && row < (MATRIX_ROWS / 2) && row >= 0) ||
+         (!is_left && row >= (MATRIX_ROWS / 2) && row < MATRIX_ROWS);
 }

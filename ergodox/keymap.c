@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "grota.h"
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Layer 0: Base
  * ,--------------------------------------------------------.     ,-------------------------------------------------------.
@@ -26,9 +27,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC_GRAVE, KC_C_1, KC_C_2, KC_C_3, KC_C_4, KC_C_5,                KC_C_6,   KC_C_7,     KC_C_8,           KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_BSLS,
   KC_TAB,       KC_Q,   KC_F,   KC_W,   KC_R,   KC_EQUAL,             KC_HOME,   KC_END,     KC_QUOTE,         KC_H,    KC_J,    KC_K,  KC_L,     KC_PGUP,
   KC_SLASH,     KC_A,   KC_S,   KC_D,   KC_G,   KC_X,                                        KC_Y,             KC_C,    KC_E,    KC_I,  KC_O,     KC_PGDN,
-  KC_LSPO,      KC_Z,   KC_T,   KC_M,   KC_V,   RALT_T(KC_SCLN), TD_SQBRKTL,   TD_SQBRKTR, RALT_T(KC_COMMA), KC_N,    KC_P,    KC_B,  KC_U,     KC_RSPC,
+  SC_LSPO,      KC_Z,   KC_T,   KC_M,   KC_V,   RALT_T(KC_SCLN), TD_SQBRKTL,   TD_SQBRKTR, RALT_T(KC_COMMA), KC_N,    KC_P,    KC_B,  KC_U,     SC_RSPC,
 
-                   KC_LCTL, KC_LALT, TT(_FN_AND_MOUSE), KC_MINUS,   KC_BSPC,   LALT_T(KC_SPACE), KC_RCTL, KC_DOT, KC_C_0, KC_C_9,
+                   KC_LCTL, KC_LALT, TT(_LAYER_MOUSE), KC_MINUS,   KC_BSPC,   LALT_T(KC_SPACE), KC_RCTL, KC_DOT, KC_C_0, KC_C_9,
 
                                                             KC_BRID, KC_BRIU,   KC_VOLD, KC_VOLU,
                                                                   KC_MS_BTN3,   KC_LGUI,
@@ -55,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |   | Hue- |      |      |
  *                                `--------------------'   `--------------------'
  */
-[_FN_AND_MOUSE] = LAYOUT_ergodox_pretty(
+[_LAYER_MOUSE] = LAYOUT_ergodox_pretty(
  QK_BOOT, QK_CLEAR_EEPROM, _______, _______, _______, _______, _______,   _______, _______,    _______,     _______,     _______,  KC_F11,  KC_F12,
  _______, _______,      _______, _______, _______, _______, RGB_VAI,   RGB_SAI, _______,    _______,    KC_MS_UP,     _______, KC_WH_U, _______,
  _______, _______,      _______, _______, _______, _______,                     _______, KC_MS_LEFT,  KC_MS_DOWN, KC_MS_RIGHT, KC_WH_D, _______,
@@ -96,7 +97,7 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
   ergodox_right_led_1_off();
   uint8_t layer = biton32(state);
   switch (layer) {
-      case _FN_AND_MOUSE:
+      case _LAYER_MOUSE:
         ergodox_right_led_1_on();
         break;
 
@@ -106,3 +107,4 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
 
   return state;
 };
+// clang-format on

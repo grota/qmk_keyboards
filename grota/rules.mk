@@ -30,3 +30,28 @@ GROTA_DEFINE_PRINT_HAPTIC = no
 ifeq ($(strip $(GROTA_DEFINE_PRINT_HAPTIC)), yes)
   OPT_DEFS += -DGROTA_DEFINE_PRINT_HAPTIC
 endif
+
+GROTA_TAPDANCE_SQUARE_BRAKETS = no
+ifeq ($(strip $(GROTA_TAPDANCE_SQUARE_BRAKETS)), yes)
+  OPT_DEFS += -DGROTA_TAPDANCE_SQUARE_BRAKETS
+endif
+
+GROTA_TAPDANCE_BOOT = no
+ifeq ($(strip $(GROTA_TAPDANCE_BOOT)), yes)
+  OPT_DEFS += -DGROTA_TAPDANCE_BOOT
+endif
+
+ifeq ($(strip $(GROTA_DISABLE_MUSIC_MODE)), yes)
+  OPT_DEFS += -DNO_MUSIC_MODE
+  # The following does not seem to have an effect (the define above is enough)
+  # but I'll leave this because this seems like a bug in qmk core to me.
+  MUSIC_ENABLE = no
+endif
+
+ifeq ($(strip $(GROTA_PRINT_MESSAGES)), DISABLE_ALL)
+  OPT_DEFS += -DNO_DEBUG
+  OPT_DEFS += -DNO_PRINT
+else ifeq ($(strip $(GROTA_PRINT_MESSAGES)), LEAVE_ONLY_USER_MESSAGES)
+  OPT_DEFS += -DNO_DEBUG
+  OPT_DEFS += -DUSER_PRINT
+endif

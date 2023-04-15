@@ -109,12 +109,14 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
   return layer_state_set_user(state);
 }
 
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    // Only KC_E really needs to have QUICK_TAP_TERM enabled.
     case RCTL_T(KC_E):
-      return false;
+      return QUICK_TAP_TERM;
+    // When the user holds a key after tapping it, activate the hold function.
+    // This removes the ability to auto-repeat of dual role keys.
     default:
-      return true;
+      return 0;
   }
 }
-

@@ -19,12 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "grota.h"
 
 #if defined(KEYMAP_SAFE_RANGE)
-  #define PLACEHOLDER_SAFE_RANGE KEYMAP_SAFE_RANGE
+#define PLACEHOLDER_SAFE_RANGE KEYMAP_SAFE_RANGE
 #else
-  #define PLACEHOLDER_SAFE_RANGE SAFE_RANGE
+#define PLACEHOLDER_SAFE_RANGE SAFE_RANGE
 #endif
 
-#define ALL_SPACE_CADET_KEYS QK_SPACE_CADET_LEFT_CTRL_PARENTHESIS_OPEN ... QK_SPACE_CADET_RIGHT_SHIFT_ENTER
+#define ALL_SPACE_CADET_KEYS                                                   \
+  QK_SPACE_CADET_LEFT_CTRL_PARENTHESIS_OPEN... QK_SPACE_CADET_RIGHT_SHIFT_ENTER
 
 enum userspace_custom_keycodes {
   KC_ESC_GRAVE = SAFE_RANGE, // can always be here
@@ -45,5 +46,7 @@ enum userspace_custom_keycodes {
 #endif
 #ifdef GROTA_DEFINE_PRINT_HAPTIC
   KC_PRNT_HPT,
+#else
+#define KC_PRNT_HPT KC_NO
 #endif
 };

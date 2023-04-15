@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "process_records.h"
 
 #ifdef RGB_MATRIX_ENABLE
-  #include "rgb_stuff.h"
+#include "rgb_stuff.h"
 #endif
 
 #ifdef LEADER_ENABLE
@@ -38,13 +38,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Define layer names */
 enum userspace_layers {
   _BASE = 0,
-  _FN_AND_MOUSE,
+  _LAYER_MOUSE,
+  _LAYER_MEDIA,
 };
 
 typedef union {
   uint32_t raw;
-  struct {
-  };
+  struct {};
 } userspace_config_t;
 extern userspace_config_t userspace_config;
 
