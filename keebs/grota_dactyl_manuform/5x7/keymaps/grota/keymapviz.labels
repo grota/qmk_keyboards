@@ -4,7 +4,7 @@ KC_DOWN = ↓
 KC_UP = ↑
 KC_RIGHT = →
 
-TO(_BASE) = TO_BASE
+TO(_LAYER_BASE) = TO_BASE
 TT(_LAYER_MOUSE) = TO_
 
 LCTL_T(KC_TAB) = Ctrl 

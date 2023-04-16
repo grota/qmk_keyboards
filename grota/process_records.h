@@ -1,5 +1,5 @@
 /*
-Copyright 2019 Giuseppe Rota <rota.giuseppe@gmail.com>
+Copyright 2023 Giuseppe Rota <rota.giuseppe@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 #include "grota.h"
+#include "qmk_firmware/quantum/quantum_keycodes.h"
 
 #if defined(KEYMAP_SAFE_RANGE)
 #define PLACEHOLDER_SAFE_RANGE KEYMAP_SAFE_RANGE
@@ -28,7 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   QK_SPACE_CADET_LEFT_CTRL_PARENTHESIS_OPEN... QK_SPACE_CADET_RIGHT_SHIFT_ENTER
 
 enum userspace_custom_keycodes {
-  KC_ESC_GRAVE = SAFE_RANGE, // can always be here
+  KC_INITIAL = SAFE_RANGE,
+#ifdef GROTA_ENABLE_ESC_GRAVE
+  KC_ESC_GRAVE,
+#endif
   KC_C_1,
   KC_C_2,
   KC_C_3,

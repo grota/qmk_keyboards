@@ -1,3 +1,4 @@
+#include "grota/grota.h"
 #include QMK_KEYBOARD_H
 #include "grota.h"
 
@@ -23,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                     |      |      | C-v  |   |S-C-V |S-C-C |      |
  *                                     `--------------------'   `--------------------'
  */
-[_BASE] = LAYOUT_ergodox_pretty(
+[_LAYER_BASE] = LAYOUT_ergodox_pretty(
   KC_ESC_GRAVE, KC_C_1, KC_C_2, KC_C_3, KC_C_4, KC_C_5,                KC_C_6,   KC_C_7,     KC_C_8,           KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_BSLS,
   KC_TAB,       KC_Q,   KC_F,   KC_W,   KC_R,   KC_EQUAL,             KC_HOME,   KC_END,     KC_QUOTE,         KC_H,    KC_J,    KC_K,  KC_L,     KC_PGUP,
   KC_SLASH,     KC_A,   KC_S,   KC_D,   KC_G,   KC_X,                                        KC_Y,             KC_C,    KC_E,    KC_I,  KC_O,     KC_PGDN,
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  _______, _______,      _______, _______, _______, _______,                     _______, KC_MS_LEFT,  KC_MS_DOWN, KC_MS_RIGHT, KC_WH_D, _______,
  _______, _______,      _______, _______, _______, _______, RGB_VAD,   RGB_SAD, _______,    _______,     _______,     _______, _______, _______,
 
-                 _______, _______, TO(_BASE), _______, _______,   KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, _______, _______,
+                 _______, _______, TO(_LAYER_BASE), _______, _______,   KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, _______, _______,
 
                                        RGB_MOD, QK_BOOT,   RGB_TOG, QK_BOOT  ,
                                                        _______,   RGB_HUI,

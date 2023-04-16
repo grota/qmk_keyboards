@@ -1,5 +1,5 @@
 /*
-Copyright 2019 Giuseppe Rota <rota.giuseppe@gmail.com>
+Copyright 2023 Giuseppe Rota <rota.giuseppe@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,22 +24,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 250
 
 // If you press a dual-role key, tap another key (press and release) and then
-// release the dual-role key, even if within the tapping term, then perform the hold
-// action.
+// release the dual-role key, even if within the tapping term, then perform the
+// hold action.
 #define PERMISSIVE_HOLD
-
-//Miryoku defines QUICK_TAP_TERM 0, we are using the default which is TAPPING_TERM
-//but really with get_quick_tap_term() it's 0 for every key except RCTL_T(KC_E).
 
 // Make it possible to define a get_quick_tap_term() func to specify, per key,
 // what is the interval of time within which the user must tap then hold the key
 // to trigger auto repeat.
+// My get_quick_tap_term() says 0 for every key except RCTL_T(KC_E).
 #define QUICK_TAP_TERM_PER_KEY
 
 // Holding and releasing a dual-function key without pressing another key will
 // send the original keycode even if it is outside the tapping term.
 // #define RETRO_TAPPING
 
+// The last mod-tap hold will be converted to the corresponding mod-tap tap if
+// another key on the same hand is tapped during the hold, unless a key on the
+// other hand is tapped first.
 #define BILATERAL_COMBINATIONS
 
 #define DYNAMIC_TAPPING_TERM_INCREMENT 10

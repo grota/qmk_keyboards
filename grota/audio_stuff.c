@@ -56,7 +56,7 @@ void layer_state_set_play_audio_based_on_layer(layer_state_t state) {
   uint8_t layer = biton32(state);
   uprintf("layer_state_set_play_audio_based_on_layer %d\n", layer);
   switch (layer) {
-  case _BASE:
+  case _LAYER_BASE:
     PLAY_SONG(layer0_song);
     break;
 

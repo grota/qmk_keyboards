@@ -19,23 +19,19 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   case KC_ENTER:
   case KC_ESCAPE:
   case KC_BACKSPACE:
+  case KC_TAB:
   case KC_SPACE:
   case KC_MINUS:
   case KC_EQUAL:
   case KC_LEFT_BRACKET:
   case KC_RIGHT_BRACKET:
   case KC_BACKSLASH:
-  case KC_NONUS_HASH:
   case KC_SEMICOLON:
   case KC_QUOTE:
   case KC_GRAVE:
   case KC_COMMA:
-  case KC_SLASH:
   case KC_DOT:
-  case KC_NONUS_BACKSLASH:
-  case KC_PRINT_SCREEN:
-  case KC_PAUSE:
-  case KC_INSERT:
+  case KC_SLASH:
   case KC_DELETE:
   case KC_PAGE_DOWN:
   case KC_PAGE_UP:
@@ -43,24 +39,24 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   case KC_HOME:
   case KC_MEDIA_DOWN:
   case KC_MEDIA_UP:
-  case KC_TAB:
 #ifdef GROTA_DEFINE_ARROW
   case KC_ARROW:
 #endif
   case LCTL(KC_C):
   case ALL_SPACE_CADET_KEYS:
-    uprintf("break\n");
+    uprintf("generic pass\n");
     break;
 
   case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-    if (record->tap.count == 0)
-      return false;
+    uprintf("mod tap count: %d\n", record->tap.count);
+    return record->tap.count;
 
   default:
-    uprintf("other false\n");
+    uprintf("other, false\n");
     return false;
   }
-  bool a = row_belongs_to_current_keyboard_hand(record->event.key.row);
-  uprintf("row_belongs_to_current_keyboard_hand gives %1d\n", a);
-  return a;
+  bool row_is_ours =
+      row_belongs_to_current_keyboard_hand(record->event.key.row);
+  uprintf("row_belongs_to_current_keyboard_hand gives %1d\n", row_is_ours);
+  return row_is_ours;
 }

@@ -1,5 +1,5 @@
 /*
-Copyright 2019 Giuseppe Rota <rota.giuseppe@gmail.com>
+Copyright 2023 Giuseppe Rota <rota.giuseppe@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-//#define TAPPING_TOGGLE  1
+// clang-format off
 #undef TAPPING_TERM
 #define TAPPING_TERM 180
 
@@ -33,8 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MANUFACTURER grota
 
 #undef MASTER_RIGHT
-//#define MASTER_LEFT
-//#define MASTER_RIGHT
 #undef MASTER_LEFT
 #define EE_HANDS
 
@@ -66,3 +64,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { R50, R51, R52, R53, KC_NO, KC_NO },\
     { R60, R61, R62, R63, KC_NO, KC_NO }, \
    }
+// clang-format on

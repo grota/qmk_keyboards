@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                                +--------------+ +---------------+
  */
 
-  [_BASE] = LAYOUT_6x6_sym(
+  [_LAYER_BASE] = LAYOUT_6x6_sym(
      KC_ESC,     KC_C_1,  KC_C_2,        KC_C_3,      KC_C_4,    KC_C_5,                                KC_C_6,           KC_C_7,  KC_C_8,   KC_C_9, KC_C_0,   TT(_LAYER_MOUSE),
      KC_GRAVE,   KC_Q,    KC_MEDIA_DOWN, KC_MEDIA_UP, KC_DELETE, KC_HOME,                             KC_END,           KC_LEFT, KC_DOWN,  KC_UP,  KC_RIGHT, KC_BSLASH,
      KC_MS_BTN3, KC_A,    KC_F,          KC_W,        KC_R,      KC_EQUAL,                              KC_QUOTE,         KC_H,    KC_J,     KC_K,   KC_L,     KC_ARROW,
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                            KC_PGDOWN,  KC_PGUP,         TD_SQBRKTL, TD_SQBRKTR
   ),
   [_LAYER_MOUSE] = LAYOUT_6x6_sym(
-       _______,_______,_______,_______,_______,  QK_BOOT,              QK_BOOT, _______,    _______,     KC_F11,     KC_F12,    TO(_BASE),
+       _______,_______,_______,_______,_______,  QK_BOOT,              QK_BOOT, _______,    _______,     KC_F11,     KC_F12,    TO(_LAYER_BASE),
        _______,_______,_______,_______,_______,_______,            _______, _______,    _______,    _______,     _______,   _______,
        _______,_______,_______,_______,_______,_______,            _______, _______,    KC_MS_UP,   _______,     KC_WH_U,   _______,
        _______,_______,_______,_______,_______,_______,            _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_WH_D,   _______,

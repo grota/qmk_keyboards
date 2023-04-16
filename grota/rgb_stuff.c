@@ -57,7 +57,7 @@ void rgb_matrix_layer_indicator_custom(void) {
                               .v = rgb_matrix_config.hsv.v});
 
   switch (biton32(layer_state)) {
-  case _BASE:
+  case _LAYER_BASE:
     if (RALT_IS_PRESSED) {
       rgb_matrix_set_color_all(background2.r, background2.g, background2.b);
       rgb_matrix_set_color(38, rgb3.r, rgb3.g, rgb3.b); // a
@@ -88,7 +88,7 @@ void rgb_matrix_layer_indicator_custom(void) {
     rgb_matrix_set_color(20, rgb3.r, rgb3.g, rgb3.b); // Mouse middle click
     rgb_matrix_set_color(21, rgb3.r, rgb3.g, rgb3.b); // Mouse right click
     rgb_matrix_set_color(22, rgb3.r, rgb3.g, rgb3.b); // Mouse left click
-    rgb_matrix_set_color(46, rgb1.r, rgb1.g, rgb1.b); // TO(_BASE)
+    rgb_matrix_set_color(46, rgb1.r, rgb1.g, rgb1.b); // TO(_LAYER_BASE)
     break;
   }
 }

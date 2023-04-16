@@ -20,6 +20,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
   switch (keycode) {
+#ifdef GROTA_ENABLE_ESC_GRAVE
   // ESC normally, ~ if SHIFT_IS_PRESSED, ` when RALT_IS_PRESSED.
   case KC_ESC_GRAVE: {
     if (RALT_IS_PRESSED) {
@@ -30,6 +31,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     (record->event.pressed) ? register_code(key) : unregister_code(key);
     return false;
   }
+#endif
 
   // clang-format off
   // 1,2,3...9,0 normally and F1,F2,F3...F9,F10 when RALT_IS_PRESSED && !SHIFT_IS_PRESSED.

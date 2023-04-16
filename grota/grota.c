@@ -1,5 +1,5 @@
 /*
-Copyright 2019 Giuseppe Rota <rota.giuseppe@gmail.com>
+Copyright 2023 Giuseppe Rota <rota.giuseppe@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ __attribute__((weak)) void keyboard_post_init_keymap(void) {}
 void keyboard_post_init_user(void) { keyboard_post_init_keymap(); }
 // END: *_user functions call *_keymap functions.
 
+#ifdef SPLIT_KEYBOARD
 __attribute__((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
   bool is_left = is_keyboard_left();
 #ifdef CONSOLE_ENABLE
@@ -67,3 +68,4 @@ __attribute__((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
   return (is_left && row < (MATRIX_ROWS / 2) && row >= 0) ||
          (!is_left && row >= (MATRIX_ROWS / 2) && row < MATRIX_ROWS);
 }
+#endif

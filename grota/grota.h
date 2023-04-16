@@ -1,5 +1,5 @@
 /*
-Copyright 2019 Giuseppe Rota <rota.giuseppe@gmail.com>
+Copyright 2023 Giuseppe Rota <rota.giuseppe@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,6 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 #include "version.h"
 
+#ifdef SPLIT_KEYBOARD
+#define INITIAL_DEFAULT_ROW 100
+#define REPEAT_GROTA_X_FOR_LAYERS                                              \
+  GROTA_X(BASE, _LAYER_BASE, "Base")                                           \
+  GROTA_X(MOUSE, _LAYER_MOUSE, "Mouse")                                        \
+  GROTA_X(SYM, _LAYER_SYM, "Symbols")                                          \
+  GROTA_X(MEDIA, _LAYER_MEDIA, "Media")
+#endif
+
 #include "process_records.h"
 
 #ifdef RGB_MATRIX_ENABLE
@@ -33,19 +42,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "tap_dance.h"
 #endif
 
-#define INITIAL_DEFAULT_ROW 100
-
 /* Define layer names */
 enum userspace_layers {
-  _BASE = 0,
-  _LAYER_MOUSE,
-  _LAYER_MEDIA,
+#define GROTA_X(LAYER_NAME, LAYER_ID, DESC) LAYER_ID,
+  REPEAT_GROTA_X_FOR_LAYERS
+#undef GROTA_X
 };
 
-typedef union {
-  uint32_t raw;
-  struct {};
-} userspace_config_t;
-extern userspace_config_t userspace_config;
+#define LT_SYM_TAB LT(_LAYER_SYM, KC_TAB)
+#define LT_MOUSE_ESC LT(_LAYER_MOUSE, KC_ESC)
+#define LT_MEDIA_ENT LT(_LAYER_MEDIA, KC_ENTER)
+#define KC_ORIGIN KC_NO
 
 bool row_belongs_to_current_keyboard_hand(uint8_t row);
