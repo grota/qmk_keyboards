@@ -13,9 +13,7 @@
 /* RIGHT IS MASTER, LEFT IS SLAVE
  For power reasons we need to connect 2 usb cables, one for each split.
  I could also try defining SPLIT_USB_DETECT but I had problems in the past. */
-bool is_keyboard_master(void) {
-  return !is_keyboard_left();
-}
+bool is_keyboard_master(void) { return !is_keyboard_left(); }
 
 void protocol_pre_init(void);
 void protocol_post_init(void);
@@ -31,14 +29,12 @@ void protocol_init(void) {
 
 /* Returns true so that also the slave will be able to call the `process_*` code
  * along with `process_haptic()` */
-bool should_process_keypress(void) {
-  return true;
-}
+bool should_process_keypress(void) { return true; }
 
 void keyboard_post_init_kb(void) {
-  #if defined(GROTA_CUSTOM_DATA_SYNC)
+#if defined(GROTA_CUSTOM_DATA_SYNC)
   transaction_register_rpc(SYNC_SLAVE_MSG, receive_msg_from_slave_cb);
-  #endif
+#endif
   keyboard_post_init_user();
 }
 
@@ -47,6 +43,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     process_record_detected_row = record->event.key.row;
   }
+  // clang-format off
   uprintf("process_record_kb: kc: 0x%04X, col: %2u, row: %2u, current: %1d, pressed: %1d, count: %u\n",
       keycode,
       record->event.key.col,
@@ -55,68 +52,72 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
       record->event.pressed,
       record->tap.count
   );
+  // clang-format on
   return
-    #ifdef AUDIO_ENABLE
-    process_record_prepare_space_cadet_var(keycode, record) &&
-    #endif
-    process_record_user(keycode, record);
+#ifdef AUDIO_ENABLE
+#ifndef GROTA_DISABLE_SPACE_CADET
+      process_record_prepare_space_cadet_var(keycode, record) &&
+#endif
+#endif
+      process_record_user(keycode, record);
 }
 
 /* Since `quantum_task()` (which calls `haptic_task()`) does not do anyhting on
  * the slave, here we leverage the `housekeeping_task_kb()` to call
  * `haptic_task()` on the slave. */
 void housekeeping_task_kb(void) {
-  #ifdef HAPTIC_ENABLE
+#ifdef HAPTIC_ENABLE
   if (!is_keyboard_master()) {
     haptic_task();
-  #ifdef GROTA_CUSTOM_DATA_SYNC
+#ifdef GROTA_CUSTOM_DATA_SYNC
   } else {
     receive_msg_from_slave();
-  #endif
+#endif
   }
-  #endif
+#endif
   housekeeping_task_user();
 }
 
 /* This is called only on master */
 void matrix_scan_kb(void) {
-  #ifdef AUDIO_ENABLE
+#ifdef AUDIO_ENABLE
   if (row_belongs_to_current_keyboard_hand(process_record_detected_row)) {
     matrix_scan_play_audio_when_mods_are_hold();
   }
-  #endif
+#endif
   matrix_scan_user();
 }
 
 /* This is called only on slave */
 void matrix_slave_scan_kb(void) {
-  #ifdef AUDIO_ENABLE
+#ifdef AUDIO_ENABLE
   if (row_belongs_to_current_keyboard_hand(process_record_detected_row)) {
     matrix_scan_play_audio_when_mods_are_hold();
   }
-  #endif
+#endif
   matrix_slave_scan_user();
 }
 
-/* This is called also on the slave right now since should_process_keypress=true */
+/* This is called also on the slave right now since should_process_keypress=true
+ */
 layer_state_t layer_state_set_kb(layer_state_t state) {
-  #ifdef AUDIO_ENABLE
+#ifdef AUDIO_ENABLE
   uprintf("layer_state_set_kb \n");
   if (row_belongs_to_current_keyboard_hand(process_record_detected_row)) {
     layer_state_set_play_audio_based_on_layer(state);
   }
-  #endif
+#endif
   return layer_state_set_user(state);
 }
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // Only KC_E really needs to have QUICK_TAP_TERM enabled.
-    case RCTL_T(KC_E):
-      return QUICK_TAP_TERM;
-    // When the user holds a key after tapping it, activate the hold function.
-    // This removes the ability to auto-repeat of dual role keys.
-    default:
-      return 0;
+  // Only KC_E really needs to have QUICK_TAP_TERM enabled.
+  case RCTL_T(KC_E):
+    return QUICK_TAP_TERM;
+  // When the user holds a key after tapping it, activate the hold function.
+  // This removes the ability to auto-repeat of dual role keys.
+  default:
+    return 0;
   }
 }

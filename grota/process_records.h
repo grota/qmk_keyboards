@@ -33,6 +33,7 @@ enum userspace_custom_keycodes {
 #ifdef GROTA_ENABLE_ESC_GRAVE
   KC_ESC_GRAVE,
 #endif
+#ifdef GROTA_ENABLE_NUMBERS_FN_KC
   KC_C_1,
   KC_C_2,
   KC_C_3,
@@ -43,8 +44,11 @@ enum userspace_custom_keycodes {
   KC_C_8,
   KC_C_9,
   KC_C_0,
+#endif
+#ifdef GROTA_CUSTOM_MEDIA_KC
   KC_MEDIA_UP,
   KC_MEDIA_DOWN,
+#endif
 #ifdef GROTA_DEFINE_ARROW
   KC_ARROW,
 #endif

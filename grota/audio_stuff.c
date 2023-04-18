@@ -1,9 +1,25 @@
 #include "audio_stuff.h"
+#include "grota/config.h"
+#include "grota/grota.h"
+#include "qmk_firmware/quantum/audio/audio.h"
+#include "qmk_firmware/quantum/audio/musical_notes.h"
 
-static float shift_pressed_song[][2] = SONG(NUM_LOCK_ON_SOUND);
-static float ralt_pressed_song[][2] = SONG(AG_NORM_SOUND);
-static float layer0_song[][2] = SONG(GOODBYE_SOUND);
-static float layer1_song[][2] = SONG(STARTUP_SOUND);
+#define STARTUP_SONG SONG(WORKMAN_SOUND)
+static float shift_pressed_song[][2] = SONG(ED_NOTE(_E4), ED_NOTE(_F4));
+static float ctrl_pressed_song[][2] = SONG(ED_NOTE(_C4), ED_NOTE(_D4));
+static float lalt_pressed_song[][2] = SONG(ED_NOTE(_A3));
+static float gui_pressed_song[][2] = SONG(ED_NOTE(_G3));
+static float ralt_pressed_song[][2] = SONG(E__NOTE(_G3));
+
+#define SONG_LAYER_BASE SD_NOTE(_A3), SD_NOTE(_B3)
+#define SONG_LAYER_MOUSE SD_NOTE(_C4), SD_NOTE(_D4)
+#define SONG_LAYER_SYM SD_NOTE(_F4), SD_NOTE(_G4)
+#define SONG_LAYER_NUMBERS SD_NOTE(_A4), SD_NOTE(_B4)
+#define SONG_LAYER_MEDIA SD_NOTE(_C5), SD_NOTE(_D5)
+#define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
+  static float layer_song_##LAYER_ID[][2] = SONG(SONG##LAYER_ID);
+REPEAT_GROTA_X_FOR_LAYERS
+#undef GROTA_X
 
 static uint16_t timer_sc = 0;
 static uint16_t tapping_term_for_space_cadet_key = 0;
@@ -42,6 +58,33 @@ void matrix_scan_play_audio_when_mods_are_hold(void) {
     detected_shift_pressed = false;
   }
 
+  static bool detected_ctrl_pressed = false;
+  if (!detected_ctrl_pressed && (CTRL_IS_PRESSED)) {
+    detected_ctrl_pressed = true;
+    PLAY_SONG(ctrl_pressed_song);
+  }
+  if (detected_ctrl_pressed && !(CTRL_IS_PRESSED)) {
+    detected_ctrl_pressed = false;
+  }
+
+  static bool detected_lalt_pressed = false;
+  if (!detected_lalt_pressed && (LALT_IS_PRESSED)) {
+    detected_lalt_pressed = true;
+    PLAY_SONG(lalt_pressed_song);
+  }
+  if (detected_lalt_pressed && !(LALT_IS_PRESSED)) {
+    detected_lalt_pressed = false;
+  }
+
+  static bool detected_gui_pressed = false;
+  if (!detected_gui_pressed && (GUI_IS_PRESSED)) {
+    detected_gui_pressed = true;
+    PLAY_SONG(gui_pressed_song);
+  }
+  if (detected_gui_pressed && !(GUI_IS_PRESSED)) {
+    detected_gui_pressed = false;
+  }
+
   static bool detected_ralt_pressed = false;
   if (!detected_ralt_pressed && (RALT_IS_PRESSED)) {
     detected_ralt_pressed = true;
@@ -56,13 +99,12 @@ void layer_state_set_play_audio_based_on_layer(layer_state_t state) {
   uint8_t layer = biton32(state);
   uprintf("layer_state_set_play_audio_based_on_layer %d\n", layer);
   switch (layer) {
-  case _LAYER_BASE:
-    PLAY_SONG(layer0_song);
+#define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
+  case LAYER_ID:                                                               \
+    PLAY_SONG(layer_song_##LAYER_ID);                                          \
     break;
-
-  case _LAYER_MOUSE:
-    PLAY_SONG(layer1_song);
-    break;
+    REPEAT_GROTA_X_FOR_LAYERS
+#undef GROTA_X
 
   default:
     break;

@@ -21,11 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef SPLIT_KEYBOARD
 #define INITIAL_DEFAULT_ROW 100
+
+#define U_MACRO_VA_ARGS(macro, ...) macro(__VA_ARGS__)
 #define REPEAT_GROTA_X_FOR_LAYERS                                              \
   GROTA_X(BASE, _LAYER_BASE, "Base")                                           \
   GROTA_X(MOUSE, _LAYER_MOUSE, "Mouse")                                        \
   GROTA_X(SYM, _LAYER_SYM, "Symbols")                                          \
-  GROTA_X(MEDIA, _LAYER_MEDIA, "Media")
+  GROTA_X(MEDIA, _LAYER_MEDIA, "Media")                                        \
+  GROTA_X(NUMBERS, _LAYER_NUMBERS, "Numbers")
 #endif
 
 #include "process_records.h"
@@ -49,9 +52,11 @@ enum userspace_layers {
 #undef GROTA_X
 };
 
-#define LT_SYM_TAB LT(_LAYER_SYM, KC_TAB)
-#define LT_MOUSE_ESC LT(_LAYER_MOUSE, KC_ESC)
-#define LT_MEDIA_ENT LT(_LAYER_MEDIA, KC_ENTER)
+#define LT_TAB_SYMBOLS LT(_LAYER_SYM, KC_TAB)
+#define LT_ESC_MOUSE LT(_LAYER_MOUSE, KC_ESC)
+#define LT_ENTER_NUMBERS LT(_LAYER_NUMBERS, KC_ENTER)
+#define LT_QUOTE_MEDIA LT(_LAYER_MEDIA, KC_QUOTE)
+
 #define KC_ORIGIN KC_NO
 
 bool row_belongs_to_current_keyboard_hand(uint8_t row);

@@ -16,9 +16,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
   }
 #endif
+#if defined(GROTA_ENABLE_ESC_GRAVE) || defined(GROTA_ENABLE_NUMBERS_FN_KC) ||  \
+    defined(GROTA_CUSTOM_MEDIA_KC) || defined(GROTA_DEFINE_ARROW) ||           \
+    defined(GROTA_DEFINE_PRINT_HAPTIC)
   uint8_t modifiers = get_mods();
   uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
+#endif
   switch (keycode) {
 #ifdef GROTA_ENABLE_ESC_GRAVE
   // ESC normally, ~ if SHIFT_IS_PRESSED, ` when RALT_IS_PRESSED.
@@ -33,6 +37,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 #endif
 
+#ifdef GROTA_ENABLE_NUMBERS_FN_KC
   // clang-format off
   // 1,2,3...9,0 normally and F1,F2,F3...F9,F10 when RALT_IS_PRESSED && !SHIFT_IS_PRESSED.
   // clang-format on
@@ -47,7 +52,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
   }
+#endif
 
+#ifdef GROTA_CUSTOM_MEDIA_KC
   case KC_MEDIA_DOWN: {
     uint8_t key = SHIFT_IS_PRESSED ? KC_AUDIO_VOL_DOWN : KC_BRIGHTNESS_DOWN;
     (record->event.pressed) ? register_code(key) : unregister_code(key);
@@ -59,6 +66,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     (record->event.pressed) ? register_code(key) : unregister_code(key);
     return true;
   }
+#endif
 
 #ifdef GROTA_DEFINE_ARROW
   case KC_ARROW: {

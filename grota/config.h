@@ -1,18 +1,28 @@
 #pragma once
 
+// clang-format off
 #define SFT_CTL(kc)  (QK_LCTL | QK_LSFT | (kc))
 
 #define SHIFT_IS_PRESSED (modifiers & MOD_MASK_SHIFT) | (one_shot & MOD_MASK_SHIFT) | (weak_mods & MOD_MASK_SHIFT)
-#define RALT_IS_PRESSED (modifiers & MOD_BIT(KC_RALT)) | (one_shot & MOD_BIT(KC_RALT)) | (weak_mods & MOD_BIT(KC_RALT))
 #define CTRL_IS_PRESSED (modifiers & MOD_MASK_CTRL) | (weak_mods & MOD_MASK_CTRL) | (one_shot & MOD_MASK_CTRL)
 #define LALT_IS_PRESSED (modifiers & MOD_BIT(KC_LALT)) | (one_shot & MOD_BIT(KC_LALT)) | (weak_mods & MOD_BIT(KC_LALT))
+#define GUI_IS_PRESSED (modifiers & MOD_MASK_GUI) | (one_shot & MOD_MASK_GUI) | (weak_mods &MOD_MASK_GUI)
+#define RALT_IS_PRESSED (modifiers & MOD_BIT(KC_RALT)) | (one_shot & MOD_BIT(KC_RALT)) | (weak_mods & MOD_BIT(KC_RALT))
 
 #define TAPPING_TOGGLE 1
 
-//#undef DEBOUNCE
-//#define DEBOUNCE 4
-
 #ifdef MOUSEKEY_ENABLE
+
+#undef MOUSEKEY_DELAY
+#define MOUSEKEY_DELAY          0
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL       16
+#undef MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY    0
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED      6
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX    64
 
 //#undef  MOUSEKEY_DELAY
   //#define MOUSEKEY_DELAY 0
@@ -73,9 +83,6 @@
   #define RGBLIGHT_EFFECT_BREATHE_MAX RGBLIGHT_LIMIT_VAL
 #endif // RGBLIGHT_ENABLE
 
-#ifdef AUDIO_ENABLE
-  #define STARTUP_SONG SONG(GUITAR_SOUND)
-#endif
 
 #ifdef RGB_MATRIX_ENABLE
   #define DISABLE_RGB_MATRIX_DIGITAL_RAIN
@@ -107,10 +114,9 @@
 #ifdef TAP_DANCE_ENABLE
   #define TD_SQBRKTL TD(TD_SQUARE_BRACKET_L)
   #define TD_SQBRKTR TD(TD_SQUARE_BRACKET_R)
-  //#define TD_SPECIAL_LEAD TD(TD_LEAD_MOVE_TO_LAYER_LALT)
-  //#define TD_COLON TD(TD_COLON_SEMI)
-  //#define TD_SLASH_RALT TD(TD_SLASH_QUESTION_MARK_RALT)
 #else
   #define TD_SQBRKTL KC_LEFT_BRACKET
   #define TD_SQBRKTR KC_RIGHT_BRACKET
 #endif
+
+// clang-format on

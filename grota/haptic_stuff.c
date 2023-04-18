@@ -15,7 +15,9 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   case KC_A ... KC_Z:
   case KC_1 ... KC_0:
   case KC_F1 ... KC_F12:
+#ifdef GROTA_ENABLE_NUMBERS_FN_KC
   case KC_C_1 ... KC_C_0:
+#endif
   case KC_ENTER:
   case KC_ESCAPE:
   case KC_BACKSPACE:
@@ -37,8 +39,10 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   case KC_PAGE_UP:
   case KC_END:
   case KC_HOME:
+#ifdef GROTA_CUSTOM_MEDIA_KC
   case KC_MEDIA_DOWN:
   case KC_MEDIA_UP:
+#endif
 #ifdef GROTA_DEFINE_ARROW
   case KC_ARROW:
 #endif
