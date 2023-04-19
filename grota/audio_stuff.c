@@ -11,16 +11,17 @@ static float lalt_pressed_song[][2] = SONG(ED_NOTE(_A3));
 static float gui_pressed_song[][2] = SONG(ED_NOTE(_G3));
 static float ralt_pressed_song[][2] = SONG(E__NOTE(_G3));
 
-#define SONG_LAYER_BASE SD_NOTE(_A3), SD_NOTE(_B3)
-#define SONG_LAYER_MOUSE SD_NOTE(_C4), SD_NOTE(_D4)
-#define SONG_LAYER_SYM SD_NOTE(_F4), SD_NOTE(_G4)
-#define SONG_LAYER_NUMBERS SD_NOTE(_A4), SD_NOTE(_B4)
-#define SONG_LAYER_MEDIA SD_NOTE(_C5), SD_NOTE(_D5)
+#define SONG_LAYER_BASE ED_NOTE(_A3), ED_NOTE(_B3)
+#define SONG_LAYER_MOUSE ED_NOTE(_C4), ED_NOTE(_D4)
+#define SONG_LAYER_SYM ED_NOTE(_F4), ED_NOTE(_G4)
+#define SONG_LAYER_NUMBERS ED_NOTE(_A4), ED_NOTE(_B4)
+#define SONG_LAYER_MEDIA ED_NOTE(_C5), ED_NOTE(_D5)
 #define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
-  static float layer_song_##LAYER_ID[][2] = SONG(SONG##LAYER_ID);
+  float layer_song_##LAYER_ID[2][2] = SONG(SONG##LAYER_ID);
 REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
 
+#ifndef GROTA_DISABLE_SPACE_CADET
 static uint16_t timer_sc = 0;
 static uint16_t tapping_term_for_space_cadet_key = 0;
 bool process_record_prepare_space_cadet_var(uint16_t keycode,
@@ -36,14 +37,17 @@ bool process_record_prepare_space_cadet_var(uint16_t keycode,
   }
   return true;
 }
+#endif
 
 void matrix_scan_play_audio_when_mods_are_hold(void) {
+#ifndef GROTA_DISABLE_SPACE_CADET
   // Bail out if a space cadet key has been pressed but not enough time has
   // passed to trigger a hold.
   if (tapping_term_for_space_cadet_key != 0 &&
       timer_elapsed(timer_sc) < tapping_term_for_space_cadet_key) {
     return;
   }
+#endif
 
   uint8_t modifiers = get_mods();
   uint8_t one_shot = get_oneshot_mods();

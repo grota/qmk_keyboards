@@ -1,4 +1,5 @@
 #include "tap_dance.h"
+#include "audio_stuff.h"
 #include "grota/grota.h"
 #include "qmk_firmware/quantum/action_layer.h"
 
@@ -6,11 +7,13 @@
   void grota_td_fn_layer_##LAYER_NAME(tap_dance_state_t *state,                \
                                       void *user_data) {                       \
     if (state->count == 2) {                                                   \
+      PLAY_SONG(layer_song_##LAYER_ID);                                        \
       default_layer_set((layer_state_t)1 << LAYER_ID);                         \
     }                                                                          \
   }
 REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
+
 void u_td_fn_boot(tap_dance_state_t *state, void *user_data) {
   if (state->count == 2) {
     reset_keyboard();

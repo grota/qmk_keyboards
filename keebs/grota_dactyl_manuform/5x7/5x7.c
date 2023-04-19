@@ -98,8 +98,7 @@ void matrix_slave_scan_kb(void) {
   matrix_slave_scan_user();
 }
 
-/* This is called also on the slave right now since should_process_keypress=true
- */
+/* This is called also on the slave since should_process_keypress=true */
 layer_state_t layer_state_set_kb(layer_state_t state) {
 #ifdef AUDIO_ENABLE
   uprintf("layer_state_set_kb \n");
@@ -121,3 +120,24 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     return 0;
   }
 }
+
+#ifdef CAPS_WORD_ENABLE
+bool caps_word_press_user(uint16_t keycode) {
+  switch (keycode) {
+  case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+    return false;
+
+  // Keycodes that continue Caps Word, without shifting.
+  case KC_BSPC:
+  case KC_DEL:
+  case KC_TAB:
+  case KC_ESC:
+  case KC_ENTER:
+    return true;
+
+  default:
+    add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
+    return true;
+  }
+}
+#endif

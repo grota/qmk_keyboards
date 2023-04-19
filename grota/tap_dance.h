@@ -11,6 +11,7 @@ enum tap_dances {
   TD_SQUARE_BRACKET_L,
   TD_SQUARE_BRACKET_R,
 #endif
+
 #ifdef GROTA_TAPDANCE_BOOT
   TD_BOOT,
 #endif
