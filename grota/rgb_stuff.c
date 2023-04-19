@@ -36,8 +36,10 @@ void rgb_matrix_indicators_user(void) {
 }
 void rgb_matrix_layer_indicator_custom(void) {
   uint8_t modifiers = get_mods();
-  uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
+#ifndef NO_ACTION_ONESHOT
+  uint8_t one_shot = get_oneshot_mods();
+#endif
   RGB background1 = hsv_to_rgb((HSV){.h = rgb_matrix_config.hsv.h,
                                      .s = rgb_matrix_config.hsv.s,
                                      .v = (rgb_matrix_config.hsv.v >> 2)});

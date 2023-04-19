@@ -45,6 +45,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DYNAMIC_TAPPING_TERM_INCREMENT 10
 
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define NO_ACTION_ONESHOT
+#define LAYER_STATE_8BIT
+
 #undef USE_I2C
 #define USE_SERIAL
 #undef SOFT_SERIAL_PIN

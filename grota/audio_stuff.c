@@ -21,7 +21,7 @@ static float ralt_pressed_song[][2] = SONG(E__NOTE(_G3));
 REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
 
-#ifndef GROTA_DISABLE_SPACE_CADET
+#ifdef SPACE_CADET_ENABLE
 static uint16_t timer_sc = 0;
 static uint16_t tapping_term_for_space_cadet_key = 0;
 bool process_record_prepare_space_cadet_var(uint16_t keycode,
@@ -40,7 +40,7 @@ bool process_record_prepare_space_cadet_var(uint16_t keycode,
 #endif
 
 void matrix_scan_play_audio_when_mods_are_hold(void) {
-#ifndef GROTA_DISABLE_SPACE_CADET
+#ifdef SPACE_CADET_ENABLE
   // Bail out if a space cadet key has been pressed but not enough time has
   // passed to trigger a hold.
   if (tapping_term_for_space_cadet_key != 0 &&
@@ -50,8 +50,10 @@ void matrix_scan_play_audio_when_mods_are_hold(void) {
 #endif
 
   uint8_t modifiers = get_mods();
-  uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
+#ifndef NO_ACTION_ONESHOT
+  uint8_t one_shot = get_oneshot_mods();
+#endif
 
   static bool detected_shift_pressed = false;
   if (!detected_shift_pressed && (SHIFT_IS_PRESSED)) {

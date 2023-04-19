@@ -3,11 +3,19 @@
 // clang-format off
 #define SFT_CTL(kc)  (QK_LCTL | QK_LSFT | (kc))
 
-#define SHIFT_IS_PRESSED (modifiers & MOD_MASK_SHIFT) | (one_shot & MOD_MASK_SHIFT) | (weak_mods & MOD_MASK_SHIFT)
+#ifdef NO_ACTION_ONESHOT
+#define SHIFT_IS_PRESSED (modifiers & MOD_MASK_SHIFT) | (weak_mods & MOD_MASK_SHIFT)
+#define CTRL_IS_PRESSED (modifiers & MOD_MASK_CTRL) | (weak_mods & MOD_MASK_CTRL)
+#define LALT_IS_PRESSED (modifiers & MOD_BIT(KC_LALT)) | (weak_mods & MOD_BIT(KC_LALT))
+#define GUI_IS_PRESSED (modifiers & MOD_MASK_GUI) | (weak_mods &MOD_MASK_GUI)
+#define RALT_IS_PRESSED (modifiers & MOD_BIT(KC_RALT)) | (weak_mods & MOD_BIT(KC_RALT))
+#else
+#define SHIFT_IS_PRESSED (modifiers & MOD_MASK_SHIFT) | (weak_mods & MOD_MASK_SHIFT) | (one_shot & MOD_MASK_SHIFT)
 #define CTRL_IS_PRESSED (modifiers & MOD_MASK_CTRL) | (weak_mods & MOD_MASK_CTRL) | (one_shot & MOD_MASK_CTRL)
-#define LALT_IS_PRESSED (modifiers & MOD_BIT(KC_LALT)) | (one_shot & MOD_BIT(KC_LALT)) | (weak_mods & MOD_BIT(KC_LALT))
-#define GUI_IS_PRESSED (modifiers & MOD_MASK_GUI) | (one_shot & MOD_MASK_GUI) | (weak_mods &MOD_MASK_GUI)
-#define RALT_IS_PRESSED (modifiers & MOD_BIT(KC_RALT)) | (one_shot & MOD_BIT(KC_RALT)) | (weak_mods & MOD_BIT(KC_RALT))
+#define LALT_IS_PRESSED (modifiers & MOD_BIT(KC_LALT)) | (weak_mods & MOD_BIT(KC_LALT)) | (one_shot & MOD_BIT(KC_LALT))
+#define GUI_IS_PRESSED (modifiers & MOD_MASK_GUI) | (weak_mods &MOD_MASK_GUI)| (one_shot & MOD_MASK_GUI)
+#define RALT_IS_PRESSED (modifiers & MOD_BIT(KC_RALT)) | (weak_mods & MOD_BIT(KC_RALT)) | (one_shot & MOD_BIT(KC_RALT))
+#endif
 
 #define TAPPING_TOGGLE 1
 

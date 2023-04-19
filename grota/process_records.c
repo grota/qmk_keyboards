@@ -20,8 +20,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     defined(GROTA_CUSTOM_MEDIA_KC) || defined(GROTA_DEFINE_ARROW) ||           \
     defined(GROTA_DEFINE_PRINT_HAPTIC)
   uint8_t modifiers = get_mods();
-  uint8_t one_shot = get_oneshot_mods();
   uint8_t weak_mods = get_weak_mods();
+#ifndef NO_ACTION_ONESHOT
+  uint8_t one_shot = get_oneshot_mods();
+#endif
 #endif
   switch (keycode) {
 #ifdef GROTA_ENABLE_ESC_GRAVE

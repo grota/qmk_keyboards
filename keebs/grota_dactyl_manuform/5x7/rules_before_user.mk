@@ -30,6 +30,7 @@ UNICODE_ENABLE              ?= no
 BLUETOOTH_ENABLE            ?= no
 SLEEP_LED_ENABLE            ?= no
 GRAVE_ESC_ENABLE            ?= no
+SPACE_CADET_ENABLE          ?= no
 
 GROTA_DISABLE_MUSIC_MODE ?= yes
 GROTA_PRINT_MESSAGES     ?= DISABLE_ALL

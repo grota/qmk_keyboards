@@ -55,7 +55,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
   // clang-format on
   return
 #ifdef AUDIO_ENABLE
-#ifndef GROTA_DISABLE_SPACE_CADET
+#ifdef SPACE_CADET_ENABLE
       process_record_prepare_space_cadet_var(keycode, record) &&
 #endif
 #endif
