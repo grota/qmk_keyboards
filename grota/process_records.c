@@ -1,4 +1,5 @@
 #include "grota.h"
+#include "qmk_firmware/quantum/keycodes.h"
 
 // clang-format off
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
@@ -25,7 +26,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint8_t one_shot = get_oneshot_mods();
 #endif
 #endif
+  bool row_is_ours =
+      row_belongs_to_current_keyboard_hand(record->event.key.row);
   switch (keycode) {
+  case QK_BOOT:
+    if (row_is_ours) {
+      reset_keyboard();
+    }
+    return false;
+  case EE_CLR: {
+    if (row_is_ours) {
+      eeconfig_disable();
+      soft_reset_keyboard();
+    }
+    return false;
+  }
 #ifdef GROTA_ENABLE_ESC_GRAVE
   // ESC normally, ~ if SHIFT_IS_PRESSED, ` when RALT_IS_PRESSED.
   case KC_ESC_GRAVE: {

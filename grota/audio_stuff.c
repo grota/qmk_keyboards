@@ -13,9 +13,10 @@ static float ralt_pressed_song[][2] = SONG(E__NOTE(_G3));
 
 #define SONG_LAYER_BASE ED_NOTE(_A3), ED_NOTE(_B3)
 #define SONG_LAYER_MOUSE ED_NOTE(_C4), ED_NOTE(_D4)
-#define SONG_LAYER_SYM ED_NOTE(_F4), ED_NOTE(_G4)
-#define SONG_LAYER_NUMBERS ED_NOTE(_A4), ED_NOTE(_B4)
+#define SONG_LAYER_SYM1 ED_NOTE(_F4), ED_NOTE(_G4)
+#define SONG_LAYER_SYM2 ED_NOTE(_F4), ED_NOTE(_G4)
 #define SONG_LAYER_MEDIA ED_NOTE(_C5), ED_NOTE(_D5)
+#define SONG_LAYER_NUMPAD ED_NOTE(_A4), ED_NOTE(_B4)
 #define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
   float layer_song_##LAYER_ID[2][2] = SONG(SONG##LAYER_ID);
 REPEAT_GROTA_X_FOR_LAYERS

@@ -14,6 +14,10 @@
 REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
 
+// Cannot actually use a tap dance for QK_BOOT and EE_CLR because the TD
+// finished cb is only executed on master so I would not be able to use those
+// keys on the slave.
+#if 0
 void u_td_fn_boot(tap_dance_state_t *state, void *user_data) {
   if (state->count == 2) {
     reset_keyboard();
@@ -25,6 +29,7 @@ void u_td_fn_clear_eeprom(tap_dance_state_t *state, void *user_data) {
     soft_reset_keyboard();
   }
 }
+#endif
 
 tap_dance_action_t tap_dance_actions[] = {
 #ifdef GROTA_TAPDANCE_SQUARE_BRAKETS
@@ -33,6 +38,8 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_SQUARE_BRACKET_R] =
         ACTION_TAP_DANCE_DOUBLE(KC_RBRACKET, KC_RIGHT_CURLY_BRACE),
 #endif
+
+#if 0
 #ifdef GROTA_TAPDANCE_BOOT
     [TD_BOOT] = ACTION_TAP_DANCE_FN(u_td_fn_boot),
 #endif
@@ -42,6 +49,8 @@ tap_dance_action_t tap_dance_actions[] = {
 #ifdef GROTA_TAPDANCE_REBOOT
     [TD_REBOOT] = ACTION_TAP_DANCE_DOUBLE(KC_NO, QK_REBOOT),
 #endif
+#endif
+
 #ifdef GROTA_TAPDANCE_SET_DEFAULT_LAYER
 #define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
   [TD_DEF_L_##LAYER_NAME] = ACTION_TAP_DANCE_FN(grota_td_fn_layer_##LAYER_NAME),

@@ -26,9 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define REPEAT_GROTA_X_FOR_LAYERS                                              \
   GROTA_X(BASE, _LAYER_BASE, "Base")                                           \
   GROTA_X(MOUSE, _LAYER_MOUSE, "Mouse")                                        \
-  GROTA_X(SYM, _LAYER_SYM, "Symbols")                                          \
+  GROTA_X(SYM1, _LAYER_SYM1, "Symbols 1")                                      \
+  GROTA_X(SYM2, _LAYER_SYM2, "Symbols 2")                                      \
   GROTA_X(MEDIA, _LAYER_MEDIA, "Media")                                        \
-  GROTA_X(NUMBERS, _LAYER_NUMBERS, "Numbers")
+  GROTA_X(NUMPAD, _LAYER_NUMPAD, "Numbpad")
 #endif
 
 #include "process_records.h"
@@ -52,10 +53,16 @@ enum userspace_layers {
 #undef GROTA_X
 };
 
-#define LT_TAB_SYMBOLS LT(_LAYER_SYM, KC_TAB)
-#define LT_BSPC_MOUSE LT(_LAYER_MOUSE, KC_BACKSPACE)
-#define LT_ENTER_NUMBERS LT(_LAYER_NUMBERS, KC_ENTER)
-#define LT_QUOTE_MEDIA LT(_LAYER_MEDIA, KC_QUOTE)
+// SYM -> SYM1
+// nuovo SYM2
+// NUMBERS->NUMPAD
+// NUMPAD passa sulla DX e da ENTER a ESC.
+#define BSPC_MOUSE LT(_LAYER_MOUSE, KC_BACKSPACE)
+#define TAB_SYM1 LT(_LAYER_SYM1, KC_TAB)
+#define ESC_NUMPAD LT(_LAYER_NUMPAD, KC_ESC)
+
+#define ENTER_SYM2 LT(_LAYER_SYM2, KC_ENTER)
+#define QUOTE_MEDIA LT(_LAYER_MEDIA, KC_QUOTE)
 
 #define KC_ORIGIN KC_NO
 

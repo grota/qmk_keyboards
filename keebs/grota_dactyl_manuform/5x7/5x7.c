@@ -1,3 +1,4 @@
+#include "qmk_firmware/quantum/quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 
 #include "grota.h"
@@ -112,7 +113,8 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   // Only KC_E really needs to have QUICK_TAP_TERM enabled.
-  case RCTL_T(KC_E):
+  case RSFT_T(KC_E):
+  case BSPC_MOUSE:
     return QUICK_TAP_TERM;
   // When the user holds a key after tapping it, activate the hold function.
   // This removes the ability to auto-repeat of dual role keys.
