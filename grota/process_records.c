@@ -1,4 +1,7 @@
+#include "grota/process_records.h"
 #include "grota.h"
+#include "grota/config.h"
+#include "qmk_firmware/quantum/action_util.h"
 #include "qmk_firmware/quantum/keycodes.h"
 
 // clang-format off
@@ -11,6 +14,9 @@ __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *
 uint8_t haptic_get_dwell(void);
 #endif
 
+/**
+ * https://docs.qmk.fm/#/custom_quantum_functions?id=programming-the-behavior-of-any-keycode
+ */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(RGB_MATRIX_ENABLE)
   if (!process_record_user_rgb(keycode, record)) {
@@ -19,21 +25,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 #if defined(GROTA_ENABLE_ESC_GRAVE) || defined(GROTA_ENABLE_NUMBERS_FN_KC) ||  \
     defined(GROTA_CUSTOM_MEDIA_KC) || defined(GROTA_DEFINE_ARROW) ||           \
-    defined(GROTA_DEFINE_PRINT_HAPTIC)
+    defined(GROTA_DEFINE_PRINT_HAPTIC) ||                                      \
+    defined(GROTA_ENABLE_INVERTED_SHIFT_US_ANSI)
+
   uint8_t modifiers = get_mods();
   uint8_t weak_mods = get_weak_mods();
 #ifndef NO_ACTION_ONESHOT
   uint8_t one_shot = get_oneshot_mods();
 #endif
+
 #endif
   bool row_is_ours =
       row_belongs_to_current_keyboard_hand(record->event.key.row);
   switch (keycode) {
-  case QK_BOOT:
+  case QK_BOOT: {
     if (row_is_ours) {
       reset_keyboard();
     }
     return false;
+  }
   case EE_CLR: {
     if (row_is_ours) {
       eeconfig_disable();
@@ -71,6 +81,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 #endif
 
+#ifdef GROTA_ENABLE_INVERTED_SHIFT_US_ANSI
+  case KC_C_UNDS ... KC_C_QUES: {
+    uint8_t key = keycode - (KC_C_UNDS - KC_MINUS);
+    if (record->event.pressed) {
+      if (SHIFT_IS_PRESSED) {
+        del_mods(MOD_MASK_SHIFT);
+        register_code(key);
+        set_mods(modifiers);
+      } else {
+        register_code16(S(key));
+      }
+    } else {
+      if (SHIFT_IS_PRESSED) {
+        unregister_code(key);
+      } else {
+        unregister_code16(S(key));
+      }
+    }
+  }
+#endif
 #ifdef GROTA_CUSTOM_MEDIA_KC
   case KC_MEDIA_DOWN: {
     uint8_t key = SHIFT_IS_PRESSED ? KC_AUDIO_VOL_DOWN : KC_BRIGHTNESS_DOWN;
