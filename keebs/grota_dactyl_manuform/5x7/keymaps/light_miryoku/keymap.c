@@ -146,31 +146,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_LAYER_MEDIA] = LAYOUT_5x7_sym(
-//    ┌───┬───────┬───────┬─────┬─────┬─────┬───┐   ┌───┬───┬──────┬──────┬──────┬───┬───┐
-//    │   │       │       │  󰖁  │    │     │   │   │   │   │      │      │      │   │  │
-//    ├───┼───────┼───────┼─────┼─────┼─────┼───┤   ├───┼───┼──────┼──────┼──────┼───┼───┤
-//    │ 󰘚 │  󰚱   │  󰚱 ↓  │ 󰚱 ↑ │ 󰚱  │     │   │   │   │   │ TD  │ TD  │ TD  │   │ 󰘚 │
-//    ├───┼───────┼───────┼─────┼─────┼─────┼───┤   ├───┼───┼──────┼──────┼──────┼───┼───┤
-//    │   │  ←/→ │  / │   │   │     │   │   │   │   │      │ LSFT │      │   │   │
-//    ├───┼───────┼───────┼─────┼─────┼─────┼───┤   ├───┼───┼──────┼──────┼──────┼───┼───┤
-//    │   │      │      │  ﱜ  │  ﱛ  │     │   │   │   │   │      │      │      │   │   │
-//    ├───┼───────┼───────┼─────┼─────┴─────┴───┘   └───┴───┴──────┼──────┼──────┼───┼───┤
-//    │   │       │       │ ' " │                                  │ ' "  │      │   │   │
-//    └───┴───────┴───────┴─────┼─────┬─────┐           ┌───┬──────┼──────┴──────┴───┴───┘
+//    ┌───┬─────┬───────┬───────┬─────┬─────┬───┐   ┌───┬───┬──────┬──────┬──────┬───┬───┐
+//    │   │     │       │       │     │     │   │   │   │   │      │      │      │   │  │
+//    ├───┼─────┼───────┼───────┼─────┼─────┼───┤   ├───┼───┼──────┼──────┼──────┼───┼───┤
+//    │   │     │  ←/→ │  / │   │     │   │   │   │   │ TD  │ TD  │ TD  │   │ 󰘚 │
+//    ├───┼─────┼───────┼───────┼─────┼─────┼───┤   ├───┼───┼──────┼──────┼──────┼───┼───┤
+//    │   │   │     │  󰕾   │ 󰕾  │     │   │   │   │   │      │ LSFT │      │   │   │
+//    ├───┼─────┼───────┼───────┼─────┼─────┼───┤   ├───┼───┼──────┼──────┼──────┼───┼───┤
+//    │   │     │    │  󰚱   │   │     │   │   │   │   │      │      │      │   │   │
+//    ├───┼─────┼───────┼───────┼─────┴─────┴───┘   └───┴───┴──────┼──────┼──────┼───┼───┤
+//    │   │     │       │  ' "  │                                  │ ' "  │      │   │   │
+//    └───┴─────┴───────┴───────┼─────┬─────┐           ┌───┬──────┼──────┴──────┴───┴───┘
 //                              │    │    │           │   │      │                      
 //                              └─────┼─────┼───┐   ┌───┼───┼──────┘                      
 //                                    │ ESC │   │   │   │ 󰭃 │                             
 //                                    ├─────┼───┤   ├───┼───┤                             
 //                                    │     │   │   │   │   │                             
 //                                    └─────┴───┘   └───┴───┘                             
-  KC_NO  , KC_NO       , KC_NO   , AU_OFF   , AU_ON   , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_NO              , KC_NO              , KC_NO , QK_BOOT,
-  EE_CLR , KC_PRNT_HPT , HF_DWLD , HF_DWLU  , HF_TOGG , KC_NO  , KC_NO ,     KC_NO , KC_NO     , TD(TD_DEF_L_BASE) , TD(TD_DEF_L_MEDIA) , TD(TD_DEF_L_MOUSE) , KC_NO , EE_CLR ,
-  KC_NO  , RGB_HUD     , RGB_VAD , RGB_MOD  , RGB_TOG , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_LSFT            , KC_NO              , KC_NO , KC_NO  ,
-  KC_NO  , KC_BRID     , KC_BRIU , KC_VOLD  , KC_VOLU , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_NO              , KC_NO              , KC_NO , KC_NO  ,
-  KC_NO  , KC_NO       , KC_NO   , KC_QUOTE ,                                                                        KC_QUOTE           , KC_NO              , KC_NO , KC_NO  ,
-                                              KC_BSPC , KC_TAB ,                     KC_NO     , KC_NO                                                                        ,
-                                                        KC_ESC , KC_NO ,     KC_NO , KC_ORIGIN                                                                                ,
-                                                        KC_NO  , KC_NO ,     KC_NO , KC_NO                                                                                    
+  KC_NO , KC_NO   , KC_NO   , KC_NO    , KC_NO   , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_NO              , KC_NO              , KC_NO , QK_BOOT,
+  KC_NO , KC_NO   , RGB_HUD , RGB_VAD  , RGB_MOD , KC_NO  , KC_NO ,     KC_NO , KC_NO     , TD(TD_DEF_L_BASE) , TD(TD_DEF_L_MEDIA) , TD(TD_DEF_L_MOUSE) , KC_NO , EE_CLR ,
+  KC_NO , KC_BRID , KC_BRIU , KC_VOLD  , KC_VOLU , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_LSFT            , KC_NO              , KC_NO , KC_NO  ,
+  KC_NO , KC_NO   , AU_TOGG , HF_TOGG  , RGB_TOG , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_NO              , KC_NO              , KC_NO , KC_NO  ,
+  KC_NO , KC_NO   , KC_NO   , KC_QUOTE ,                                                                        KC_QUOTE           , KC_NO              , KC_NO , KC_NO  ,
+                                         KC_BSPC , KC_TAB ,                     KC_NO     , KC_NO                                                                        ,
+                                                   KC_ESC , KC_NO ,     KC_NO , KC_ORIGIN                                                                                ,
+                                                   KC_NO  , KC_NO ,     KC_NO , KC_NO                                                                                    
 )
 };
 // clang-format on

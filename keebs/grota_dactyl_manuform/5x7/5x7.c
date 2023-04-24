@@ -7,7 +7,10 @@
 #include "audio_stuff.h"
 #endif
 
-#if defined(GROTA_CUSTOM_DATA_SYNC)
+#if defined(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)
+#include "data_sync_haptic_and_audio.h"
+#endif
+#if defined(GROTA_DATA_SYNC_TESTS_DEBUG)
 #include "data_sync_3str.h"
 #endif
 
@@ -33,7 +36,11 @@ void protocol_init(void) {
 bool should_process_keypress(void) { return true; }
 
 void keyboard_post_init_kb(void) {
-#if defined(GROTA_CUSTOM_DATA_SYNC)
+#if defined(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)
+  transaction_register_rpc(SYNC_HAPTIC_AND_AUDIO,
+                           haptic_and_audio_slave_handler);
+#endif
+#if defined(GROTA_DATA_SYNC_TESTS_DEBUG)
   transaction_register_rpc(SYNC_SLAVE_MSG, receive_msg_from_slave_cb);
 #endif
   keyboard_post_init_user();
@@ -70,12 +77,15 @@ void housekeeping_task_kb(void) {
 #ifdef HAPTIC_ENABLE
   if (!is_keyboard_master()) {
     haptic_task();
-#ifdef GROTA_CUSTOM_DATA_SYNC
   } else {
+#ifdef GROTA_DATA_SYNC_TESTS_DEBUG
     receive_msg_from_slave();
 #endif
-  }
 #endif
+#if defined(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)
+    send_to_slave_haptic_and_audio_state();
+#endif
+  }
   housekeeping_task_user();
 }
 

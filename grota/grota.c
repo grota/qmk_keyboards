@@ -60,7 +60,7 @@ __attribute__((weak)) bool row_belongs_to_current_keyboard_hand(uint8_t row) {
       printed_row = row;
     }
   } else {
-#ifdef GROTA_CUSTOM_DATA_SYNC
+#ifdef GROTA_DATA_SYNC_TESTS_DEBUG
     sprintf(str2, "belongstckh,SL: row: %2u left:%1d", row, is_left);
 #endif
   }

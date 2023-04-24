@@ -34,10 +34,16 @@ SPACE_CADET_ENABLE          ?= no
 
 GROTA_DISABLE_MUSIC_MODE ?= yes
 GROTA_PRINT_MESSAGES     ?= DISABLE_ALL
-GROTA_CUSTOM_DATA_SYNC   ?= no
+GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE ?= yes
+GROTA_DATA_SYNC_TESTS_DEBUG   ?= no
 
 # https://docs.qmk.fm/#/feature_split_keyboard?id=custom-data-sync
-ifeq ($(strip $(GROTA_CUSTOM_DATA_SYNC)), yes)
-  OPT_DEFS += -DGROTA_CUSTOM_DATA_SYNC
+ifeq ($(strip $(GROTA_DATA_SYNC_TESTS_DEBUG)), yes)
+  OPT_DEFS += -DGROTA_DATA_SYNC_TESTS_DEBUG
   SRC += data_sync_3str.c
+endif
+
+ifeq ($(strip $(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)), yes)
+  OPT_DEFS += -DGROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE
+	SRC += data_sync_haptic_and_audio.c
 endif

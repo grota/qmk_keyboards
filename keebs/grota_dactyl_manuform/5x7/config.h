@@ -62,7 +62,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef AUDIO_ENABLE
 #define AUDIO_PIN C6
 #define AUDIO_PIN_ALT B6
-#endif // AUDIO_ENABLE
+#endif
 
 // make master/slave detection logic based on presence of USB communication.
 // Have to try it again (to avoid master/slave logic based on handedness) but
@@ -80,7 +80,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SOLENOID_DWELL_STEP_SIZE 1
 #endif // HAPTIC_ENABLE
 
-#ifdef GROTA_CUSTOM_DATA_SYNC
+#ifdef GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE
+#define SPLIT_TRANSACTION_IDS_KB SYNC_HAPTIC_AND_AUDIO
+// 8+32 is prolly enough.
+#define RPC_M2S_BUFFER_SIZE 40
+#endif
+
+#ifdef GROTA_DATA_SYNC_TESTS_DEBUG
 #define SPLIT_TRANSACTION_IDS_KB SYNC_SLAVE_MSG
 #define RPC_S2M_BUFFER_SIZE 96
 #endif

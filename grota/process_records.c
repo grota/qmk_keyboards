@@ -51,6 +51,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
   }
+
 #ifdef GROTA_ENABLE_ESC_GRAVE
   // ESC normally, ~ if SHIFT_IS_PRESSED, ` when RALT_IS_PRESSED.
   case KC_ESC_GRAVE: {
@@ -99,6 +100,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code16(S(key));
       }
     }
+    return false;
   }
 #endif
 #ifdef GROTA_CUSTOM_MEDIA_KC

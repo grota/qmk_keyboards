@@ -1,7 +1,7 @@
 #include "haptic_stuff.h"
 #include "qmk_firmware/quantum/keycodes.h"
 
-#ifdef GROTA_CUSTOM_DATA_SYNC
+#ifdef GROTA_DATA_SYNC_TESTS_DEBUG
 #include <stdio.h>
 extern char str2[32];
 #endif
