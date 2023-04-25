@@ -137,14 +137,14 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 bool caps_word_press_user(uint16_t keycode) {
   switch (keycode) {
   case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+  case KC_TAB:
+  case KC_ESC:
+  case KC_ENTER:
     return false;
 
   // Keycodes that continue Caps Word, without shifting.
   case KC_BSPC:
   case KC_DEL:
-  case KC_TAB:
-  case KC_ESC:
-  case KC_ENTER:
     return true;
 
   default:

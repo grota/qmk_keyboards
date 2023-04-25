@@ -53,10 +53,6 @@ enum userspace_layers {
 #undef GROTA_X
 };
 
-// SYM -> SYM1
-// nuovo SYM2
-// NUMBERS->NUMPAD
-// NUMPAD passa sulla DX e da ENTER a ESC.
 #define BSPC_MOUSE LT(_LAYER_MOUSE, KC_BACKSPACE)
 #define TAB_SYM1 LT(_LAYER_SYM1, KC_TAB)
 #define ESC_NUMPAD LT(_LAYER_NUMPAD, KC_ESC)

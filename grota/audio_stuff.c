@@ -4,19 +4,20 @@
 #include "qmk_firmware/quantum/audio/audio.h"
 #include "qmk_firmware/quantum/audio/musical_notes.h"
 
-#define STARTUP_SONG SONG(WORKMAN_SOUND)
-static float shift_pressed_song[][2] = SONG(ED_NOTE(_E4), ED_NOTE(_F4));
-static float ctrl_pressed_song[][2] = SONG(ED_NOTE(_C4), ED_NOTE(_D4));
-static float lalt_pressed_song[][2] = SONG(ED_NOTE(_A3));
-static float gui_pressed_song[][2] = SONG(ED_NOTE(_G3));
-static float ralt_pressed_song[][2] = SONG(E__NOTE(_G3));
+#define STARTUP_SONG SONG(CAMPANELLA)
+static float ctrl_pressed_song[][2] = SONG(E__NOTE(_F6), SD_NOTE(_G6));
+static float shift_pressed_song[][2] = SONG(E__NOTE(_A6), SD_NOTE(_B6));
+static float lalt_pressed_song[][2] = SONG(E__NOTE(_G6), SD_NOTE(_A6));
+static float gui_pressed_song[][2] = SONG(E__NOTE(_E5), SD_NOTE(_F5));
+static float ralt_pressed_song[][2] = SONG(E__NOTE(_D6), SD_NOTE(_E6));
 
-#define SONG_LAYER_BASE ED_NOTE(_A3), ED_NOTE(_B3)
-#define SONG_LAYER_MOUSE ED_NOTE(_C4), ED_NOTE(_D4)
-#define SONG_LAYER_SYM1 ED_NOTE(_F4), ED_NOTE(_G4)
-#define SONG_LAYER_SYM2 ED_NOTE(_F4), ED_NOTE(_G4)
-#define SONG_LAYER_MEDIA ED_NOTE(_C5), ED_NOTE(_D5)
-#define SONG_LAYER_NUMPAD ED_NOTE(_A4), ED_NOTE(_B4)
+#define TEN_NOTE(note) MUSICAL_NOTE(note, 10)
+#define SONG_LAYER_BASE TEN_NOTE(_A3), E__NOTE(_B3)
+#define SONG_LAYER_MOUSE TEN_NOTE(_C4), E__NOTE(_D4)
+#define SONG_LAYER_SYM1 TEN_NOTE(_F5), E__NOTE(_G5)
+#define SONG_LAYER_SYM2 TEN_NOTE(_F5), E__NOTE(_G5)
+#define SONG_LAYER_MEDIA TEN_NOTE(_C5), E__NOTE(_D5)
+#define SONG_LAYER_NUMPAD TEN_NOTE(_C5), E__NOTE(_D5)
 #define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
   float layer_song_##LAYER_ID[2][2] = SONG(SONG##LAYER_ID);
 REPEAT_GROTA_X_FOR_LAYERS

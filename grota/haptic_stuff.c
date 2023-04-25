@@ -23,6 +23,10 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
     uprintf("mod/layer tap count: %d\n", record->tap.count);
     return record->tap.count;
 
+  case KC_RIGHT ... KC_UP:
+  case KC_MS_UP ... KC_MS_ACCEL2:
+    return false;
+
   default:
     break;
   }
