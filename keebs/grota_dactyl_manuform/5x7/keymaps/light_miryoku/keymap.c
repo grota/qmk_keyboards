@@ -15,9 +15,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼──────────┼──────────┼────────────┼────────────┼──────┼───┤   ├───┼──────┼────────────┼────────────┼──────────┼──────────┼───┤
 //    │   │    Z     │    T     │     M      │ AltGr_T(V) │ ; :  │   │   │   │ , <  │ AltGr_T(N) │     P      │    B     │    U     │   │
 //    ├───┼──────────┼──────────┼────────────┼────────────┴──────┴───┘   └───┴──────┴────────────┼────────────┼──────────┼──────────┼───┤
-//    │   │          │          │            │                                                   │            │          │          │   │
+//    │   │          │          │            │                                                   │   Page    │  Page   │          │   │
 //    └───┴──────────┴──────────┴────────────┼────────────┬──────┐           ┌──────┬────────────┼────────────┴──────────┴──────────┴───┘
-//                                           │          │    │           │ ⏎  󱔁 │     ␣      │                                       
+//                                           │          │    │           │ ⏎  󱔁 │    ␣  O    │                                       
 //                                           └────────────┼──────┼───┐   ┌───┼──────┼────────────┘                                       
 //                                                        │ 󱊷   │   │   │   │ '   │                                                    
 //                                                        ├──────┼───┤   ├───┼──────┤                                                    
@@ -27,8 +27,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_Q         , KC_F         , KC_W         , KC_R         , KC_EQUAL   , KC_NO ,     KC_NO , KC_DELETE   , KC_H         , KC_J         , KC_K         , KC_L         , KC_NO,
   KC_NO , LGUI_T(KC_A) , LALT_T(KC_S) , LSFT_T(KC_D) , LCTL_T(KC_G) , KC_X       , KC_NO ,     KC_NO , KC_Y        , RCTL_T(KC_C) , RSFT_T(KC_E) , LALT_T(KC_I) , RGUI_T(KC_O) , KC_NO,
   KC_NO , KC_Z         , KC_T         , KC_M         , RALT_T(KC_V) , KC_SCLN    , KC_NO ,     KC_NO , KC_COMMA    , RALT_T(KC_N) , KC_P         , KC_B         , KC_U         , KC_NO,
-  KC_NO , KC_NO        , KC_NO        , KC_NO        ,                                                                              KC_NO        , KC_NO        , KC_NO        , KC_NO,
-                                                       BSPC_MOUSE   , TAB_SYM1   ,                     ENTER_SYM2  , KC_SPACE                                                         ,
+  KC_NO , KC_NO        , KC_NO        , KC_NO        ,                                                                              KC_PGDN      , KC_PGUP      , KC_NO        , KC_NO,
+                                                       BSPC_MOUSE   , TAB_SYM1   ,                     ENTER_SYM2  , SPACE_OTHER                                                      ,
                                                                       ESC_NUMPAD , KC_NO ,     KC_NO , QUOTE_MEDIA                                                                    ,
                                                                       KC_NO      , KC_NO ,     KC_NO , KC_NO                                                                          
 ),
@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼───┼─────┼─────┼─────┼─────┼───┤   ├───┼───┼────────┼────────┼────────┼──────┼───┤
 //    │   │ 󰭃 │  *  │ : ; │ " ' │     │   │   │   │   │  RCTL  │  RSFT  │  LALT  │ RGUI │   │
 //    ├───┼───┼─────┼─────┼─────┼─────┼───┤   ├───┼───┼────────┼────────┼────────┼──────┼───┤
-//    │   │ ^ │ > . │ _ - │ + = │     │   │   │   │   │ AltrGr │ Page  │ Page  │      │   │
+//    │   │ ^ │ > . │ _ - │ = + │     │   │   │   │   │ AltrGr │ Page  │ Page  │      │   │
 //    ├───┼───┼─────┼─────┼─────┴─────┴───┘   └───┴───┴────────┼────────┼────────┼──────┼───┤
 //    │   │   │     │  ⏎  │                                    │   ⏎    │        │      │   │
 //    └───┴───┴─────┴─────┼─────┬─────┐           ┌───┬────────┼────────┴────────┴──────┴───┘
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO      , KC_NO     , KC_NO     , KC_NO     , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO             , KC_NO             , KC_NO             , KC_NO   , QK_BOOT,
   KC_NO , KC_PERCENT , KC_C_QUES , KC_DOLLAR , KC_C_PIPE , KC_NO  , KC_NO ,     KC_NO , KC_NO     , TD(TD_DEF_L_BASE) , TD(TD_DEF_L_SYM2) , TD(TD_DEF_L_SYM1) , KC_NO   , EE_CLR ,
   KC_NO , KC_ORIGIN  , KC_ASTR   , KC_C_COLN , KC_C_DQUO , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_RCTL           , KC_RSFT           , KC_LALT           , KC_RGUI , KC_NO  ,
-  KC_NO , KC_CIRC    , KC_C_RABK , KC_C_UNDS , KC_C_PLUS , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_RALT           , KC_PGDN           , KC_PGUP           , KC_NO   , KC_NO  ,
+  KC_NO , KC_CIRC    , KC_C_RABK , KC_C_UNDS , KC_EQUAL  , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_RALT           , KC_PGDN           , KC_PGUP           , KC_NO   , KC_NO  ,
   KC_NO , KC_NO      , KC_NO     , KC_ENTER  ,                                                                          KC_ENTER          , KC_NO             , KC_NO   , KC_NO  ,
                                                KC_BSPC   , KC_TAB ,                     KC_ORIGIN , KC_NO                                                                        ,
                                                            KC_ESC , KC_NO ,     KC_NO , KC_NO                                                                                    ,
@@ -171,6 +171,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          KC_BSPC , KC_TAB ,                     KC_NO     , KC_NO                                                                        ,
                                                    KC_ESC , KC_NO ,     KC_NO , KC_ORIGIN                                                                                ,
                                                    KC_NO  , KC_NO ,     KC_NO , KC_NO                                                                                    
+),
+
+[_LAYER_OTHER] = LAYOUT_5x7_sym(
+//    ┌───┬───┬───┬───┬───┬───┬───┐   ┌───┬───┬───┬───┬───┬───┬───┐
+//    │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
+//    ├───┼───┼───┼───┼───┼───┼───┤   ├───┼───┼───┼───┼───┼───┼───┤
+//    │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
+//    ├───┼───┼───┼───┼───┼───┼───┤   ├───┼───┼───┼───┼───┼───┼───┤
+//    │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
+//    ├───┼───┼───┼───┼───┼───┼───┤   ├───┼───┼───┼───┼───┼───┼───┤
+//    │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
+//    ├───┼───┼───┼───┼───┴───┴───┘   └───┴───┴───┼───┼───┼───┼───┤
+//    │   │   │   │ ␣ │                           │ ␣ │   │   │   │
+//    └───┴───┴───┴───┼───┬───┐           ┌───┬───┼───┴───┴───┴───┘
+//                    │   │   │           │   │ 󰭃 │                
+//                    └───┼───┼───┐   ┌───┼───┼───┘                
+//                        │   │   │   │   │   │                    
+//                        ├───┼───┤   ├───┼───┤                    
+//                        │   │   │   │   │   │                    
+//                        └───┴───┘   └───┴───┘                    
+  KC_NO , KC_NO , KC_NO , KC_NO    , KC_NO , KC_NO , KC_NO ,     KC_NO , KC_NO , KC_NO     , KC_NO    , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO    , KC_NO , KC_NO , KC_NO ,     KC_NO , KC_NO , KC_NO     , KC_NO    , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO    , KC_NO , KC_NO , KC_NO ,     KC_NO , KC_NO , KC_NO     , KC_NO    , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO    , KC_NO , KC_NO , KC_NO ,     KC_NO , KC_NO , KC_NO     , KC_NO    , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_SPACE ,                                                         KC_SPACE , KC_NO , KC_NO , KC_NO,
+                                     KC_NO , KC_NO ,                     KC_NO , KC_ORIGIN                                   ,
+                                             KC_NO , KC_NO ,     KC_NO , KC_NO                                               ,
+                                             KC_NO , KC_NO ,     KC_NO , KC_NO                                               
 )
 };
 // clang-format on

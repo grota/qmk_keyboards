@@ -29,7 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   GROTA_X(SYM1, _LAYER_SYM1, "Symbols 1")                                      \
   GROTA_X(SYM2, _LAYER_SYM2, "Symbols 2")                                      \
   GROTA_X(MEDIA, _LAYER_MEDIA, "Media")                                        \
-  GROTA_X(NUMPAD, _LAYER_NUMPAD, "Numbpad")
+  GROTA_X(NUMPAD, _LAYER_NUMPAD, "Numpad")                                     \
+  GROTA_X(OTHER, _LAYER_OTHER, "Other")
 #endif
 
 #include "process_records.h"
@@ -59,6 +60,7 @@ enum userspace_layers {
 
 #define ENTER_SYM2 LT(_LAYER_SYM2, KC_ENTER)
 #define QUOTE_MEDIA LT(_LAYER_MEDIA, KC_QUOTE)
+#define SPACE_OTHER LT(_LAYER_OTHER, KC_SPACE)
 
 #define KC_ORIGIN KC_NO
 
