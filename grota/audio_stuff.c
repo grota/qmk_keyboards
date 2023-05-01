@@ -18,8 +18,8 @@ static float ralt_pressed_song[][2] = SONG(E__NOTE(_D6), SD_NOTE(_E6));
 #define SONG_LAYER_SYM2 TEN_NOTE(_F5), E__NOTE(_G5)
 #define SONG_LAYER_MEDIA TEN_NOTE(_C5), E__NOTE(_D5)
 #define SONG_LAYER_NUMPAD TEN_NOTE(_C5), E__NOTE(_D5)
-#define SONG_LAYER_OTHER TEN_NOTE(_C5), E__NOTE(_D5)
-#define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
+#define SONG_LAYER_NAV TEN_NOTE(_C5), E__NOTE(_D5)
+#define GROTA_X(LAYER_ID, DESC)                                                \
   float layer_song_##LAYER_ID[2][2] = SONG(SONG##LAYER_ID);
 REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
@@ -108,7 +108,7 @@ void layer_state_set_play_audio_based_on_layer(layer_state_t state) {
   uint8_t layer = biton32(state);
   uprintf("layer_state_set_play_audio_based_on_layer %d\n", layer);
   switch (layer) {
-#define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
+#define GROTA_X(LAYER_ID, DESC)                                                \
   case LAYER_ID:                                                               \
     PLAY_SONG(layer_song_##LAYER_ID);                                          \
     break;

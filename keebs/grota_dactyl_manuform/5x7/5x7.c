@@ -125,7 +125,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   // Only KC_E really needs to have QUICK_TAP_TERM enabled.
   case RSFT_T(KC_E):
   case BSPC_MOUSE:
-  case SPACE_OTHER:
+  case SPACE_NAV:
     return QUICK_TAP_TERM;
   // When the user holds a key after tapping it, activate the hold function.
   // This removes the ability to auto-repeat of dual role keys.

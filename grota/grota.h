@@ -24,13 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define U_MACRO_VA_ARGS(macro, ...) macro(__VA_ARGS__)
 #define REPEAT_GROTA_X_FOR_LAYERS                                              \
-  GROTA_X(BASE, _LAYER_BASE, "Base")                                           \
-  GROTA_X(MOUSE, _LAYER_MOUSE, "Mouse")                                        \
-  GROTA_X(SYM1, _LAYER_SYM1, "Symbols 1")                                      \
-  GROTA_X(SYM2, _LAYER_SYM2, "Symbols 2")                                      \
-  GROTA_X(MEDIA, _LAYER_MEDIA, "Media")                                        \
-  GROTA_X(NUMPAD, _LAYER_NUMPAD, "Numpad")                                     \
-  GROTA_X(OTHER, _LAYER_OTHER, "Other")
+  GROTA_X(_LAYER_BASE, "Base")                                                 \
+  GROTA_X(_LAYER_SYM1, "Symbols 1")                                            \
+  GROTA_X(_LAYER_SYM2, "Symbols 2")                                            \
+  GROTA_X(_LAYER_MOUSE, "Mouse")                                               \
+  GROTA_X(_LAYER_NAV, "Navigation")                                            \
+  GROTA_X(_LAYER_NUMPAD, "Numpad")                                             \
+  GROTA_X(_LAYER_MEDIA, "Media")
 #endif
 
 #include "process_records.h"
@@ -49,7 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Define layer names */
 enum userspace_layers {
-#define GROTA_X(LAYER_NAME, LAYER_ID, DESC) LAYER_ID,
+#define GROTA_X(LAYER_ID, DESC) LAYER_ID,
   REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
 };
@@ -60,7 +60,7 @@ enum userspace_layers {
 
 #define ENTER_SYM2 LT(_LAYER_SYM2, KC_ENTER)
 #define QUOTE_MEDIA LT(_LAYER_MEDIA, KC_QUOTE)
-#define SPACE_OTHER LT(_LAYER_OTHER, KC_SPACE)
+#define SPACE_NAV LT(_LAYER_NAV, KC_SPACE)
 
 #define KC_ORIGIN KC_NO
 

@@ -3,9 +3,9 @@
 #include "grota/grota.h"
 #include "qmk_firmware/quantum/action_layer.h"
 
-#define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
-  void grota_td_fn_layer_##LAYER_NAME(tap_dance_state_t *state,                \
-                                      void *user_data) {                       \
+#define GROTA_X(LAYER_ID, DESC)                                                \
+  void grota_td_fn_layer_##LAYER_ID(tap_dance_state_t *state,                  \
+                                    void *user_data) {                         \
     if (state->count == 2) {                                                   \
       PLAY_SONG(layer_song_##LAYER_ID);                                        \
       default_layer_set((layer_state_t)1 << LAYER_ID);                         \
@@ -52,8 +52,8 @@ tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 #ifdef GROTA_TAPDANCE_SET_DEFAULT_LAYER
-#define GROTA_X(LAYER_NAME, LAYER_ID, DESC)                                    \
-  [TD_DEF_L_##LAYER_NAME] = ACTION_TAP_DANCE_FN(grota_td_fn_layer_##LAYER_NAME),
+#define GROTA_X(LAYER_ID, DESC)                                                \
+  [DEF##LAYER_ID] = ACTION_TAP_DANCE_FN(grota_td_fn_layer_##LAYER_ID),
     REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
 #endif
