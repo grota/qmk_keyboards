@@ -19,7 +19,7 @@ make grota_dactyl_manuform/5x7:grota:avrdude-split-right
 make grota_dactyl_manuform/5x7:grota:avrdude-split-left
 
 
--- ':!keyboards*' ':!users*' ':!docs/*' ':!layouts/*' ':!drivers/*' ':!lib/*' ':!platforms/*' ':!tests/*'
+-- ':!keyboards*' ':!users*' ':!layouts/*' ':!drivers/*' ':!tests/*' ':!lib/*' ':!platforms/*' ':!docs/*'
 
 qmk generate-compilation-database -kb grota_dactyl_manuform/5x7 -km grota
 qmk console
