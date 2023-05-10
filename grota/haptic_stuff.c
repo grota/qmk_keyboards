@@ -25,6 +25,7 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
 
   case KC_RIGHT ... KC_UP:
   case KC_MS_UP ... KC_MS_ACCEL2:
+  case KC_NO:
     return false;
 
   default:
