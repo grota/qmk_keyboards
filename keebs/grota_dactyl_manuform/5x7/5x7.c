@@ -123,7 +123,7 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   // Only KC_E really needs to have QUICK_TAP_TERM enabled.
-  case RSFT_T(KC_E):
+  case RCTL_T(KC_E):
   case BSPC_MOUSE:
   case SPACE_NAV:
     return QUICK_TAP_TERM;
