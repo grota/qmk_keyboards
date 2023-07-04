@@ -18,15 +18,17 @@ bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t *record) {
   if (!row_is_ours)
     return false;
   switch (keycode) {
-  case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-  case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-    uprintf("mod/layer tap count: %d\n", record->tap.count);
-    return record->tap.count;
 
   case KC_RIGHT ... KC_UP:
   case KC_MS_UP ... KC_MS_ACCEL2:
   case KC_NO:
     return false;
+
+  case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+  case QK_LAYER_TAP ... QK_LAYER_TAP_MAX: {
+    uprintf("mod/layer tap count: %d\n", record->tap.count);
+    return record->tap.count;
+  }
 
   default:
     break;
