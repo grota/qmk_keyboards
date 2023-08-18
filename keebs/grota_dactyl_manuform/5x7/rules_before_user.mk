@@ -6,7 +6,7 @@ AUDIO_ENABLE               ?= yes
 NO_USB_STARTUP_CHECK       ?= yes
 HAPTIC_ENABLE              ?= yes
 EXTRAKEY_ENABLE            ?= yes
-HAPTIC_DRIVER              ?= SOLENOID
+HAPTIC_DRIVER              ?= solenoid
 SPLIT_KEYBOARD             ?= yes
 #DEBOUNCE_TYPE        = sym_eager_pk
 

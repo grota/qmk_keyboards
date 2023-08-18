@@ -1,3 +1,4 @@
+#include "qmk_firmware/quantum/keycode_config.h"
 #include "qmk_firmware/quantum/quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 
@@ -132,6 +133,16 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   default:
     return 0;
   }
+}
+
+/* To save space */
+uint16_t keycode_config(uint16_t keycode) {
+    return keycode;
+}
+
+/* To save space */
+uint8_t mod_config(uint8_t mod) {
+    return mod;
 }
 
 #ifdef CAPS_WORD_ENABLE
