@@ -5,7 +5,7 @@ This repo contains the firmware for my [qmk](https://qmk.fm) enabled keyboards: 
 Clone and launch [install.sh](install.sh) to symlink the layout where qmk expects it to be, then launch one of:
 
 - `make grota_dactyl_manuform/5x7:light_miryoku:flash`
-- `make grota_dactyl_manuform/5x7:grota:flash` + `make grota_dactyl_manuform/5x7:grota:asciiart`
+- `make grota_dactyl_manuform/5x7:grota:flash`
 - `make grota_dactyl_manuform/6x6:grota:flash`
 - `make ergodox_ez:grota:flash`
 
