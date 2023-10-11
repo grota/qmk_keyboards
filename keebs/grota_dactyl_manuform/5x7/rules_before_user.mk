@@ -1,14 +1,14 @@
-MOUSEKEY_ENABLE            ?= yes
-RGBLIGHT_ENABLE            ?= yes
-LTO_ENABLE                 ?= yes
+MOUSEKEY_ENABLE      ?= yes
+RGBLIGHT_ENABLE      ?= yes
+LTO_ENABLE           ?= yes
 # AUDIO_ENABLE is 17% of the firmware.
-AUDIO_ENABLE               ?= yes
-NO_USB_STARTUP_CHECK       ?= yes
-HAPTIC_ENABLE              ?= yes
-EXTRAKEY_ENABLE            ?= yes
-HAPTIC_DRIVER              ?= solenoid
-SPLIT_KEYBOARD             ?= yes
-#DEBOUNCE_TYPE        = sym_eager_pk
+AUDIO_ENABLE         ?= yes
+NO_USB_STARTUP_CHECK ?= yes
+HAPTIC_ENABLE        ?= yes
+EXTRAKEY_ENABLE      ?= yes
+HAPTIC_DRIVER        ?= solenoid
+SPLIT_KEYBOARD       ?= yes
+#DEBOUNCE_TYPE       =  sym_eager_pk
 
 AVR_USE_MINIMAL_PRINTF = yes
 USER_NAME := grota
@@ -32,10 +32,10 @@ SLEEP_LED_ENABLE            ?= no
 GRAVE_ESC_ENABLE            ?= no
 SPACE_CADET_ENABLE          ?= no
 
-GROTA_DISABLE_MUSIC_MODE ?= yes
-GROTA_PRINT_MESSAGES     ?= DISABLE_ALL
-GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE ?= yes
-GROTA_DATA_SYNC_TESTS_DEBUG   ?= no
+GROTA_DISABLE_MUSIC_MODE    ?= yes
+GROTA_PRINT_MESSAGES        ?= DISABLE_ALL
+GROTA_DATA_SYNC_AUDIO_STATE ?= yes
+GROTA_DATA_SYNC_TESTS_DEBUG ?= no
 
 # https://docs.qmk.fm/#/feature_split_keyboard?id=custom-data-sync
 ifeq ($(strip $(GROTA_DATA_SYNC_TESTS_DEBUG)), yes)
@@ -43,7 +43,7 @@ ifeq ($(strip $(GROTA_DATA_SYNC_TESTS_DEBUG)), yes)
   SRC += data_sync_3str.c
 endif
 
-ifeq ($(strip $(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)), yes)
-  OPT_DEFS += -DGROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE
-	SRC += data_sync_haptic_and_audio.c
+ifeq ($(strip $(GROTA_DATA_SYNC_AUDIO_STATE)), yes)
+  OPT_DEFS += -DGROTA_DATA_SYNC_AUDIO_STATE
+	SRC += data_sync_audio.c
 endif

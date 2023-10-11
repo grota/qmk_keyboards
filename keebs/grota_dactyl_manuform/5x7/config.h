@@ -80,8 +80,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SOLENOID_DWELL_STEP_SIZE 1
 #endif // HAPTIC_ENABLE
 
-#ifdef GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE
-#define SPLIT_TRANSACTION_IDS_KB SYNC_HAPTIC_AND_AUDIO
+#ifdef GROTA_DATA_SYNC_AUDIO_STATE
+#define SPLIT_TRANSACTION_IDS_KB SYNC_AUDIO
 // 8+32 is the sum of the 2 unions.
 #define RPC_M2S_BUFFER_SIZE 40
 #endif

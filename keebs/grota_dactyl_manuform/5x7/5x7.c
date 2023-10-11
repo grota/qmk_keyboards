@@ -8,8 +8,8 @@
 #include "audio_stuff.h"
 #endif
 
-#if defined(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)
-#include "data_sync_haptic_and_audio.h"
+#if defined(GROTA_DATA_SYNC_AUDIO_STATE)
+#include "data_sync_audio.h"
 #endif
 #if defined(GROTA_DATA_SYNC_TESTS_DEBUG)
 #include "data_sync_3str.h"
@@ -37,9 +37,9 @@ void protocol_init(void) {
 bool should_process_keypress(void) { return true; }
 
 void keyboard_post_init_kb(void) {
-#if defined(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)
-  transaction_register_rpc(SYNC_HAPTIC_AND_AUDIO,
-                           haptic_and_audio_slave_handler);
+#if defined(GROTA_DATA_SYNC_AUDIO_STATE)
+  transaction_register_rpc(SYNC_AUDIO,
+                           audio_slave_handler);
 #endif
 #if defined(GROTA_DATA_SYNC_TESTS_DEBUG)
   transaction_register_rpc(SYNC_SLAVE_MSG, receive_msg_from_slave_cb);
@@ -71,20 +71,28 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
       process_record_user(keycode, record);
 }
 
-/* Since `quantum_task()` (which calls `haptic_task()`) does not do anyhting on
- * the slave, here we leverage the `housekeeping_task_kb()` to call
- * `haptic_task()` on the slave. */
+/* As of today we don't need to call haptic_task() on the slave anymore like we
+ * did in the past given that https://github.com/qmk/qmk_firmware/pull/21583
+ * changed the flow so that it's keyboard_task() instead of quantum_task() to
+ * call haptic_task().
+ * And keyboard_task() is called also on the slave.
+ *
+ * Still we need to define SPLIT_HAPTIC_ENABLE otherwise both `haptic_task` and
+ * `haptic_init` do not do anything on the slave.
+ *
+ * Defining SPLIT_HAPTIC_ENABLE brings its own problems: we need to patch its
+ * slave callback haptic_handlers_slave() so that it does not call haptic_play().
+ * Otherwise a solenoid trigger on the master is replicated on the slave.
+ */
 void housekeeping_task_kb(void) {
 #ifdef HAPTIC_ENABLE
-  if (!is_keyboard_master()) {
-    haptic_task();
-  } else {
+  if (is_keyboard_master()) {
 #ifdef GROTA_DATA_SYNC_TESTS_DEBUG
     receive_msg_from_slave();
 #endif
 #endif
-#if defined(GROTA_DATA_SYNC_HAPTIC_AND_AUDIO_STATE)
-    send_to_slave_haptic_and_audio_state();
+#if defined(GROTA_DATA_SYNC_AUDIO_STATE)
+    send_to_slave_audio_state();
 #endif
   }
   housekeeping_task_user();

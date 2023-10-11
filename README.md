@@ -1,30 +1,35 @@
 # Overview
 
-This repo contains the firmware for my [qmk](https://qmk.fm) enabled keyboards: a 5x7 and a 6x6 dactyl-manuforms and an [ErgoDox-ez](https://ergodox-ez.com).
+This repo contains the firmware for my [qmk](https://qmk.fm) enabled 5x7 dactyl-manuform using a customized miryoku keymap.
 
 Clone and launch [install.sh](install.sh) to symlink the layout where qmk expects it to be, then launch one of:
 
+- `qmk generate-compilation-database -kb grota_dactyl_manuform/5x7 -km light_miryoku`
 - `make grota_dactyl_manuform/5x7:light_miryoku:flash`
-- `make grota_dactyl_manuform/5x7:grota:flash`
-- `make grota_dactyl_manuform/6x6:grota:flash`
-- `make ergodox_ez:grota:flash`
 
 This will always will be a work in progress (most of the keys are quite stable though).
 
-See [here](https://github.com/grota/keymapviz/pull/1) for my keymapviz customization.
-
 ## Other useful commands
 
-```
-make grota_dactyl_manuform/5x7:grota:avrdude-split-right
-make grota_dactyl_manuform/5x7:grota:avrdude-split-left
+- `make grota_dactyl_manuform/5x7:light_miryoku:avrdude-split-right`
+- `make grota_dactyl_manuform/5x7:light_miryoku:avrdude-split-left`
+- `git diff A B -- ':!keyboards*' ':!users*' ':!layouts/*' ':!drivers/*' ':!tests/*' ':!lib/*' ':!platforms/*' ':!docs/*'`
 
+# Old stuff
 
--- ':!keyboards*' ':!users*' ':!layouts/*' ':!drivers/*' ':!tests/*' ':!lib/*' ':!platforms/*' ':!docs/*'
+I also have a 6x6 dactyl-manuform and an [ErgoDox-ez](https://ergodox-ez.com) which I am currently not using.
 
-qmk generate-compilation-database -kb grota_dactyl_manuform/5x7 -km grota
-qmk console
-```
+## Old make targets (for reference)
+
+- `make grota_dactyl_manuform/5x7:grota:flash`
+- `make grota_dactyl_manuform/6x6:grota:flash`
+- `make ergodox_ez:grota:flash`
+- `make grota_dactyl_manuform/5x7:grota:avrdude-split-right`
+- `make grota_dactyl_manuform/5x7:grota:avrdude-split-left`
+- `qmk generate-compilation-database -kb grota_dactyl_manuform/5x7 -km grota`
+- `qmk console`
+
+See [here](https://github.com/grota/keymapviz/pull/1) for my keymapviz customization (now using neovim plugin <https://github.com/codethread/qmk.nvim>).
 
 ## ErgoDox-ez
 
