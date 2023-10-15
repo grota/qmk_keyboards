@@ -43,6 +43,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "leader_stuff.h"
 #endif
 
+#ifdef ACHORDION_ENABLE
+#include "grota/achordion.h"
+#endif
+
 #ifdef TAP_DANCE_ENABLE
 #include "tap_dance.h"
 #endif

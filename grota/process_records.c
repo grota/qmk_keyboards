@@ -18,6 +18,9 @@ uint8_t haptic_get_dwell(void);
  * https://docs.qmk.fm/#/custom_quantum_functions?id=programming-the-behavior-of-any-keycode
  */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef ACHORDION_ENABLE
+  if (!process_achordion(keycode, record)) { return false; }
+#endif
 #if defined(RGB_MATRIX_ENABLE)
   if (!process_record_user_rgb(keycode, record)) {
     return false;

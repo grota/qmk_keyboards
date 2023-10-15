@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // How long before a tap becomes a hold.
 // Too many mods => increase tapping term.
 // Too many taps => lower tapping term.
-#define TAPPING_TERM 250
+#define TAPPING_TERM 180
 
 // If you press a dual-role key, tap another key (press and release) and then
 // release the dual-role key, even if within the tapping term, then perform the
@@ -37,11 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Holding and releasing a dual-function key without pressing another key will
 // send the original keycode even if it is outside the tapping term.
 // #define RETRO_TAPPING
-
-// The last mod-tap hold will be converted to the corresponding mod-tap tap if
-// another key on the same hand is tapped during the hold, unless a key on the
-// other hand is tapped first.
-#define BILATERAL_COMBINATIONS
 
 #define DYNAMIC_TAPPING_TERM_INCREMENT 10
 

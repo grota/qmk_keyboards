@@ -17,6 +17,11 @@ ifeq ($(strip $(LEADER_ENABLE)), yes)
   SRC += $(USER_PATH)/leader_stuff.c
 endif
 
+ifeq ($(strip $(ACHORDION_ENABLE)), yes)
+  SRC += $(USER_PATH)/achordion.c
+  OPT_DEFS += -DACHORDION_ENABLE
+endif
+
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
   SRC += $(USER_PATH)/tap_dance.c
 endif
@@ -77,3 +82,7 @@ else ifeq ($(strip $(GROTA_PRINT_MESSAGES)), LEAVE_ONLY_USER_MESSAGES)
   OPT_DEFS += -DNO_DEBUG
   OPT_DEFS += -DUSER_PRINT
 endif
+
+update_achordion:
+	curl -o grota/achordion.h https://raw.githubusercontent.com/getreuer/qmk-keymap/main/features/achordion.h
+	curl -o grota/achordion.c https://raw.githubusercontent.com/getreuer/qmk-keymap/main/features/achordion.c

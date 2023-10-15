@@ -26,12 +26,32 @@ void matrix_init_user(void) { matrix_init_keymap(); };
 
 __attribute__((weak)) void matrix_scan_keymap(void) {}
 
+/* This is called only on master */
 void matrix_scan_user(void) {
+#ifdef ACHORDION_ENABLE
+  achordion_task();
+#endif
 #ifdef LEADER_ENABLE
   matrix_scan_user_leader();
 #endif
   matrix_scan_keymap();
 };
+
+#ifdef SPLIT_KEYBOARD
+__attribute__((weak)) void matrix_slave_scan_keymap(void) {}
+
+/* This is called only on slave */
+void matrix_slave_scan_user(void) {
+#ifdef ACHORDION_ENABLE
+  achordion_task();
+#endif
+  matrix_slave_scan_keymap();
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  return 300;
+}
+#endif
 
 __attribute__((weak)) layer_state_t
 layer_state_set_keymap(layer_state_t state) {

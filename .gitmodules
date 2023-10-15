@@ -1,4 +1,4 @@
 [submodule "qmk_firmware"]
 	path = qmk_firmware
 	url = git@github.com:grota/qmk_firmware.git
-	branch = grota/rebased_squashed_bilateral_combinations_17715
+	branch = grota/no_haptic_play_on_slave_handler

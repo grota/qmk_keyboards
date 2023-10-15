@@ -14,6 +14,7 @@ This will always will be a work in progress (most of the keys are quite stable t
 - `make grota_dactyl_manuform/5x7:light_miryoku:avrdude-split-right`
 - `make grota_dactyl_manuform/5x7:light_miryoku:avrdude-split-left`
 - `git diff A B -- ':!keyboards*' ':!users*' ':!layouts/*' ':!drivers/*' ':!tests/*' ':!lib/*' ':!platforms/*' ':!docs/*'`
+- `make grota_dactyl_manuform/5x7:light_miryoku:update_achordion`
 
 # Old stuff
 

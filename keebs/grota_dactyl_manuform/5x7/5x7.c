@@ -173,3 +173,26 @@ bool caps_word_press_user(uint16_t keycode) {
   }
 }
 #endif
+
+#ifdef ACHORDION_ENABLE
+bool achordion_chord(
+  uint16_t tap_hold_keycode,
+  keyrecord_t* tap_hold_record,
+  uint16_t other_keycode,
+  keyrecord_t* other_record) {
+  // Thumb cluster must chord, target specific row numbers (we are in 5x7 code
+  // here) based on LAYOUT_5x7_sym which depends on hw wiring.
+  if (
+    (tap_hold_record->event.key.row == 5 || tap_hold_record->event.key.row == 11)
+    ||
+    (
+      (tap_hold_record->event.key.col == 1 || tap_hold_record->event.key.col == 2)
+      &&
+      (tap_hold_record->event.key.row == 4 || tap_hold_record->event.key.row == 10)
+    )
+  ) {
+    return true;
+  }
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+#endif
