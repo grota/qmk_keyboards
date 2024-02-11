@@ -87,8 +87,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-#undef RGBLED_NUM
-#define RGBLED_NUM 60
+#undef RGBLIGHT_LED_COUNT
+#define RGBLIGHT_LED_COUNT 60
 // clang-format off
 #define RGBLED_SPLIT { 30, 30 }
 // clang-format on
