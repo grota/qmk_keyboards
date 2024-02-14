@@ -15,16 +15,22 @@
 #include "data_sync_3str.h"
 #endif
 
-/* RIGHT IS MASTER, LEFT IS SLAVE
+/* For convention: RIGHT IS MASTER, LEFT IS SLAVE
  For power reasons we need to connect 2 usb cables, one for each split.
- I could also try defining SPLIT_USB_DETECT but I had problems in the past. */
-bool is_keyboard_master(void) { return !is_keyboard_left(); }
+ So we need to override `is_keyboard_master_impl()` whose original
+ implementation checks USB vbus state.
+ In our case is_keyboard_left_impl() reads handedness from eeprom.
+ Using MASTER_RIGHT to avoid reading from eeprom would not work because it
+ would mean calling !is_keyboard_master() which reads from split_config which
+ assumes split_pre_init has already run (chicken-and-egg problem). */
+bool is_keyboard_left_impl(void);
+bool is_keyboard_master_impl(void) { return !is_keyboard_left_impl(); }
 
 void protocol_pre_init(void);
 void protocol_post_init(void);
 void protocol_init(void) {
   // ONLY RIGHT/MASTER SETS UP USB
-  if (is_keyboard_master()) {
+  if (is_keyboard_master_impl()) {
     uprintf("calling protocol_pre_init\n");
     protocol_pre_init();
   }

@@ -31,7 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Make it possible to define a get_quick_tap_term() func to specify, per key,
 // what is the interval of time within which the user must tap then hold the key
 // to trigger auto repeat.
-// My get_quick_tap_term() says 0 for every key except RCTL_T(KC_E).
 #define QUICK_TAP_TERM_PER_KEY
 
 // Holding and releasing a dual-function key without pressing another key will
