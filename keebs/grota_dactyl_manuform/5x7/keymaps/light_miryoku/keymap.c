@@ -18,12 +18,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼──────────┼──────────┼───────────┼────────────┴──────┴───┘   └───┴──────┴────────────┼───────────┼──────────┼──────────┼───┤
 //    │   │   LSFT   │  Page   │  Page    │                                                   │  Page    │  Page   │   RSFT   │   │
 //    └───┴──────────┴──────────┴───────────┼────────────┬──────┐           ┌──────┬────────────┼───────────┴──────────┴──────────┴───┘
-//                                          │    󰁮  󰍽    │ 󰌒   │           │ ⏎  󱔁 │    ␣      │                                      
-//                                          └────────────┼──────┼───┐   ┌───┼──────┼────────────┘                                      
-//                                                       │ 󱊷   │   │   │   │ '  󰃠 │                                                   
-//                                                       ├──────┼───┤   ├───┼──────┤                                                   
-//                                                       │      │   │   │   │      │                                                   
-//                                                       └──────┴───┘   └───┴──────┘                                                   
+//                                          │    󰁮  󰍽    │ 󰌒   │           │ ⏎  󱔁 │    ␣      │
+//                                          └────────────┼──────┼───┐   ┌───┼──────┼────────────┘
+//                                                       │ 󱊷   │   │   │   │ '  󰃠 │
+//                                                       ├──────┼───┤   ├───┼──────┤
+//                                                       │      │   │   │   │      │
+//                                                       └──────┴───┘   └───┴──────┘
   KC_NO , KC_NO        , KC_NO        , KC_NO        , KC_NO        , KC_NO      , KC_NO ,     KC_NO , KC_NO       , KC_NO        , KC_NO        , KC_NO        , KC_NO        , KC_NO,
   KC_NO , KC_Q         , KC_F         , KC_W         , KC_R         , KC_EQUAL   , KC_NO ,     KC_NO , KC_MINUS    , KC_H         , KC_J         , KC_K         , KC_L         , KC_NO,
   KC_NO , LGUI_T(KC_A) , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_G) , KC_X       , KC_NO ,     KC_NO , KC_Y        , RSFT_T(KC_C) , RCTL_T(KC_E) , LALT_T(KC_I) , RGUI_T(KC_O) , KC_NO,
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_LSFT      , KC_PGUP      , KC_PGDN      ,                                                                              KC_PGUP      , KC_PGDN      , KC_RSFT      , KC_NO,
                                                        BSPC_MOUSE   , TAB_SYM1   ,                     ENTER_SYM2  , SPACE_NAV                                                        ,
                                                                       ESC_NUMPAD , KC_NO ,     KC_NO , QUOTE_MEDIA                                                                    ,
-                                                                      KC_NO      , KC_NO ,     KC_NO , KC_NO                                                                          
+                                                                      KC_NO      , KC_NO ,     KC_NO , KC_NO
 ),
 
 [_LAYER_SYM1] = LAYOUT_5x7_sym(
@@ -46,12 +46,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼──────┼──────┼──────┼────────┴─────┴───┘   └───┴─────┴─────┼─────┼─────┼───┼───┤
 //    │   │      │ DEL  │  󰌒   │                                      │  󰌒  │  +  │   │   │
 //    └───┴──────┴──────┴──────┼────────┬─────┐           ┌─────┬─────┼─────┴─────┴───┴───┘
-//                             │   󰁮    │  󰭃  │           │  ⏎  │  ␣  │                    
-//                             └────────┼─────┼───┐   ┌───┼─────┼─────┘                    
-//                                      │ ESC │   │   │   │ ' " │                          
-//                                      ├─────┼───┤   ├───┼─────┤                          
-//                                      │     │   │   │   │     │                          
-//                                      └─────┴───┘   └───┴─────┘                          
+//                             │   󰁮    │  󰭃  │           │  ⏎  │  ␣  │
+//                             └────────┼─────┼───┐   ┌───┼─────┼─────┘
+//                                      │ ESC │   │   │   │ ' " │
+//                                      ├─────┼───┤   ├───┼─────┤
+//                                      │     │   │   │   │     │
+//                                      └─────┴───┘   └───┴─────┘
   KC_NO , KC_NO   , KC_NO       , KC_NO       , KC_NO       , KC_NO     , KC_NO ,     KC_NO , KC_NO    , KC_NO    , KC_NO    , KC_NO     , KC_NO      , KC_NO,
   KC_NO , KC_NO   , TD_DEF_SYM2 , TD_DEF_SYM1 , TD_DEF_BASE , KC_NO     , KC_NO ,     KC_NO , KC_LBRC  , KC_EQUAL , KC_MINUS , KC_C_RABK , KC_EXCLAIM , KC_NO,
   KC_NO , KC_LGUI , KC_LALT     , KC_LCTL     , KC_LSFT     , KC_NO     , KC_NO ,     KC_NO , KC_CIRC  , KC_COMMA , KC_DOT   , KC_C_COLN , KC_ASTR    , KC_NO,
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO   , KC_DELETE   , KC_TAB      ,                                                                     KC_TAB   , KC_PLUS   , KC_NO      , KC_NO,
                                                 KC_BSPC     , KC_ORIGIN ,                     KC_ENTER , KC_SPACE                                            ,
                                                               KC_ESC    , KC_NO ,     KC_NO , KC_QUOTE                                                       ,
-                                                              KC_NO     , KC_NO ,     KC_NO , KC_NO                                                          
+                                                              KC_NO     , KC_NO ,     KC_NO , KC_NO
 ),
 
 [_LAYER_SYM2] = LAYOUT_5x7_sym(
@@ -74,12 +74,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼─────┼─────┼─────┼─────┴─────┴───┘   └───┴─────┴────────┼──────┼──────┼──────┼───┤
 //    │   │     │  &  │  ⏎  │                                      │  ⏎   │      │      │   │
 //    └───┴─────┴─────┴─────┼─────┬─────┐           ┌─────┬────────┼──────┴──────┴──────┴───┘
-//                          │  󰁮  │  󰌒  │           │  󰭃  │   ␣    │                         
-//                          └─────┼─────┼───┐   ┌───┼─────┼────────┘                         
-//                                │ ESC │   │   │   │ ' " │                                  
-//                                ├─────┼───┤   ├───┼─────┤                                  
-//                                │     │   │   │   │     │                                  
-//                                └─────┴───┘   └───┴─────┘                                  
+//                          │  󰁮  │  󰌒  │           │  󰭃  │   ␣    │
+//                          └─────┼─────┼───┐   ┌───┼─────┼────────┘
+//                                │ ESC │   │   │   │ ' " │
+//                                ├─────┼───┤   ├───┼─────┤
+//                                │     │   │   │   │     │
+//                                └─────┴───┘   └───┴─────┘
   KC_NO , KC_NO     , KC_NO     , KC_NO     , KC_NO     , KC_NO    , KC_NO ,     KC_NO , KC_NO     , KC_NO       , KC_NO       , KC_NO       , KC_NO   , KC_NO,
   KC_NO , KC_GRAVE  , KC_LPRN   , KC_RPRN   , KC_SCLN   , KC_PERC  , KC_NO ,     KC_NO , KC_NO     , TD_DEF_BASE , TD_DEF_SYM2 , TD_DEF_SYM1 , KC_NO   , KC_NO,
   KC_NO , KC_HASH   , KC_DOLLAR , KC_C_UNDS , KC_C_DQUO , KC_QUOTE , KC_NO ,     KC_NO , KC_NO     , KC_LSFT     , KC_RCTL     , KC_LALT     , KC_RGUI , KC_NO,
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO     , KC_AMPR   , KC_ENTER  ,                                                                      KC_ENTER    , KC_NO       , KC_NO   , KC_NO,
                                               KC_BSPC   , KC_TAB   ,                     KC_ORIGIN , KC_SPACE                                                 ,
                                                           KC_ESC   , KC_NO ,     KC_NO , KC_QUOTE                                                             ,
-                                                          KC_NO    , KC_NO ,     KC_NO , KC_NO                                                                
+                                                          KC_NO    , KC_NO ,     KC_NO , KC_NO
 ),
 
 [_LAYER_MOUSE] = LAYOUT_5x7_sym(
@@ -102,12 +102,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼──────┼──────┼──────┼──────┴───┴───┘   └───┴────────┴────────┼────────┼────────┼───┼───┤
 //    │   │      │      │  󰁮   │                                        │   󰁮    │        │   │   │
 //    └───┴──────┴──────┴──────┼──────┬───┐           ┌────────┬────────┼────────┴────────┴───┴───┘
-//                             │  󰭃   │   │           │ 󰍽 BTN2 │ 󰍽 BTN1 │                          
-//                             └──────┼───┼───┐   ┌───┼────────┼────────┘                          
-//                                    │   │   │   │   │ 󰍽 BTN3 │                                   
-//                                    ├───┼───┤   ├───┼────────┤                                   
-//                                    │   │   │   │   │        │                                   
-//                                    └───┴───┘   └───┴────────┘                                   
+//                             │  󰭃   │   │           │ 󰍽 BTN2 │ 󰍽 BTN1 │
+//                             └──────┼───┼───┐   ┌───┼────────┼────────┘
+//                                    │   │   │   │   │ 󰍽 BTN3 │
+//                                    ├───┼───┤   ├───┼────────┤
+//                                    │   │   │   │   │        │
+//                                    └───┴───┘   └───┴────────┘
   KC_NO , KC_NO   , KC_NO      , KC_NO        , KC_NO       , KC_NO , KC_NO ,     KC_NO , KC_NO      , KC_NO      , KC_NO        , KC_NO       , KC_NO , KC_NO,
   KC_NO , KC_NO   , TD_DEF_NAV , TD_DEF_MOUSE , TD_DEF_BASE , KC_NO , KC_NO ,     KC_NO , KC_NO      , KC_WH_U    , KC_MS_UP     , KC_WH_D     , KC_NO , KC_NO,
   KC_NO , KC_LGUI , KC_LALT    , KC_LCTL      , KC_LSFT     , KC_NO , KC_NO ,     KC_NO , KC_NO      , KC_MS_LEFT , KC_MS_DOWN   , KC_MS_RIGHT , KC_NO , KC_NO,
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO   , KC_NO      , KC_BACKSPACE ,                                                                     KC_BACKSPACE , KC_NO       , KC_NO , KC_NO,
                                                 KC_ORIGIN   , KC_NO ,                     KC_MS_BTN2 , KC_MS_BTN1                                             ,
                                                               KC_NO , KC_NO ,     KC_NO , KC_MS_BTN3                                                          ,
-                                                              KC_NO , KC_NO ,     KC_NO , KC_NO                                                               
+                                                              KC_NO , KC_NO ,     KC_NO , KC_NO
 ),
 
 [_LAYER_NAV] = LAYOUT_5x7_sym(
@@ -130,12 +130,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼───┼────────┼────────┼───┴─────┴───┘   └───┴───┴──────┼──────┼──────┼──────┼───┤
 //    │   │   │        │   ␣    │                                │  ␣   │      │      │   │
 //    └───┴───┴────────┴────────┼───┬─────┐           ┌───┬──────┼──────┴──────┴──────┴───┘
-//                              │ 󰁮 │  󰌒  │           │   │  󰭃   │                         
-//                              └───┼─────┼───┐   ┌───┼───┼──────┘                         
-//                                  │ ESC │   │   │   │   │                                
-//                                  ├─────┼───┤   ├───┼───┤                                
-//                                  │     │   │   │   │   │                                
-//                                  └─────┴───┘   └───┴───┘                                
+//                              │ 󰁮 │  󰌒  │           │   │  󰭃   │
+//                              └───┼─────┼───┐   ┌───┼───┼──────┘
+//                                  │ ESC │   │   │   │   │
+//                                  ├─────┼───┤   ├───┼───┤
+//                                  │     │   │   │   │   │
+//                                  └─────┴───┘   └───┴───┘
   KC_NO , KC_NO , KC_NO   , KC_NO    , KC_NO    , KC_NO  , KC_NO ,     KC_NO , KC_NO , KC_NO       , KC_NO      , KC_NO        , KC_NO   , KC_NO,
   KC_NO , KC_NO , KC_HOME , KC_UP    , KC_END   , KC_NO  , KC_NO ,     KC_NO , KC_NO , TD_DEF_BASE , TD_DEF_NAV , TD_DEF_MOUSE , KC_NO   , KC_NO,
   KC_NO , KC_NO , KC_LEFT , KC_DOWN  , KC_RIGHT , KC_NO  , KC_NO ,     KC_NO , KC_NO , KC_RSFT     , KC_RCTL    , KC_LALT      , KC_LGUI , KC_NO,
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO , KC_NO   , KC_SPACE ,                                                               KC_SPACE   , KC_NO        , KC_NO   , KC_NO,
                                        KC_BSPC  , KC_TAB ,                     KC_NO , KC_ORIGIN                                                ,
                                                   KC_ESC , KC_NO ,     KC_NO , KC_NO                                                            ,
-                                                  KC_NO  , KC_NO ,     KC_NO , KC_NO                                                            
+                                                  KC_NO  , KC_NO ,     KC_NO , KC_NO
 ),
 
 [_LAYER_NUMPAD] = LAYOUT_5x7_sym(
@@ -158,12 +158,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼──────┼──────┼──────┼────────┴───┴───┘   └───┴─────┴──────┼───────┼──────┼─────┼───┤
 //    │   │      │      │ ESC  │                                     │ 0 F10 │ . >  │ + = │   │
 //    └───┴──────┴──────┴──────┼────────┬───┐           ┌─────┬──────┼───────┴──────┴─────┴───┘
-//                             │   󰁮    │ 󰌒 │           │  ⏎  │  ␣   │                         
-//                             └────────┼───┼───┐   ┌───┼─────┼──────┘                         
-//                                      │ 󰭃 │   │   │   │ ' " │                                
-//                                      ├───┼───┤   ├───┼─────┤                                
-//                                      │   │   │   │   │     │                                
-//                                      └───┴───┘   └───┴─────┘                                
+//                             │   󰁮    │ 󰌒 │           │  ⏎  │  ␣   │
+//                             └────────┼───┼───┐   ┌───┼─────┼──────┘
+//                                      │ 󰭃 │   │   │   │ ' " │
+//                                      ├───┼───┤   ├───┼─────┤
+//                                      │   │   │   │   │     │
+//                                      └───┴───┘   └───┴─────┘
   KC_NO , KC_NO   , KC_NO        , KC_NO         , KC_NO        , KC_NO     , KC_NO ,     KC_NO , KC_NO    , KC_NO    , KC_NO  , KC_NO  , KC_NO     , KC_NO,
   KC_NO , KC_NO   , TD_DEF_MEDIA , TD_DEF_NUMPAD , TD_DEF_BASE  , KC_NO     , KC_NO ,     KC_NO , KC_LPRN  , KC_C_7   , KC_C_8 , KC_C_9 , KC_SLASH  , KC_NO,
   KC_NO , KC_LGUI , KC_LALT      , KC_LCTL       , KC_LSFT      , KC_NO     , KC_NO ,     KC_NO , KC_RPRN  , KC_C_4   , KC_C_5 , KC_C_6 , KC_ASTR   , KC_NO,
@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO   , KC_NO        , KC_ESC        ,                                                                      KC_C_0 , KC_DOT , KC_C_PLUS , KC_NO,
                                                    KC_BACKSPACE , KC_TAB    ,                     KC_ENTER , KC_SPACE                                      ,
                                                                   KC_ORIGIN , KC_NO ,     KC_NO , KC_QUOTE                                                 ,
-                                                                  KC_NO     , KC_NO ,     KC_NO , KC_NO                                                    
+                                                                  KC_NO     , KC_NO ,     KC_NO , KC_NO
 ),
 
 [_LAYER_MEDIA] = LAYOUT_5x7_sym(
@@ -186,12 +186,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───┼─────┼───────┼───────┼─────┴─────┴───┘   └───┴───┴──────┼──────┼──────┼───┼───┤
 //    │   │     │       │  ' "  │                                  │ ' "  │      │   │   │
 //    └───┴─────┴───────┴───────┼─────┬─────┐           ┌───┬──────┼──────┴──────┴───┴───┘
-//                              │  󰁮  │  󰌒  │           │   │      │                      
-//                              └─────┼─────┼───┐   ┌───┼───┼──────┘                      
-//                                    │ ESC │   │   │   │ 󰭃 │                             
-//                                    ├─────┼───┤   ├───┼───┤                             
-//                                    │     │   │   │   │   │                             
-//                                    └─────┴───┘   └───┴───┘                             
+//                              │  󰁮  │  󰌒  │           │   │      │
+//                              └─────┼─────┼───┐   ┌───┼───┼──────┘
+//                                    │ ESC │   │   │   │ 󰭃 │
+//                                    ├─────┼───┤   ├───┼───┤
+//                                    │     │   │   │   │   │
+//                                    └─────┴───┘   └───┴───┘
   KC_NO , KC_NO   , KC_NO   , KC_NO    , KC_NO   , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_NO       , KC_NO        , KC_NO         , KC_NO   , KC_NO,
   KC_NO , KC_NO   , RGB_HUD , RGB_VAD  , RGB_MOD , KC_NO  , KC_NO ,     KC_NO , KC_NO     , TD_DEF_BASE , TD_DEF_MEDIA , TD_DEF_NUMPAD , KC_NO   , KC_NO,
   KC_NO , KC_BRID , KC_BRIU , KC_VOLD  , KC_VOLU , KC_NO  , KC_NO ,     KC_NO , KC_NO     , KC_RSFT     , KC_NO        , KC_NO         , KC_NO   , KC_NO,
@@ -199,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO   , KC_NO   , KC_QUOTE ,                                                                  KC_QUOTE     , KC_NO         , KC_NO   , KC_NO,
                                          KC_BSPC , KC_TAB ,                     KC_NO     , KC_NO                                                       ,
                                                    KC_ESC , KC_NO ,     KC_NO , KC_ORIGIN                                                               ,
-                                                   KC_NO  , KC_NO ,     KC_NO , KC_NO                                                                   
+                                                   KC_NO  , KC_NO ,     KC_NO , KC_NO
 )
 };
 // clang-format on
