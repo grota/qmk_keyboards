@@ -22,10 +22,6 @@ ifeq ($(strip $(ACHORDION_ENABLE)), yes)
   OPT_DEFS += -DACHORDION_ENABLE
 endif
 
-ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
-  SRC += $(USER_PATH)/tap_dance.c
-endif
-
 ifeq ($(strip $(GROTA_DEFINE_ARROW)), yes)
   OPT_DEFS += -DGROTA_DEFINE_ARROW
 endif

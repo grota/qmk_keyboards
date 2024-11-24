@@ -1,6 +1,8 @@
 #include "grota/grota.h"
 #include "grota/process_records.h"
-#include "grota/tap_dance.h"
+#ifdef TAP_DANCE_ENABLE
+#include "tap_dance.c"
+#endif
 #include "qmk_firmware/quantum/keycodes.h"
 #include "qmk_firmware/quantum/keymap_extras/keymap_us.h"
 #include QMK_KEYBOARD_H
