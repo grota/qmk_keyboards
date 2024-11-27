@@ -91,8 +91,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
  * Otherwise a solenoid trigger on the master is replicated on the slave.
  */
 void housekeeping_task_kb(void) {
-#ifdef HAPTIC_ENABLE
   if (is_keyboard_master()) {
+#ifdef HAPTIC_ENABLE
 #ifdef GROTA_DATA_SYNC_TESTS_DEBUG
     receive_msg_from_slave();
 #endif
