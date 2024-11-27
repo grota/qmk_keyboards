@@ -3,6 +3,7 @@
 #include "grota/grota.h"
 #include "qmk_firmware/quantum/action_layer.h"
 
+#ifdef AUDIO_ENABLE
 #define GROTA_X(LAYER_ID, DESC)                                                \
   void grota_td_fn_layer_##LAYER_ID(tap_dance_state_t *state,                  \
                                     void *user_data) {                         \
@@ -11,6 +12,15 @@
       default_layer_set((layer_state_t)1 << LAYER_ID);                         \
     }                                                                          \
   }
+#else
+#define GROTA_X(LAYER_ID, DESC)                                                \
+  void grota_td_fn_layer_##LAYER_ID(tap_dance_state_t *state,                  \
+                                    void *user_data) {                         \
+    if (state->count == 2) {                                                   \
+      default_layer_set((layer_state_t)1 << LAYER_ID);                         \
+    }                                                                          \
+  }
+#endif
 REPEAT_GROTA_X_FOR_LAYERS
 #undef GROTA_X
 

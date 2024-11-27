@@ -1,6 +1,8 @@
 #include "grota/process_records.h"
 #include "grota.h"
 #include "grota/config.h"
+#include "keyboard.h"
+#include "keycodes.h"
 #include "qmk_firmware/quantum/action_util.h"
 #include "qmk_firmware/quantum/keycodes.h"
 
@@ -144,5 +146,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 #endif // #ifdef GROTA_DEFINE_PRINT_HAPTIC
   }    // END switch keycode
+  // Make sure to return false here on the slave to avoid the nasty bug where
+  // the homerow seems to have ghosting.
+  if (!is_keyboard_master() && (record->event.key.row == 3)) { return false; }
   return process_record_keymap(keycode, record);
 }

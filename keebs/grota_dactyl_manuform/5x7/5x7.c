@@ -44,8 +44,7 @@ bool should_process_keypress(void) { return true; }
 
 void keyboard_post_init_kb(void) {
 #if defined(GROTA_DATA_SYNC_AUDIO_STATE)
-  transaction_register_rpc(SYNC_AUDIO,
-                           audio_slave_handler);
+  transaction_register_rpc(SYNC_AUDIO, audio_slave_handler);
 #endif
 #if defined(GROTA_DATA_SYNC_TESTS_DEBUG)
   transaction_register_rpc(SYNC_SLAVE_MSG, receive_msg_from_slave_cb);
